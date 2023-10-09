@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npx next dev",
+      "detail": "開発プレビュー用のサーバーを立ち上げます",
+      "icon": {
+        "color": "terminal.ansiYellow",
+        "id": "run-all"
+      },
+      "type": "shell",
+      "command": "npx",
+      "args": ["next", "dev"],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "npx next dev (4000ポート版)",
+      "detail": "開発プレビュー用のサーバーを立ち上げます。ポートは4000です",
+      "icon": {
+        "color": "terminal.ansiYellow",
+        "id": "run-all"
+      },
+      "type": "shell",
+      "command": "npx",
+      "args": ["next", "dev", "-p", "4000"],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "npx next build",
+      "detail": "本番用ファイルを.nextフォルダ配下に出力します",
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "package"
+      },
+      "type": "shell",
+      "command": "npx",
+      "args": ["next", "build"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "npx next start",
+      "detail": "本番モードでアプリケーションを起動します。先にbuildをする必要があります",
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "window"
+      },
+      "type": "shell",
+      "command": "npx",
+      "args": ["next", "start"],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
