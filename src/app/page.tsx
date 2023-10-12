@@ -1,7 +1,7 @@
 'use client';
-
 import { useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Home(): JSX.Element {
   // URLのパラメータを取得してそれぞれのページに遷移する
@@ -11,6 +11,9 @@ export default function Home(): JSX.Element {
   const router = useRouter();
 
   useEffect(() => {
+    if (site === null) {
+      return;
+    }
     switch (site) {
       case 'pl':
         router.push('/pl/');
@@ -24,12 +27,27 @@ export default function Home(): JSX.Element {
       default:
         break;
     }
-  }, []);
+  }, [site, router]);
 
   return (
     <main>
-      <h1>Jinro Party</h1>
-      <p>人狼パーティプロジェクト</p>
+      <section>
+        <h1>Jinro Party</h1>
+        <p>人狼パーティプロジェクト</p>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <Link href="./?site=gm">GameMaster Site</Link>
+          </li>
+          <li>
+            <Link href="./?site=mt">Monitor Site</Link>
+          </li>
+          <li>
+            <Link href="./?site=pl">Player Site</Link>
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }
