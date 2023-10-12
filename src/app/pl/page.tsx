@@ -1,13 +1,15 @@
+'use client';
+import { useEffect } from 'react';
+
 export default function Home(): JSX.Element {
-  // プレイヤーID存在確認
-  // localStorage に保存してあるかを確認する
-
-  // プレイヤーIDが存在しなかった場合は、プレイヤーIDを新規作成して
-  // localStorage に保存
-
-  // UUID を生成する → localStorage に保存
-
-  // localStorage → キー と 値
+  useEffect(() => {
+    // デバイスIDの確認と生成
+    const deviceId = localStorage.getItem('jrpt_general_deviceid');
+    if (deviceId == null) {
+      const uuid = crypto.randomUUID();
+      localStorage.setItem('jrpt_general_deviceid', uuid);
+    }
+  }, []);
 
   return (
     <>
