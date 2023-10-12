@@ -9,7 +9,7 @@ import { GameState } from '@/config/game';
  */
 export function makeAPIEndpointURL(routingPoint: ApiRouting.Point): string {
   const apiHost = process.env.NEXT_PUBLIC_HOST;
-  if (typeof apiHost === 'undefined') {
+  if (apiHost == undefined) {
     return '';
   }
   return `${apiHost}/${routingPoint}`;

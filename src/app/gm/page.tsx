@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     execGETGameState(apiEndpointURL).then((resValue) => {
-      if (typeof resValue === 'undefined') {
+      if (resValue == undefined) {
         return;
       }
       setGameState(resValue);
