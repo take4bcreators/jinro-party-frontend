@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/sockjs": "^0.3.34",
     "@types/sockjs-client": "^1.5.2",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
+    "sockjs": "^0.3.24",
     "sockjs-client": "^1.6.1"
   },
   "devDependencies": {
