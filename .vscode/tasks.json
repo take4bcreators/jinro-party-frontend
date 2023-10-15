@@ -72,6 +72,30 @@
         "echo": true
       },
       "problemMatcher": []
+    },
+    {
+      "label": "WebSocket テスト用サーバー起動",
+      "detail": "WebSocketのテスト用サーバーを起動します",
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "window"
+      },
+      "type": "shell",
+      "command": "node",
+      "args": ["${workspaceFolder}/test/customServer/webSocketTestServer.js"],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "windows": {
+        "command": "node",
+        "args": [
+          "${workspaceFolder}\\test\\customServer\\webSocketTestServer.js"
+        ]
+      }
     }
   ]
 }
