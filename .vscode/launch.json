@@ -2,33 +2,47 @@
   "version": "0.2.0",
   "configurations": [
     {
-      // サーバーサイド単品のデバッグ
-      "name": "Next.js: debug server-side",
+      "name": "[01] Next.js: サーバーサイド起動",
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev"
     },
     {
-      // クライアントサイド単品のデバッグ
-      //   ※別途 npm run dev の実行が必要
-      "name": "Next.js: debug client-side",
+      "name": "[02] Next.js: クライアントサイド起動",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000"
     },
     {
-      // サーバーサイドとクライアントサイドの両方をデバッグ
-      //   ※デフォルトから改良
-      "name": "Next.js: debug full stack",
+      "name": "[03] Next.js: サーバー＋クライアント起動",
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
       "serverReadyAction": {
-        // "pattern": "started server on .+, url: (https?://.+)",
         "pattern": "- Local:.+ (https?://.+)",
         "uriFormat": "%s",
-        "action": "debugWithChrome"
+        "action": "debugWithChrome",
+        "killOnServerStop": true
       }
+    },
+    {
+      "name": "[04] WebSocketテスト用サーバー起動",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/test/customServer/webSocketTestServer.js",
+      "windows": {
+        "program": "${workspaceFolder}\\test\\customServer\\webSocketTestServer.js"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "[05] サーバー＋クライアント＋WebSocketテスト用サーバー起動",
+      "configurations": [
+        "[03] Next.js: サーバー＋クライアント起動",
+        "[04] WebSocketテスト用サーバー起動"
+      ],
+      "stopAll": true
     }
   ]
 }
