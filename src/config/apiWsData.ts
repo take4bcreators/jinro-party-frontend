@@ -2,6 +2,9 @@ import { WsDestinationType } from './wsDestinationType';
 import { WsRequestAction } from './wsRequestAction';
 import { WsSenderType } from './wsSenderType';
 
+/**
+ * WebSocket送受信用インタフェース
+ */
 export type APIWsData = {
   /** 送信先の種別 */
   destinationType: WsDestinationType;

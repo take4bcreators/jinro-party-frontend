@@ -3,8 +3,8 @@ import type { APIData } from '@/config/apiData';
 import { TypedFormGetter } from '@/utils/typedFormer';
 
 // @note レスポンスデータ指定箇所
-const RESPONSE_DATA: APIData.APIReplyExistsDeviceId = {
-  exists: true,
+const RESPONSE_DATA: APIData.APIReplyCheckPlayerAlive = {
+  isAlive: true,
 };
 
 export async function POST(req: NextRequest) {

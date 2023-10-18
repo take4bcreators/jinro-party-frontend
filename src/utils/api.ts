@@ -1,6 +1,6 @@
 import { APIRouting } from '@/config/apiRouting';
 import { APIData } from '@/config/apiData';
-import { TypedFormData } from './util';
+import { TypedFormData } from './typedFormer';
 import { GameState } from '@/config/gameState';
 
 /**
