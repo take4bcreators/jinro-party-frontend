@@ -38,7 +38,7 @@ export async function execGETGameState(
  * @param requestDataObject リクエスト送信値オブジェクト
  * @returns 存在確認結果（プロミス）
  */
-export async function execPOSTExistsDevice(
+export async function execPOSTExistsDeviceId(
   apiEndpointURL: string,
   requestDataObject: APIData.APISendDeviceId
 ): Promise<boolean | undefined> {
@@ -52,4 +52,26 @@ export async function execPOSTExistsDevice(
   });
   const resData: APIData.APIReplyExistsDeviceId = await res.json();
   return resData.exists;
+}
+
+/**
+ * プレイヤー生存確認 API POST実行
+ * @param apiEndpointURL エンドポイントURL
+ * @param requestDataObject リクエスト送信値オブジェクト
+ * @returns プレイヤー生存確認結果 (プロミス)
+ */
+export async function execPOSTCheckPlayerAlive(
+  apiEndpointURL: string,
+  requestDataObject: APIData.APISendDeviceId
+): Promise<boolean | undefined> {
+  if (apiEndpointURL === '') {
+    return;
+  }
+  const form = new TypedFormData(requestDataObject);
+  const res = await fetch(apiEndpointURL, {
+    method: 'POST',
+    body: form,
+  });
+  const resData: APIData.APIReplyCheckPlayerAlive = await res.json();
+  return resData.isAlive;
 }
