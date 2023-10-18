@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { ApiData } from '@/config/api';
+import type { APIData } from '@/config/apiData';
 import { TypedFormGetter } from '@/utils/util';
 
 // @note レスポンスデータ指定箇所
-const RESPONSE_DATA: ApiData.DeviceIdAPIResponse = {
+const RESPONSE_DATA: APIData.APIReplyExistsDeviceId = {
   exists: true,
 };
 
 export async function POST(req: NextRequest) {
   const postData = await req.formData();
-  const formGetter = new TypedFormGetter<ApiData.DeviceIdAPIRequest>(postData);
+  const formGetter = new TypedFormGetter<APIData.APISendDeviceId>(postData);
   const deviceId = formGetter.get('deviceId');
   console.log('info: post data is ' + deviceId);
   const res = NextResponse.json(RESPONSE_DATA);
