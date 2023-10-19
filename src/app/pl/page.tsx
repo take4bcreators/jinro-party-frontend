@@ -1,17 +1,48 @@
+'use client';
+import { useEffect, useState } from 'react';
+import { APIService } from '@/utils/apiService';
+import { useRouter } from 'next/navigation';
+import { GameState } from '@/config/gameState';
+
 export default function Home(): JSX.Element {
-  // プレイヤーID存在確認
-  // localStorage に保存してあるかを確認する
+  const router = useRouter();
+  const [gameState, setGameState] = useState('');
+  useEffect(() => {
+    // デバイスIDの確認と生成
+    const deviceId = localStorage.getItem('jrpt_general_deviceid');
+    if (deviceId == null) {
+      const uuid = crypto.randomUUID();
+      localStorage.setItem('jrpt_general_deviceid', uuid);
+    }
+    APIService.execGETGameState().then((resValue) => {
+      if (resValue == undefined) {
+        return;
+      }
+      setGameState(resValue);
+    });
+  }, []);
 
-  // プレイヤーIDが存在しなかった場合は、プレイヤーIDを新規作成して
-  // localStorage に保存
+  if (gameState === '') {
+    return <></>;
+  }
 
-  // UUID を生成する → localStorage に保存
-
-  // localStorage → キー と 値
+  if (gameState === GameState.PreGame) {
+    console.log('募集前');
+    return (
+      <>
+        <h1>人狼パーティ</h1>
+        <p>募集前です...</p>
+        <p>しばらくお待ちください</p>
+      </>
+    );
+  } else {
+    console.log('ゲーム中');
+    router.push('/pl/playing/');
+  }
 
   return (
     <>
-      <p>プレイヤーサイトです</p>
+      <p>ロード中...</p>
     </>
   );
 }

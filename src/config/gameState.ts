@@ -26,6 +26,8 @@ export const GameState = {
   VoteResult: 'VoteResult',
   /** 追放者発表 */
   ExileAnnouncement: 'ExileAnnouncement',
+  /** 追放者発表（ゲーム終了直前） */
+  FinalExileAnnouncement: 'FinalExileAnnouncement',
   /** 夜フェーズ開始 */
   NightPhaseStart: 'NightPhaseStart',
   /** 夜フェーズ */

@@ -1,25 +1,18 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { makeAPIEndpointURL, execGETGameState } from '@/utils/api';
-import { ApiRouting } from '@/config/api';
+import { APIService } from '@/utils/apiService';
 
 export default function Home(): JSX.Element {
   const [gameState, setGameState] = useState('');
-  const [apiEndpointURL, setApiEndpointURL] = useState('');
 
   useEffect(() => {
-    const endpointURL = makeAPIEndpointURL(ApiRouting.Point.getGameState);
-    setApiEndpointURL(endpointURL);
-  }, []);
-
-  useEffect(() => {
-    execGETGameState(apiEndpointURL).then((resValue) => {
+    APIService.execGETGameState().then((resValue) => {
       if (resValue == undefined) {
         return;
       }
       setGameState(resValue);
     });
-  }, [apiEndpointURL]);
+  }, []);
 
   if (gameState === '') {
     return <></>;
