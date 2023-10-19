@@ -1,13 +1,14 @@
-import { ApiRouting, ApiData } from '@/config/api';
-import { TypedFormData } from './util';
-import { GameState } from '@/config/game';
+import { APIRouting } from '@/config/apiRouting';
+import { APIData } from '@/config/apiData';
+import { TypedFormData } from './typedFormer';
+import { GameState } from '@/config/gameState';
 
 /**
  * エンドポイントURL作成
  * @param routingPoint エンドポイントのパス
  * @returns 作成したURL
  */
-export function makeAPIEndpointURL(routingPoint: ApiRouting.Point): string {
+export function makeAPIEndpointURL(routingPoint: APIRouting.Point): string {
   const apiHost = process.env.NEXT_PUBLIC_HOST;
   if (apiHost == undefined) {
     return '';
@@ -27,7 +28,7 @@ export async function execGETGameState(
     return;
   }
   const res = await fetch(apiEndpointURL);
-  const resData: ApiData.GameStateAPIRequest = await res.json();
+  const resData: APIData.APIReplyGameState = await res.json();
   return resData.gameState;
 }
 
@@ -37,9 +38,9 @@ export async function execGETGameState(
  * @param requestDataObject リクエスト送信値オブジェクト
  * @returns 存在確認結果（プロミス）
  */
-export async function execPOSTExistsDevice(
+export async function execPOSTExistsDeviceId(
   apiEndpointURL: string,
-  requestDataObject: ApiData.DeviceIdAPIRequest
+  requestDataObject: APIData.APISendDeviceId
 ): Promise<boolean | undefined> {
   if (apiEndpointURL === '') {
     return;
@@ -49,6 +50,28 @@ export async function execPOSTExistsDevice(
     method: 'POST',
     body: form,
   });
-  const resData: ApiData.DeviceIdAPIResponse = await res.json();
+  const resData: APIData.APIReplyExistsDeviceId = await res.json();
   return resData.exists;
+}
+
+/**
+ * プレイヤー生存確認 API POST実行
+ * @param apiEndpointURL エンドポイントURL
+ * @param requestDataObject リクエスト送信値オブジェクト
+ * @returns プレイヤー生存確認結果 (プロミス)
+ */
+export async function execPOSTCheckPlayerAlive(
+  apiEndpointURL: string,
+  requestDataObject: APIData.APISendDeviceId
+): Promise<boolean | undefined> {
+  if (apiEndpointURL === '') {
+    return;
+  }
+  const form = new TypedFormData(requestDataObject);
+  const res = await fetch(apiEndpointURL, {
+    method: 'POST',
+    body: form,
+  });
+  const resData: APIData.APIReplyCheckPlayerAlive = await res.json();
+  return resData.isAlive;
 }
