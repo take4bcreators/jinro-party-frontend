@@ -1,12 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { makeAPIEndpointURL, execGETGameState } from '@/utils/api';
-import { APIRouting } from '@/config/apiRouting';
+import { APIService } from '@/utils/apiService';
 import { useRouter } from 'next/navigation';
+import { GameState } from '@/config/gameState';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
-
+  const [gameState, setGameState] = useState('');
   useEffect(() => {
     // デバイスIDの確認と生成
     const deviceId = localStorage.getItem('jrpt_general_deviceid');
@@ -14,30 +14,19 @@ export default function Home(): JSX.Element {
       const uuid = crypto.randomUUID();
       localStorage.setItem('jrpt_general_deviceid', uuid);
     }
-  }, []);
-
-  const [gameState, setGameState] = useState('');
-  const [apiEndpointURL, setApiEndpointURL] = useState('');
-
-  useEffect(() => {
-    const endpointURL = makeAPIEndpointURL(APIRouting.Point.getGameState);
-    setApiEndpointURL(endpointURL);
-  }, []);
-
-  useEffect(() => {
-    execGETGameState(apiEndpointURL).then((resValue) => {
+    APIService.execGETGameState().then((resValue) => {
       if (resValue == undefined) {
         return;
       }
       setGameState(resValue);
     });
-  }, [apiEndpointURL]);
+  }, []);
 
   if (gameState === '') {
     return <></>;
   }
 
-  if (gameState === 'PreGame') {
+  if (gameState === GameState.PreGame) {
     console.log('募集前');
     return (
       <>
