@@ -29,9 +29,13 @@
       "name": "[04] WebSocketテスト用サーバー起動",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/test/customServer/webSocketTestServer.js",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "cwd": "${workspaceFolder}/test/customServer",
+      "program": "${workspaceFolder}/test/customServer/webSocketTestServer.ts",
       "windows": {
-        "program": "${workspaceFolder}\\test\\customServer\\webSocketTestServer.js"
+        "program": "${workspaceFolder}\\test\\customServer\\webSocketTestServer.ts",
+        "cwd": "${workspaceFolder}\\test\\customServer"
       }
     }
   ],

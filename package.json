@@ -15,7 +15,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sockjs": "^0.3.24",
-    "sockjs-client": "^1.6.1"
+    "sockjs-client": "^1.6.1",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^20",
