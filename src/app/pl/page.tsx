@@ -3,17 +3,14 @@ import { useEffect, useState } from 'react';
 import { APIService } from '@/utils/apiService';
 import { useRouter } from 'next/navigation';
 import { GameState } from '@/config/gameState';
+import { DeviceIdService } from '@/utils/deviceIdService';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
   const [gameState, setGameState] = useState('');
   useEffect(() => {
     // デバイスIDの確認と生成
-    const deviceId = localStorage.getItem('jrpt_general_deviceid');
-    if (deviceId == null) {
-      const uuid = crypto.randomUUID();
-      localStorage.setItem('jrpt_general_deviceid', uuid);
-    }
+    DeviceIdService.registerIfNotExists();
     APIService.execGETGameState().then((resValue) => {
       if (resValue == undefined) {
         return;
