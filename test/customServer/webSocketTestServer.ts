@@ -1,6 +1,6 @@
 import * as Http from 'http';
 import * as Sockjs from 'sockjs';
-import type { APIWsData } from '../../src/config/apiWsData';
+import type { APIWsData } from '../../src/types/apiWsData';
 import { WsDestinationType } from '../../src/config/wsDestinationType';
 import { WsSenderType } from '../../src/config/wsSenderType';
 import { WsRequestAction } from '../../src/config/wsRequestAction';

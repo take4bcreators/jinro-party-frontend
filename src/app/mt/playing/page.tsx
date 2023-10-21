@@ -1,5 +1,5 @@
 'use client';
-import { APIWsData } from '@/config/apiWsData';
+import type { APIWsData } from '@/types/apiWsData';
 import { GameState } from '@/config/gameState';
 import { WsService } from '@/utils/wsService';
 import { useEffect, useState } from 'react';

@@ -1,6 +1,6 @@
 import { WsRequestAction } from '@/config/wsRequestAction';
 import { Dispatch, SetStateAction } from 'react';
-import { APIWsData } from '@/config/apiWsData';
+import type { APIWsData } from '@/types/apiWsData';
 import { WsDestinationType } from '@/config/wsDestinationType';
 import SockJS from 'sockjs-client';
 import { APIRouting } from '@/config/apiRouting';

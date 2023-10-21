@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { APIData } from '@/config/apiData';
+import type { APIData } from '@/types/apiData';
 import { GameState } from '@/config/gameState';
 
 // @note レスポンスデータ指定箇所
