@@ -16,38 +16,50 @@ const httpServer = Http.createServer();
 sockjsServer.installHandlers(httpServer, { prefix: END_POINT });
 httpServer.listen(LISTEN_PORT, LISTEN_HOST);
 
+let sessions: Sockjs.Connection[] = [];
+
 // WebSocket 接続時の処理
-sockjsServer.on('connection', (conn) => {
+sockjsServer.on('connection', (session) => {
   console.log('debug: SockJS Connection');
   // === Open Process Here ===
+  sessions.push(session);
 
   // メッセージ取得時の処理
-  conn.on('data', (message) => {
+  session.on('data', (receive) => {
     console.log('debug: SockJS data');
     console.log('debug: message...');
-    console.log(message);
-    const receiveData: APIWsData = JSON.parse(message);
+    console.log(receive);
+    const receiveData: APIWsData = JSON.parse(receive);
     console.log(receiveData.requestAction);
     // === Receive Process Here ===
 
     // メッセージ送信
-    const sendData: APIWsData = {
-      destinationType: WsDestinationType.Player,
-      destinationDeviceId: '',
-      senderType: WsSenderType.Server,
-      senderDeviceId: '',
-      requestAction: WsRequestAction.GameEnd,
-      actionParameter01: '',
-      actionParameter02: '',
-      actionParameter03: '',
-    };
+    // const sendData: APIWsData = {
+    //   destinationType: WsDestinationType.Player,
+    //   destinationDeviceId: '',
+    //   senderType: WsSenderType.Server,
+    //   senderDeviceId: '',
+    //   requestAction: WsRequestAction.GameEnd,
+    //   actionParameter01: '',
+    //   actionParameter02: '',
+    //   actionParameter03: '',
+    // };
+    // const sendJsonData = JSON.stringify(sendData);
+    // conn.write(sendJsonData);
+
+    const sendData = receiveData;
     const sendJsonData = JSON.stringify(sendData);
-    conn.write(sendJsonData);
+    for (const oneSession of sessions) {
+      oneSession.write(sendJsonData);
+    }
   });
 
   // WebSocket 切断時の処理
-  conn.on('close', () => {
+  session.on('close', () => {
     console.log('debug: SockJS Close');
     // === Close Process Here ===
+
+    const newSessions = sessions.filter((oneSession) => oneSession !== session);
+    sessions = newSessions;
   });
 });

@@ -8,5 +8,7 @@ export const WsSenderType = {
   MonitorSite: 'MonitorSite',
   /** プレイヤーサイト */
   PlayerSite: 'PlayerSite',
+  /** デバッグ用 */
+  Debug: 'Debug',
 } as const;
 export type WsSenderType = (typeof WsSenderType)[keyof typeof WsSenderType];
