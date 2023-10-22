@@ -155,7 +155,7 @@ export class WsService {
    * @returns 自身のWebSocket情報
    */
   private generateSelfInfo(selfType: WsSenderType): APIWsSelfInfo {
-    const selfDeviceId = DeviceIdService.get();
+    const selfDeviceId = DeviceIdService.getIfExists();
     let allowedList = WS_ALLOWED_DESTINATION_TYPES.get(selfType);
     if (allowedList == undefined) {
       allowedList = [WsDestinationType.Empty];

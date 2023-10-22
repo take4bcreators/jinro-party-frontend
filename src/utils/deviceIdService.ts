@@ -17,11 +17,16 @@ export namespace DeviceIdService {
     return;
   }
 
-  export function get(): string {
-    registerIfNotExists();
+  export function getIfExists(): string {
     const deviceId = LocalStorageService.get(
       LocalStorageKey.jrptGeneralDeviceid
     );
     return deviceId ?? '';
+  }
+
+  export function get(): string {
+    registerIfNotExists();
+    const deviceId = getIfExists();
+    return deviceId;
   }
 }

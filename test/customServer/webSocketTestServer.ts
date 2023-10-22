@@ -6,7 +6,8 @@ import { WsSenderType } from '../../src/config/wsSenderType';
 import { WsRequestAction } from '../../src/config/wsRequestAction';
 
 // 接続情報指定
-const LISTEN_HOST: string = 'localhost';
+// const LISTEN_HOST: string = 'localhost';
+const LISTEN_HOST: string = '192.168.11.4';
 const LISTEN_PORT: number = 3001;
 const END_POINT: string = '/api/ws';
 

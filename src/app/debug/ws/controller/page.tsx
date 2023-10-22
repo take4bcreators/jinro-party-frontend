@@ -45,7 +45,7 @@ export default function Home(): JSX.Element {
   const wsReceiveDataJson = JSON.stringify(wsReceiveData, null, '\t');
 
   function handleInputText(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSendData(e.target.value);
   }
 
