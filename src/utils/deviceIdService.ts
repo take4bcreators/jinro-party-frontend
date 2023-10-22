@@ -1,5 +1,6 @@
 import { LocalStorageKey } from '@/config/localStorageKey';
 import { LocalStorageService } from './localStorageService';
+import { v4 as uuidv4 } from 'uuid';
 
 export namespace DeviceIdService {
   /**
@@ -11,7 +12,7 @@ export namespace DeviceIdService {
       LocalStorageKey.jrptGeneralDeviceid
     );
     if (deviceId == undefined) {
-      const uuid = crypto.randomUUID();
+      const uuid = uuidv4();
       LocalStorageService.set(LocalStorageKey.jrptGeneralDeviceid, uuid);
     }
     return;
