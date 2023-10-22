@@ -24,29 +24,6 @@
         "action": "debugWithChrome",
         "killOnServerStop": true
       }
-    },
-    {
-      "name": "[04] WebSocketテスト用サーバー起動",
-      "type": "node",
-      "request": "launch",
-      "skipFiles": ["<node_internals>/**", "node_modules/**"],
-      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-      "cwd": "${workspaceFolder}/test/customServer",
-      "program": "${workspaceFolder}/test/customServer/webSocketTestServer.ts",
-      "windows": {
-        "program": "${workspaceFolder}\\test\\customServer\\webSocketTestServer.ts",
-        "cwd": "${workspaceFolder}\\test\\customServer"
-      }
-    }
-  ],
-  "compounds": [
-    {
-      "name": "[05] サーバー＋クライアント＋WebSocketテスト用サーバー起動",
-      "configurations": [
-        "[03] Next.js: サーバー＋クライアント起動",
-        "[04] WebSocketテスト用サーバー起動"
-      ],
-      "stopAll": true
     }
   ]
 }
