@@ -41,7 +41,9 @@ export namespace APIService {
   export async function execPOSTExistsDeviceId(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
-    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetGameState);
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExistsDeviceId
+    );
     if (apiEndpointURL === '') {
       return;
     }
@@ -63,7 +65,9 @@ export namespace APIService {
   export async function execPOSTCheckPlayerAlive(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
-    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetGameState);
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostCheckPlayerAlive
+    );
     if (apiEndpointURL === '') {
       return;
     }

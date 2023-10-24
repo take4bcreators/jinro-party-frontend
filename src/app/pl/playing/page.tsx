@@ -3,28 +3,68 @@ import type { APIWsData } from '@/types/apiWsData';
 import { GameState } from '@/config/gameState';
 import { WsService } from '@/utils/wsService';
 import { useEffect, useState } from 'react';
-
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
 import PageDayPhase from './state/DayPhase';
 import PageNightPhase from './state/NightPhase';
 import { WsSenderType } from '@/config/wsSenderType';
+import { APIService } from '@/utils/apiService';
+import { DeviceIdService } from '@/utils/deviceIdService';
+import { useRouter } from 'next/navigation';
 
 export default function Home(): JSX.Element {
-  const [wsReceiveData, setWsReceiveData] = useState<APIWsData | undefined>(
-    undefined
-  );
+  const router = useRouter();
+  const [existsDeviceId, setExistsDeviceId] = useState(false);
+  const [isAlivePlayer, setIsAlivePlayer] = useState(false);
+  const [pageChange, setPageChange] = useState(false);
   const [wsIsOpen, setWsIsOpen] = useState(false);
+  const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
 
   useEffect(() => {
+    const deviceIdAPIData = DeviceIdService.getToAPIData();
+    APIService.execPOSTExistsDeviceId(deviceIdAPIData).then((resValue) => {
+      if (resValue == undefined) {
+        return;
+      }
+      if (!resValue) {
+        router.push('/pl/error/');
+        setPageChange(true);
+        return;
+      }
+      setExistsDeviceId(true);
+    });
+  }, [router]);
+
+  useEffect(() => {
+    if (!existsDeviceId) {
+      return;
+    }
+    const deviceIdAPIData = DeviceIdService.getToAPIData();
+    APIService.execPOSTCheckPlayerAlive(deviceIdAPIData).then((isAlive) => {
+      if (isAlive == undefined) {
+        return;
+      }
+      if (!isAlive) {
+        router.push('/pl/gameover/');
+        setPageChange(true);
+        return;
+      }
+      setIsAlivePlayer(true);
+    });
+  }, [router, existsDeviceId]);
+
+  useEffect(() => {
+    if (!isAlivePlayer) {
+      return;
+    }
     const wss = new WsService(
       WsSenderType.PlayerSite,
       setWsIsOpen,
-      setWsReceiveData
+      setWsRcvData
     );
     setWsService(wss);
-  }, []);
+  }, [isAlivePlayer]);
 
   useEffect(() => {
     if (wsService == undefined) {
@@ -36,14 +76,17 @@ export default function Home(): JSX.Element {
     wsService.getCurrentGameState();
   }, [wsService, wsIsOpen]);
 
-  if (wsReceiveData == undefined) {
+  if (wsRcvData == undefined) {
     return <PageLoading />;
   }
   if (wsService == undefined) {
     return <PageLoading />;
   }
+  if (pageChange) {
+    return <PageLoading />;
+  }
 
-  const nextState = wsReceiveData.actionParameter01 as GameState;
+  const nextState = wsRcvData.actionParameter01 as GameState;
   switch (nextState) {
     case GameState.PreGame:
       return <PagePreGame />;

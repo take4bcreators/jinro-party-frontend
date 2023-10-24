@@ -7,39 +7,48 @@ import { DeviceIdService } from '@/utils/deviceIdService';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
+  const [pageChange, setPageChange] = useState(false);
   const [gameState, setGameState] = useState('');
+
   useEffect(() => {
     // デバイスIDの確認と生成
     DeviceIdService.registerIfNotExists();
-    APIService.execGETGameState().then((resValue) => {
-      if (resValue == undefined) {
+    APIService.execGETGameState().then((state) => {
+      if (state == undefined) {
         return;
       }
-      setGameState(resValue);
+      setGameState(state);
     });
   }, []);
 
-  if (gameState === '') {
-    return <></>;
-  }
+  useEffect(() => {
+    if (gameState !== GameState.PreGame) {
+      console.log('ゲーム中');
+      router.push('/pl/continue/');
+      setPageChange(true);
+    }
+  }, [gameState, router]);
 
-  if (gameState === GameState.PreGame) {
-    console.log('募集前');
+  if (gameState === '') {
     return (
       <>
-        <h1>人狼パーティ</h1>
-        <p>募集前です...</p>
-        <p>しばらくお待ちください</p>
+        <p>ロード中...</p>
       </>
     );
-  } else {
-    console.log('ゲーム中');
-    router.push('/pl/playing/');
+  }
+  if (pageChange) {
+    return (
+      <>
+        <p>ロード中...</p>
+      </>
+    );
   }
 
   return (
     <>
-      <p>ロード中...</p>
+      <h1>人狼パーティ</h1>
+      <p>募集前です...</p>
+      <p>しばらくお待ちください</p>
     </>
   );
 }
