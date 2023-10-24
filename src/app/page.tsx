@@ -46,6 +46,9 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="./?site=pl">Player Site</Link>
           </li>
+          <li>
+            <Link href="/debug/timer">Timer Debug</Link>
+          </li>
         </ul>
       </section>
     </main>
