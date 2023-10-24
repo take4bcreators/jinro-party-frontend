@@ -14,6 +14,8 @@ export const WsRequestAction = {
   CountdownTimerPause: 'CountdownTimerPause',
   /** カウントダウンタイマー再開 */
   CountdownTimerResume: 'CountdownTimerResume',
+  /** ゲーム状態確認 */
+  ReturnCurrentGameState: 'ReturnCurrentGameState',
   /** 役職確認登録 */
   RoleRegistration: 'RoleRegistration',
   /** 追放者投票登録 */

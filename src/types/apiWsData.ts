@@ -1,6 +1,6 @@
-import { WsDestinationType } from './wsDestinationType';
-import { WsRequestAction } from './wsRequestAction';
-import { WsSenderType } from './wsSenderType';
+import { WsDestinationType } from '../config/wsDestinationType';
+import { WsRequestAction } from '../config/wsRequestAction';
+import { WsSenderType } from '../config/wsSenderType';
 
 /**
  * WebSocket送受信用インタフェース

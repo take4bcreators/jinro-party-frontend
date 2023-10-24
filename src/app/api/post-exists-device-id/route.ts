@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { APIData } from '@/config/apiData';
+import type { APIData } from '@/types/apiData';
 import { TypedFormGetter } from '@/utils/typedFormer';
 
 // @note レスポンスデータ指定箇所
