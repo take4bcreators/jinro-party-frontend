@@ -14,6 +14,10 @@ export const WsDestinationType = {
   PlayerSite: 'PlayerSite',
   /** 特定のプレイヤー向け */
   Player: 'Player',
+  /** 宛先なし */
+  None: 'None',
+  /** 未設定（送信には使用しない） */
+  Empty: 'Empty',
 } as const;
 export type WsDestinationType =
   (typeof WsDestinationType)[keyof typeof WsDestinationType];

@@ -1,5 +1,5 @@
 import { APIRouting } from '@/config/apiRouting';
-import { APIData } from '@/config/apiData';
+import type { APIData } from '@/types/apiData';
 import { TypedFormData } from './typedFormer';
 import { GameState } from '@/config/gameState';
 
@@ -14,7 +14,7 @@ export namespace APIService {
     if (apiHost == undefined) {
       return '';
     }
-    return `${apiHost}/${routingPoint}`;
+    return `${apiHost}${routingPoint}`;
   }
 
   /**
@@ -23,7 +23,7 @@ export namespace APIService {
    * @returns ゲームの状態ID（プロミス）
    */
   export async function execGETGameState(): Promise<GameState | undefined> {
-    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.getGameState);
+    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetGameState);
     if (apiEndpointURL === '') {
       return;
     }
@@ -39,9 +39,11 @@ export namespace APIService {
    * @returns 存在確認結果（プロミス）
    */
   export async function execPOSTExistsDeviceId(
-    apiEndpointURL: string,
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExistsDeviceId
+    );
     if (apiEndpointURL === '') {
       return;
     }
@@ -61,9 +63,11 @@ export namespace APIService {
    * @returns プレイヤー生存確認結果 (プロミス)
    */
   export async function execPOSTCheckPlayerAlive(
-    apiEndpointURL: string,
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostCheckPlayerAlive
+    );
     if (apiEndpointURL === '') {
       return;
     }

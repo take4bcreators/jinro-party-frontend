@@ -1,4 +1,4 @@
-import { GameState } from './gameState';
+import { GameState } from '../config/gameState';
 
 export namespace APIData {
   /**
