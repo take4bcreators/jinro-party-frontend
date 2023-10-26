@@ -212,4 +212,21 @@ export class WsService {
     };
     this.send(sendData);
   }
+
+  /**
+   * ゲーム状態更新要求
+   */
+  public updateGameState(nextGameState: GameState): void {
+    const sendData: APIWsData = {
+      destinationType: WsDestinationType.Server,
+      destinationDeviceId: '',
+      senderType: this.selfInfo.selfSenderType,
+      senderDeviceId: this.selfInfo.selfDeviceId,
+      requestAction: WsRequestAction.GameStateUpdate,
+      actionParameter01: nextGameState,
+      actionParameter02: '',
+      actionParameter03: '',
+    };
+    this.send(sendData);
+  }
 }

@@ -1,4 +1,3 @@
-import { LocalStorageKey } from '@/config/localStorageKey';
 import { LocalStorageService } from './localStorageService';
 import { v4 as uuidv4 } from 'uuid';
 import { APIData } from '@/types/apiData';
@@ -9,20 +8,16 @@ export namespace DeviceIdService {
    * @returns なし
    */
   export function registerIfNotExists(): void {
-    const deviceId = LocalStorageService.get(
-      LocalStorageKey.jrptGeneralDeviceid
-    );
+    const deviceId = LocalStorageService.getDeviceId();
     if (deviceId == undefined) {
       const uuid = uuidv4();
-      LocalStorageService.set(LocalStorageKey.jrptGeneralDeviceid, uuid);
+      LocalStorageService.setDeviceId(uuid);
     }
     return;
   }
 
   export function getIfExists(): string | undefined {
-    const deviceId = LocalStorageService.get(
-      LocalStorageKey.jrptGeneralDeviceid
-    );
+    const deviceId = LocalStorageService.getDeviceId();
     return deviceId;
   }
 

@@ -3,17 +3,19 @@ import type { APIWsData } from '@/types/apiWsData';
 import { GameState } from '@/config/gameState';
 import { WsService } from '@/utils/wsService';
 import { useEffect, useState } from 'react';
+import { WsSenderType } from '@/config/wsSenderType';
 
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
 import PageDayPhase from './state/DayPhase';
 import PageNightPhase from './state/NightPhase';
-import { WsSenderType } from '@/config/wsSenderType';
+import PagePlayerJoining from './state/PlayerJoining';
+import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
+import PagePlayerListDisplay from './state/PlayerListDisplay';
+import PageRoleAssignment from './state/RoleAssignment';
 
 export default function Home(): JSX.Element {
-  const [wsReceiveData, setWsReceiveData] = useState<APIWsData | undefined>(
-    undefined
-  );
+  const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   const [wsIsOpen, setWsIsOpen] = useState(false);
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
 
@@ -21,7 +23,7 @@ export default function Home(): JSX.Element {
     const wss = new WsService(
       WsSenderType.MonitorSite,
       setWsIsOpen,
-      setWsReceiveData
+      setWsRcvData
     );
     setWsService(wss);
   }, []);
@@ -36,21 +38,59 @@ export default function Home(): JSX.Element {
     wsService.getCurrentGameState();
   }, [wsService, wsIsOpen]);
 
-  if (wsReceiveData == undefined) {
+  if (wsRcvData == undefined) {
     return <PageLoading />;
   }
   if (wsService == undefined) {
     return <PageLoading />;
   }
 
-  const nextState = wsReceiveData.actionParameter01 as GameState;
+  const nextState = wsRcvData.actionParameter01 as GameState;
   switch (nextState) {
+    case GameState.Empty:
+      break;
     case GameState.PreGame:
       return <PagePreGame />;
+    case GameState.PlayerJoining:
+      return <PagePlayerJoining />;
+    case GameState.PlayerJoiningEnded:
+      return <PagePlayerJoiningEnded />;
+    case GameState.PlayerListDisplay:
+      return <PagePlayerListDisplay />;
+    case GameState.RoleAssignment:
+      return <PageRoleAssignment />;
+    case GameState.DayPhaseStart:
+      break;
     case GameState.DayPhase:
       return <PageDayPhase />;
+    case GameState.DayPhaseEnd:
+      break;
+    case GameState.Voting:
+      break;
+    case GameState.VotingEnd:
+      break;
+    case GameState.VoteResult:
+      break;
+    case GameState.ExileAnnouncement:
+      break;
+    case GameState.FinalExileAnnouncement:
+      break;
+    case GameState.NightPhaseStart:
+      break;
     case GameState.NightPhase:
       return <PageNightPhase />;
+    case GameState.NightPhaseEnd:
+      break;
+    case GameState.MorningPhaseStart:
+      break;
+    case GameState.NightActionResult:
+      break;
+    case GameState.GameEnd:
+      break;
+    case GameState.FinalResult:
+      break;
+    case GameState.RoleReveal:
+      break;
     default:
       break;
   }

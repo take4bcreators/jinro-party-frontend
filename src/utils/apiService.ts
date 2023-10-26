@@ -79,4 +79,158 @@ export namespace APIService {
     const resData: APIData.APIReplyCheckPlayerAlive = await res.json();
     return resData.isAlive;
   }
+
+  /**
+   * 新規ゲーム情報保存 API POST実行
+   * @param apiEndpointURL エンドポイントURL
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 新規ゲーム情報保存結果 (プロミス)
+   */
+  export async function execPOSTPostSaveNewGame(
+    requestDataObject: APIData.APISendNewGame
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.PostSaveNewGame);
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリー用デバイスID存在確認 API POST実行
+   * @param apiEndpointURL エンドポイントURL
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 存在確認結果（プロミス）
+   */
+  export async function execPOSTExistsEntryDeviceId(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExistsEntryDeviceId
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyExistsDeviceId = await res.json();
+    return resData.exists;
+  }
+
+  /**
+   * エントリー用プレイヤー名重複確認 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 重複確認結果（プロミス）
+   */
+  export async function execPOSTCheckDuplEntryPlayerName(
+    requestDataObject: APIData.APISendNewPlayerData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostCheckDuplEntryPlayerName
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyDuplicationResult = await res.json();
+    return resData.isDuplicate;
+  }
+
+  /**
+   * エントリー用プレイヤーデータ仮登録 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 処理結果（プロミス）
+   */
+  export async function execPOSTPlayerTempRegist(
+    requestDataObject: APIData.APISendNewPlayerData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostPlayerTempRegist
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリー用プレイヤーデータ登録 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 処理結果（プロミス）
+   */
+  export async function execPOSTPlayerRegist(
+    requestDataObject: APIData.APISendNewPlayerData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostPlayerRegist
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリー用プレイヤーデータ削除 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 処理結果（プロミス）
+   */
+  export async function execPOSTPlayerRegistRemove(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostPlayerRegistRemove
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリーデータ本登録実行 API GET実行
+   * @returns ゲームの状態ID（プロミス）
+   */
+  export async function execGETExecEntryRegist() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetExecEntryRegist
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
 }
