@@ -43,7 +43,7 @@ export default function Home(): JSX.Element {
 
   async function dataSaveAndMove() {
     const deviceId = DeviceIdService.get();
-    const playerData: APIData.APISendNewPlayerData = {
+    const playerData: APIData.APISendEntryPlayerData = {
       deviceId: deviceId,
       playerName: playerName,
       playerIcon: playerIcon,
@@ -52,6 +52,7 @@ export default function Home(): JSX.Element {
       playerData
     );
     if (isDuplicate == undefined) {
+      console.error('Error: isDuplicate is undefined');
       return;
     }
     if (isDuplicate) {
@@ -69,6 +70,7 @@ export default function Home(): JSX.Element {
       setErrorText('エラー：ユーザー仮登録時にエラーが発生しました');
       return;
     }
+    console.log(tempRegistResult);
     router.push('/pl/entry/confirm/');
     return;
   }

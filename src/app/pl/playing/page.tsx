@@ -7,6 +7,7 @@ import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
 import PageDayPhase from './state/DayPhase';
 import PageNightPhase from './state/NightPhase';
+import PlayerJoiningEnded from './state/PlayerJoiningEnded';
 import { WsSenderType } from '@/config/wsSenderType';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
@@ -90,6 +91,8 @@ export default function Home(): JSX.Element {
   switch (nextState) {
     case GameState.PreGame:
       return <PagePreGame />;
+    case GameState.PlayerJoiningEnded:
+      return <PlayerJoiningEnded />;
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.NightPhase:

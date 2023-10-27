@@ -35,7 +35,7 @@ export default function Home(): JSX.Element {
       return;
     }
     const deviceId = DeviceIdService.get();
-    const playerData: APIData.APISendNewPlayerData = {
+    const playerData: APIData.APISendEntryPlayerData = {
       deviceId: deviceId,
       playerName: playerName,
       playerIcon: playerIcon,
@@ -54,7 +54,7 @@ export default function Home(): JSX.Element {
 
   async function doCancel() {
     const deviceId = DeviceIdService.get();
-    const playerData: APIData.APISendNewPlayerData = {
+    const playerData: APIData.APISendEntryPlayerData = {
       deviceId: deviceId,
       playerName: playerName,
       playerIcon: playerIcon,

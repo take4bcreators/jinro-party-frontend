@@ -4,12 +4,12 @@ import { TypedFormGetter } from '@/utils/typedFormer';
 
 // @note レスポンスデータ指定箇所
 const RESPONSE_DATA: APIData.APIReplyDuplicationResult = {
-  isDuplicate: false,
+  existsDuplicate: false,
 };
 
 export async function POST(req: NextRequest) {
   const postData = await req.formData();
-  const formGetter = new TypedFormGetter<APIData.APISendNewPlayerData>(
+  const formGetter = new TypedFormGetter<APIData.APISendEntryPlayerData>(
     postData
   );
   const deviceId = formGetter.get('deviceId');

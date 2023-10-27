@@ -9,7 +9,7 @@ const RESPONSE_DATA: APIData.APIReplyProcessResult = {
 
 export async function POST(req: NextRequest) {
   const postData = await req.formData();
-  const formGetter = new TypedFormGetter<APIData.APISendNewPlayerData>(
+  const formGetter = new TypedFormGetter<APIData.APISendEntryPlayerData>(
     postData
   );
   const deviceId = formGetter.get('deviceId');

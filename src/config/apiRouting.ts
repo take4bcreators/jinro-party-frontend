@@ -21,7 +21,11 @@ export namespace APIRouting {
     PostPlayerRegist: '/api/post-player-regist',
     /** POST: エントリー用プレイヤーデータ削除 */
     PostPlayerRegistRemove: '/api/post-player-regist-remove',
-    /** GET: エントリーデータ本登録実行 */
+    /** GET: プレイヤーデータ全削除 */
+    GetExecAllPlayerRemove: '/api/get-exec-all-player-remove',
+    /** GET: エントリープレイヤーデータ全削除 */
+    GetExecAllEntryRemove: '/api/get-exec-all-entry-remove',
+    /** GET: エントリープレイヤーデータ本登録実行 */
     GetExecEntryRegist: '/api/get-exec-entry-regist',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];

@@ -86,7 +86,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 新規ゲーム情報保存結果 (プロミス)
    */
-  export async function execPOSTPostSaveNewGame(
+  export async function execPOSTSaveNewGame(
     requestDataObject: APIData.APISendNewGame
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.PostSaveNewGame);
@@ -132,7 +132,7 @@ export namespace APIService {
    * @returns 重複確認結果（プロミス）
    */
   export async function execPOSTCheckDuplEntryPlayerName(
-    requestDataObject: APIData.APISendNewPlayerData
+    requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.PostCheckDuplEntryPlayerName
@@ -145,8 +145,11 @@ export namespace APIService {
       method: 'POST',
       body: form,
     });
+    console.log(res);
     const resData: APIData.APIReplyDuplicationResult = await res.json();
-    return resData.isDuplicate;
+    console.log(resData);
+    console.log(resData.existsDuplicate);
+    return resData.existsDuplicate;
   }
 
   /**
@@ -155,7 +158,7 @@ export namespace APIService {
    * @returns 処理結果（プロミス）
    */
   export async function execPOSTPlayerTempRegist(
-    requestDataObject: APIData.APISendNewPlayerData
+    requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.PostPlayerTempRegist
@@ -178,7 +181,7 @@ export namespace APIService {
    * @returns 処理結果（プロミス）
    */
   export async function execPOSTPlayerRegist(
-    requestDataObject: APIData.APISendNewPlayerData
+    requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.PostPlayerRegist
@@ -219,8 +222,40 @@ export namespace APIService {
   }
 
   /**
-   * エントリーデータ本登録実行 API GET実行
-   * @returns ゲームの状態ID（プロミス）
+   * プレイヤーデータ全削除 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function execGETExecAllPlayerRemove() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetExecAllPlayerRemove
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリープレイヤーデータ全削除実行 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function execGETExecAllEntryRemove() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetExecAllEntryRemove
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * エントリープレイヤーデータ本登録実行 API GET実行
+   * @returns 処理結果（プロミス）
    */
   export async function execGETExecEntryRegist() {
     const apiEndpointURL = makeAPIEndpointURL(

@@ -3,8 +3,6 @@ import { GameState } from '@/config/gameState';
 import { WsRequestAction } from '@/config/wsRequestAction';
 import { WsSenderType } from '@/config/wsSenderType';
 import { APIWsData } from '@/types/apiWsData';
-import { APIService } from '@/utils/apiService';
-import { LocalStorageService } from '@/utils/localStorageService';
 import { WsService } from '@/utils/wsService';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -13,34 +11,15 @@ export default function Home(): JSX.Element {
   const router = useRouter();
   const pagePushProgress = useRef(false);
   const [pushPage, setPushPage] = useState('');
-  const [saveSuccess, setSaveSuccess] = useState<boolean | undefined>(
-    undefined
-  );
   const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   const [wsIsOpen, setWsIsOpen] = useState(false);
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
 
   useEffect(() => {
-    const newGmaeAPIData = LocalStorageService.getForPostNewGameMode();
-    APIService.execPOSTPostSaveNewGame(newGmaeAPIData).then((result) => {
-      if (result == undefined) {
-        return;
-      }
-      setSaveSuccess(result);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (saveSuccess == undefined) {
-      return;
-    }
-    if (!saveSuccess) {
-      return;
-    }
     setWsService(
       new WsService(WsSenderType.GameMasterSite, setWsIsOpen, setWsRcvData)
     );
-  }, [saveSuccess]);
+  }, []);
 
   useEffect(() => {
     if (wsService == undefined) {
@@ -94,17 +73,11 @@ export default function Home(): JSX.Element {
   if (pagePushProgress.current) {
     return loadScreen;
   }
-  if (saveSuccess == undefined) {
-    return loadScreen;
-  }
   if (wsRcvData == undefined) {
     return loadScreen;
   }
   if (wsService == undefined) {
     return loadScreen;
-  }
-  if (!saveSuccess) {
-    return errorScreen;
   }
   if (wsRcvData.requestAction !== WsRequestAction.GameScreenChange) {
     return errorScreen;

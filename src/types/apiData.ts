@@ -53,7 +53,7 @@ export namespace APIData {
   /**
    * プレイヤーデータ APIデータ
    */
-  export type APISendNewPlayerData = {
+  export type APISendEntryPlayerData = {
     /** デバイスID */
     deviceId: string;
     /** プレイヤー名 */
@@ -67,6 +67,6 @@ export namespace APIData {
    */
   export type APIReplyDuplicationResult = {
     /** 重複 */
-    isDuplicate: boolean;
+    existsDuplicate: boolean;
   };
 }
