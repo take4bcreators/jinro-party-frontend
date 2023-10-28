@@ -77,7 +77,6 @@ export namespace APIService {
       body: form,
     });
     const resData: APIData.APIReplyCheckPlayerAlive = await res.json();
-    console.log(resData);
     return resData.aliveStatus;
   }
 

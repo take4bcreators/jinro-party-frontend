@@ -18,11 +18,9 @@ import { useRouter } from 'next/navigation';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
-  const [existsDeviceId, setExistsDeviceId] = useState(false);
-  const [isAlivePlayer, setIsAlivePlayer] = useState(false);
-  const [wsIsOpen, setWsIsOpen] = useState(false);
-  const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
+  const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
+  const [wsIsOpen, setWsIsOpen] = useState(false);
   const pagePushProgress = useRef(false);
   const [pushPage, setPushPage] = useState('');
 
@@ -32,44 +30,31 @@ export default function Home(): JSX.Element {
   }
 
   useEffect(() => {
-    const deviceIdAPIData = DeviceIdService.getToAPIData();
-    APIService.execPOSTExistsDeviceId(deviceIdAPIData).then((resValue) => {
-      if (resValue == undefined) {
+    (async () => {
+      const deviceIdAPIData = DeviceIdService.getToAPIData();
+      const [deviceExists, playerAlive] = await Promise.all([
+        APIService.execPOSTExistsDeviceId(deviceIdAPIData),
+        APIService.execPOSTCheckPlayerAlive(deviceIdAPIData),
+      ]);
+      if (deviceExists == undefined) {
         return;
       }
-      if (!resValue) {
+      if (playerAlive == undefined) {
+        return;
+      }
+      if (!deviceExists) {
         movePage('/pl/error/');
         return;
       }
-      setExistsDeviceId(true);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!existsDeviceId) {
-      return;
-    }
-    const deviceIdAPIData = DeviceIdService.getToAPIData();
-    APIService.execPOSTCheckPlayerAlive(deviceIdAPIData).then((isAlive) => {
-      if (isAlive == undefined) {
-        return;
-      }
-      if (!isAlive) {
+      if (!playerAlive) {
         movePage('/pl/gameover/');
         return;
       }
-      setIsAlivePlayer(true);
-    });
-  }, [existsDeviceId]);
-
-  useEffect(() => {
-    if (!isAlivePlayer) {
-      return;
-    }
-    setWsService(
-      new WsService(WsSenderType.PlayerSite, setWsIsOpen, setWsRcvData)
-    );
-  }, [isAlivePlayer]);
+      setWsService(
+        new WsService(WsSenderType.PlayerSite, setWsIsOpen, setWsRcvData)
+      );
+    })();
+  }, []);
 
   useEffect(() => {
     if (wsService == undefined) {

@@ -25,48 +25,51 @@ export default function Home(): JSX.Element {
   }
 
   async function beforeMoveProcess() {
-    const playerRemoveResult = await APIService.execGETExecAllPlayerRemove();
+    const [playerRemoveResult, entryRemoveResult] = await Promise.all([
+      APIService.execGETExecAllPlayerRemove(),
+      APIService.execGETExecAllEntryRemove(),
+    ]);
     if (playerRemoveResult == undefined) {
-      console.error(
-        'APIService.execGETExecAllPlayerRemove result is undefined'
-      );
+      console.error('playerRemoveResult is undefined');
       return;
     }
     if (!playerRemoveResult) {
-      console.error('APIService.execGETExecAllPlayerRemove result is false');
+      console.error('playerRemoveResult is false');
       return;
     }
-    const entryRemoveResult = await APIService.execGETExecAllEntryRemove();
     if (entryRemoveResult == undefined) {
-      console.error('APIService.execGETExecAllEntryRemove result is undefined');
+      console.error('entryRemoveResult is undefined');
       return;
     }
     if (!entryRemoveResult) {
-      console.error('APIService.execGETExecAllEntryRemove result is false');
+      console.error('entryRemoveResult is false');
       return;
     }
+
     const newGmaeAPIData = LocalStorageService.getForPostNewGameMode();
     const saveModeResult = await APIService.execPOSTSaveNewGame(newGmaeAPIData);
     if (saveModeResult == undefined) {
-      console.error('APIService.execPOSTSaveNewGame result is undefined');
+      console.error('saveModeResult is undefined');
       return;
     }
     if (!saveModeResult) {
-      console.error('APIService.execPOSTSaveNewGame result is false');
+      console.error('saveModeResult is false');
       return;
     }
+
     const sendData: APIData.APISendGameState = {
       gameState: GameState.PlayerJoining,
     };
     const changeResult = await APIService.execPOSTChangeGameState(sendData);
     if (changeResult == undefined) {
-      console.error('APIService.execPOSTChangeGameState result is undefined');
+      console.error('changeResult is undefined');
       return;
     }
     if (!changeResult) {
-      console.error('APIService.execPOSTChangeGameState result is false');
+      console.error('changeResult is false');
       return;
     }
+
     return;
   }
 
