@@ -1,6 +1,8 @@
 'use client';
 import { GameMode } from '@/config/gameMode';
 import { GAME_MODE_TITLES } from '@/config/gameModeTitles';
+import { GameState } from '@/config/gameState';
+import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { LocalStorageService } from '@/utils/localStorageService';
 import Link from 'next/link';
@@ -51,6 +53,18 @@ export default function Home(): JSX.Element {
     }
     if (!saveModeResult) {
       console.error('APIService.execPOSTSaveNewGame result is false');
+      return;
+    }
+    const sendData: APIData.APISendGameState = {
+      gameState: GameState.PlayerJoining,
+    };
+    const changeResult = await APIService.execPOSTChangeGameState(sendData);
+    if (changeResult == undefined) {
+      console.error('APIService.execPOSTChangeGameState result is undefined');
+      return;
+    }
+    if (!changeResult) {
+      console.error('APIService.execPOSTChangeGameState result is false');
       return;
     }
     return;

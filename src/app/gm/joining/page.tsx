@@ -1,124 +1,50 @@
 'use client';
 import { GameState } from '@/config/gameState';
-import { WsRequestAction } from '@/config/wsRequestAction';
-import { WsSenderType } from '@/config/wsSenderType';
-import { APIWsData } from '@/types/apiWsData';
-import { WsService } from '@/utils/wsService';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { APIData } from '@/types/apiData';
+import { APIService } from '@/utils/apiService';
+import Link from 'next/link';
 
 export default function Home(): JSX.Element {
-  const router = useRouter();
-  const pagePushProgress = useRef(false);
-  const [pushPage, setPushPage] = useState('');
-  const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
-  const [wsIsOpen, setWsIsOpen] = useState(false);
-  const [wsService, setWsService] = useState<WsService | undefined>(undefined);
-
-  useEffect(() => {
-    setWsService(
-      new WsService(WsSenderType.GameMasterSite, setWsIsOpen, setWsRcvData)
-    );
-  }, []);
-
-  useEffect(() => {
-    if (wsService == undefined) {
+  async function stateChange(gameState: GameState) {
+    const sendData: APIData.APISendGameState = {
+      gameState: gameState,
+    };
+    const changeResult = await APIService.execPOSTChangeGameState(sendData);
+    if (changeResult == undefined) {
+      console.error('APIService.execPOSTChangeGameState result is undefined');
       return;
     }
-    if (!wsIsOpen) {
+    if (!changeResult) {
+      console.error('APIService.execPOSTChangeGameState result is false');
       return;
     }
-    wsService.updateGameState(GameState.PlayerJoining);
-  }, [wsService, wsIsOpen]);
-
-  useEffect(() => {
-    if (pagePushProgress.current) {
-      return;
-    }
-    if (wsRcvData == undefined) {
-      return;
-    }
-    if (wsRcvData.actionParameter01 !== GameState.PlayerJoiningEnded) {
-      return;
-    }
-    setPushPage('/gm/setting/input/');
-  }, [wsRcvData]);
-
-  useEffect(() => {
-    if (pagePushProgress.current) {
-      return;
-    }
-    if (pushPage == '') {
-      return;
-    }
-    if (router == undefined) {
-      return;
-    }
-    router.push(pushPage);
-    pagePushProgress.current = true;
-  }, [pushPage, router]);
-
-  const loadScreen = (
-    <>
-      <h1>募集画面</h1>
-      <p>ロード中...</p>
-    </>
-  );
-  const errorScreen = (
-    <>
-      <h1>募集画面</h1>
-      <p>エラーが発生しました</p>
-    </>
-  );
-  if (pagePushProgress.current) {
-    return loadScreen;
-  }
-  if (wsRcvData == undefined) {
-    return loadScreen;
-  }
-  if (wsService == undefined) {
-    return loadScreen;
-  }
-  if (wsRcvData.requestAction !== WsRequestAction.GameScreenChange) {
-    return errorScreen;
-  }
-
-  function endJoining() {
-    if (wsService == undefined) {
-      return;
-    }
-    wsService.updateGameState(GameState.PlayerJoiningEnded);
     return;
   }
 
-  function doCancel() {
-    if (wsService == undefined) {
-      return;
-    }
-    wsService.updateGameState(GameState.PreGame);
-    setPushPage('/gm/newgame/modeselect/');
+  async function beforeMoveProcess() {
+    await stateChange(GameState.PlayerJoiningEnded);
     return;
   }
 
-  if (wsRcvData.actionParameter01 === GameState.PlayerJoining) {
-    return (
-      <>
-        <h1>募集画面</h1>
-        <ul>
-          <li>
-            <span onClick={endJoining}>募集を締め切る</span>
-          </li>
-          <li>
-            <span onClick={doCancel}>キャンセル</span>
-          </li>
-        </ul>
-      </>
-    );
+  async function cancelProcess() {
+    await stateChange(GameState.PreGame);
   }
 
   return (
     <>
-      <p>ロード中...</p>
+      <h1>募集画面</h1>
+      <ul>
+        <li>
+          <Link href="/gm/setting/input/" onClick={beforeMoveProcess}>
+            募集を締め切る
+          </Link>
+        </li>
+        <li>
+          <Link href="/gm/newgame/modeselect/" onClick={cancelProcess}>
+            キャンセル
+          </Link>
+        </li>
+      </ul>
     </>
   );
 }

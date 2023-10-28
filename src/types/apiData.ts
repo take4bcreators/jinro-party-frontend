@@ -69,4 +69,12 @@ export namespace APIData {
     /** 重複 */
     existsDuplicate: boolean;
   };
+
+  /**
+   * ゲーム状態 リクエスト APIデータ
+   */
+  export type APISendGameState = {
+    /** ゲーム状態 */
+    gameState: GameState;
+  };
 }
