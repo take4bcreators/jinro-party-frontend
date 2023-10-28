@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
   const nextState = wsRcvData.actionParameter01 as GameState;
   switch (nextState) {
     case GameState.Empty:
-      break;
+      break; // @todo
     case GameState.PreGame:
       return <PagePreGame />;
     case GameState.PlayerJoining:
@@ -60,40 +60,41 @@ export default function Home(): JSX.Element {
     case GameState.RoleAssignment:
       return <PageRoleAssignment />;
     case GameState.DayPhaseStart:
-      break;
+      break; // @todo
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
-      break;
+      break; // @todo
     case GameState.Voting:
-      break;
+      break; // @todo
     case GameState.VotingEnd:
-      break;
+      break; // @todo
     case GameState.VoteResult:
-      break;
+      break; // @todo
     case GameState.ExileAnnouncement:
-      break;
+      break; // @todo
     case GameState.FinalExileAnnouncement:
-      break;
+      break; // @todo
     case GameState.NightPhaseStart:
-      break;
+      break; // @todo
     case GameState.NightPhase:
       return <PageNightPhase />;
     case GameState.NightPhaseEnd:
-      break;
+      break; // @todo
     case GameState.MorningPhaseStart:
-      break;
+      break; // @todo
     case GameState.NightActionResult:
-      break;
+      break; // @todo
     case GameState.GameEnd:
-      break;
+      break; // @todo
     case GameState.FinalResult:
-      break;
+      break; // @todo
     case GameState.RoleReveal:
-      break;
+      break; // @todo
     default:
       break;
   }
 
+  console.warn('nextState is other');
   return <PageLoading />;
 }

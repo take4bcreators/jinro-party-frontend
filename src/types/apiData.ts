@@ -31,7 +31,7 @@ export namespace APIData {
    */
   export type APIReplyCheckPlayerAlive = {
     /** プレイヤー生存確認結果（TRUE で生存） */
-    isAlive: boolean;
+    aliveStatus: boolean;
   };
 
   /**

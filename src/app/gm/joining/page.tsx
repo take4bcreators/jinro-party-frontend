@@ -21,8 +21,22 @@ export default function Home(): JSX.Element {
     return;
   }
 
-  async function beforeMoveProcess() {
+  async function playerSave() {
+    const result = await APIService.execGETExecEntryRegist();
+    if (result == undefined) {
+      console.error('APIService.execGETExecEntryRegist result is undefined');
+      return;
+    }
+    if (!result) {
+      console.error('APIService.execGETExecEntryRegist result is false');
+      return;
+    }
+    return;
+  }
+
+  async function beforeMoveNextProcess() {
     await stateChange(GameState.PlayerJoiningEnded);
+    await playerSave();
     return;
   }
 
@@ -35,7 +49,7 @@ export default function Home(): JSX.Element {
       <h1>募集画面</h1>
       <ul>
         <li>
-          <Link href="/gm/setting/input/" onClick={beforeMoveProcess}>
+          <Link href="/gm/setting/input/" onClick={beforeMoveNextProcess}>
             募集を締め切る
           </Link>
         </li>

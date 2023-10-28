@@ -40,7 +40,11 @@ export class WsService {
       this.socket = undefined;
       return;
     }
+    console.log('SockJS Before...');
+    console.log(this.socket);
     this.socket = new SockJS(wsURL);
+    console.log('SockJS After...');
+    console.log(this.socket);
 
     // WebSocket接続確立時の処理
     this.socket.addEventListener('open', (_event) => {

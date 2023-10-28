@@ -1,5 +1,7 @@
 /** プレイヤーの役職 */
 export const PlayerRole = {
+  /** 未設定 */
+  Empty: 'Empty',
   /** 市民 */
   Citizen: 'Citizen',
   /** 占い師 */
