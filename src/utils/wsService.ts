@@ -9,6 +9,7 @@ import { WsSenderType } from '@/config/wsSenderType';
 import { DeviceIdService } from './deviceIdService';
 import { WS_ALLOWED_DESTINATION_TYPES } from '@/config/wsAllowedDestinationTypes';
 import { GameState } from '@/config/gameState';
+import { SessionIdService } from './sessionIdService';
 
 export class WsService {
   private setWsIsOpenFunc: Dispatch<SetStateAction<boolean>>;
@@ -42,7 +43,11 @@ export class WsService {
     }
     console.log('SockJS Before...');
     console.log(this.socket);
-    this.socket = new SockJS(wsURL);
+
+    const sessionId = SessionIdService.get();
+    this.socket = new SockJS(wsURL, null, {
+      sessionId: () => sessionId,
+    });
     console.log('SockJS After...');
     console.log(this.socket);
 
@@ -54,11 +59,12 @@ export class WsService {
 
     // WebSocketでメッセージ受信時の処理
     this.socket.addEventListener('message', (event) => {
-      console.log('WebSocket Receive');
+      console.log('WebSocket Receive...');
       const receiveData: APIWsData = JSON.parse(event.data);
       // this.receiveData = receiveData;
 
       if (this.needsRendering(receiveData)) {
+        console.log(receiveData);
         this.setReceiveDataFunc(receiveData);
       }
     });
@@ -159,7 +165,7 @@ export class WsService {
    * @returns 自身のWebSocket情報
    */
   private generateSelfInfo(selfType: WsSenderType): APIWsSelfInfo {
-    const selfDeviceId = DeviceIdService.getIfExists() ?? '';
+    const selfDeviceId = DeviceIdService.get();
     let allowedList = WS_ALLOWED_DESTINATION_TYPES.get(selfType);
     if (allowedList == undefined) {
       allowedList = [WsDestinationType.Empty];
