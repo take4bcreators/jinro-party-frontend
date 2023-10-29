@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
       return;
     }
     const deviceId = DeviceIdService.getToAPIData();
-    APIService.execPOSTPlayerRegistRemove(deviceId);
+    APIService.postPlayerRegistRemove(deviceId);
     statingPost.current = true;
   }, []);
 
@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
       playerName: playerName,
       playerIcon: playerIcon,
     };
-    const isDuplicate = await APIService.execPOSTCheckDuplEntryPlayerName(
+    const isDuplicate = await APIService.postCheckDuplEntryPlayerName(
       playerData
     );
     if (isDuplicate == undefined) {
@@ -60,9 +60,7 @@ export default function Home(): JSX.Element {
       return;
     }
     dataSave();
-    const tempRegistResult = await APIService.execPOSTPlayerTempRegist(
-      playerData
-    );
+    const tempRegistResult = await APIService.postPlayerTempRegist(playerData);
     if (tempRegistResult == undefined) {
       return;
     }

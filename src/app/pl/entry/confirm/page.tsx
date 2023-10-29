@@ -26,7 +26,7 @@ export default function Home(): JSX.Element {
   }
 
   async function saveAndMove() {
-    const gameState = await APIService.execGETGameState();
+    const gameState = await APIService.getGetGameState();
     if (gameState == undefined) {
       return;
     }
@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
       playerName: playerName,
       playerIcon: playerIcon,
     };
-    const registResult = await APIService.execPOSTPlayerRegist(playerData);
+    const registResult = await APIService.postPlayerRegist(playerData);
     if (registResult == undefined) {
       return;
     }
@@ -59,9 +59,7 @@ export default function Home(): JSX.Element {
       playerName: playerName,
       playerIcon: playerIcon,
     };
-    const removeResult = await APIService.execPOSTPlayerRegistRemove(
-      playerData
-    );
+    const removeResult = await APIService.postPlayerRegistRemove(playerData);
     if (removeResult == undefined) {
       return;
     }

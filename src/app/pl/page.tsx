@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     // デバイスIDの確認と生成
     DeviceIdService.registerIfNotExists();
-    APIService.execGETGameState().then((state) => {
+    APIService.getGetGameState().then((state) => {
       if (state == undefined) {
         return;
       }
@@ -113,7 +113,7 @@ export default function Home(): JSX.Element {
       );
     case GameState.PlayerJoining:
       const deviceId = DeviceIdService.getToAPIData();
-      APIService.execPOSTExistsEntryDeviceId(deviceId).then((exists) => {
+      APIService.postExistsEntryDeviceId(deviceId).then((exists) => {
         if (exists == undefined) {
           return;
         }

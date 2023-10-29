@@ -11,7 +11,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const getGameState = await APIService.execGETGameState();
+      const getGameState = await APIService.getGetGameState();
       if (getGameState == undefined) {
         return;
       }

@@ -9,7 +9,7 @@ export default function Home(): JSX.Element {
     const sendData: APIData.APISendGameState = {
       gameState: gameState,
     };
-    const changeResult = await APIService.execPOSTChangeGameState(sendData);
+    const changeResult = await APIService.postChangeGameState(sendData);
     if (changeResult == undefined) {
       console.error('APIService.execPOSTChangeGameState result is undefined');
       return;
@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
   }
 
   async function playerSave() {
-    const result = await APIService.execGETExecEntryRegist();
+    const result = await APIService.getExecEntryRegist();
     if (result == undefined) {
       console.error('APIService.execGETExecEntryRegist result is undefined');
       return;

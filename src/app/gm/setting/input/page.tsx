@@ -10,7 +10,7 @@ export default function Home(): JSX.Element {
     const sendData: APIData.APISendGameState = {
       gameState: gameState,
     };
-    const changeResult = await APIService.execPOSTChangeGameState(sendData);
+    const changeResult = await APIService.postChangeGameState(sendData);
     if (changeResult == undefined) {
       console.error('APIService.execPOSTChangeGameState result is undefined');
       return;

@@ -22,8 +22,8 @@ export namespace APIService {
    * @param apiEndpointURL エンドポイントURL
    * @returns ゲームの状態ID（プロミス）
    */
-  export async function execGETGameState(): Promise<GameState | undefined> {
-    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetGameState);
+  export async function getGetGameState(): Promise<GameState | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetGetGameState);
     if (apiEndpointURL === '') {
       return;
     }
@@ -38,7 +38,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 存在確認結果（プロミス）
    */
-  export async function execPOSTExistsDeviceId(
+  export async function postExistsDeviceId(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -62,7 +62,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns プレイヤー生存確認結果 (プロミス)
    */
-  export async function execPOSTCheckPlayerAlive(
+  export async function postCheckPlayerAlive(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -86,7 +86,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 新規ゲーム情報保存結果 (プロミス)
    */
-  export async function execPOSTSaveNewGame(
+  export async function postSaveNewGame(
     requestDataObject: APIData.APISendNewGame
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.PostSaveNewGame);
@@ -108,7 +108,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 存在確認結果（プロミス）
    */
-  export async function execPOSTExistsEntryDeviceId(
+  export async function postExistsEntryDeviceId(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -131,7 +131,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 重複確認結果（プロミス）
    */
-  export async function execPOSTCheckDuplEntryPlayerName(
+  export async function postCheckDuplEntryPlayerName(
     requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -157,7 +157,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 処理結果（プロミス）
    */
-  export async function execPOSTPlayerTempRegist(
+  export async function postPlayerTempRegist(
     requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -180,7 +180,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 処理結果（プロミス）
    */
-  export async function execPOSTPlayerRegist(
+  export async function postPlayerRegist(
     requestDataObject: APIData.APISendEntryPlayerData
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -203,7 +203,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 処理結果（プロミス）
    */
-  export async function execPOSTPlayerRegistRemove(
+  export async function postPlayerRegistRemove(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
@@ -225,7 +225,7 @@ export namespace APIService {
    * プレイヤーデータ全削除 API GET実行
    * @returns 処理結果（プロミス）
    */
-  export async function execGETExecAllPlayerRemove() {
+  export async function getExecAllPlayerRemove() {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.GetExecAllPlayerRemove
     );
@@ -241,7 +241,7 @@ export namespace APIService {
    * エントリープレイヤーデータ全削除実行 API GET実行
    * @returns 処理結果（プロミス）
    */
-  export async function execGETExecAllEntryRemove() {
+  export async function getExecAllEntryRemove() {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.GetExecAllEntryRemove
     );
@@ -257,7 +257,7 @@ export namespace APIService {
    * エントリープレイヤーデータ本登録実行 API GET実行
    * @returns 処理結果（プロミス）
    */
-  export async function execGETExecEntryRegist() {
+  export async function getExecEntryRegist() {
     const apiEndpointURL = makeAPIEndpointURL(
       APIRouting.Point.GetExecEntryRegist
     );
@@ -274,7 +274,7 @@ export namespace APIService {
    * @param requestDataObject リクエスト送信値オブジェクト
    * @returns 処理結果（プロミス）
    */
-  export async function execPOSTChangeGameState(
+  export async function postChangeGameState(
     requestDataObject: APIData.APISendGameState
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(

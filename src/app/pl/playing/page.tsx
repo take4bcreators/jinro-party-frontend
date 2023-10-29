@@ -33,8 +33,8 @@ export default function Home(): JSX.Element {
     (async () => {
       const deviceIdAPIData = DeviceIdService.getToAPIData();
       const [deviceExists, playerAlive] = await Promise.all([
-        APIService.execPOSTExistsDeviceId(deviceIdAPIData),
-        APIService.execPOSTCheckPlayerAlive(deviceIdAPIData),
+        APIService.postExistsDeviceId(deviceIdAPIData),
+        APIService.postCheckPlayerAlive(deviceIdAPIData),
       ]);
       if (deviceExists == undefined) {
         return;

@@ -26,8 +26,8 @@ export default function Home(): JSX.Element {
 
   async function beforeMoveProcess() {
     const [playerRemoveResult, entryRemoveResult] = await Promise.all([
-      APIService.execGETExecAllPlayerRemove(),
-      APIService.execGETExecAllEntryRemove(),
+      APIService.getExecAllPlayerRemove(),
+      APIService.getExecAllEntryRemove(),
     ]);
     if (playerRemoveResult == undefined) {
       console.error('playerRemoveResult is undefined');
@@ -47,7 +47,7 @@ export default function Home(): JSX.Element {
     }
 
     const newGmaeAPIData = LocalStorageService.getForPostNewGameMode();
-    const saveModeResult = await APIService.execPOSTSaveNewGame(newGmaeAPIData);
+    const saveModeResult = await APIService.postSaveNewGame(newGmaeAPIData);
     if (saveModeResult == undefined) {
       console.error('saveModeResult is undefined');
       return;
@@ -60,7 +60,7 @@ export default function Home(): JSX.Element {
     const sendData: APIData.APISendGameState = {
       gameState: GameState.PlayerJoining,
     };
-    const changeResult = await APIService.execPOSTChangeGameState(sendData);
+    const changeResult = await APIService.postChangeGameState(sendData);
     if (changeResult == undefined) {
       console.error('changeResult is undefined');
       return;

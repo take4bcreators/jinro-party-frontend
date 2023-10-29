@@ -4,7 +4,7 @@ export namespace APIRouting {
     /** WebSocket */
     WebSocket: '/api/ws',
     /** GET: ゲーム状態取得 */
-    GetGameState: '/api/get-game-state',
+    GetGetGameState: '/api/get-get-game-state',
     /** POST: デバイスIDの存在確認 */
     PostExistsDeviceId: '/api/post-exists-device-id',
     /** POST: プレイヤー生存確認 */
