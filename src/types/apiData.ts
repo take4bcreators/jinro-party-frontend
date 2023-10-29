@@ -1,5 +1,8 @@
 import { GameMode } from '@/config/gameMode';
 import { GameState } from '../config/gameState';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerState } from '@/config/playerState';
+import { PlayerTeam } from '@/config/playerTeam';
 
 export namespace APIData {
   /**
@@ -76,5 +79,28 @@ export namespace APIData {
   export type APISendGameState = {
     /** ゲーム状態 */
     gameState: GameState;
+  };
+
+  export type APIAllPlayerInfo = {
+    /** デバイスID */
+    deviceId: string;
+    /** プレイヤー名 */
+    playerName: string;
+    /** プレイヤーアイコン */
+    playerIcon: string;
+    /** 役職 */
+    playerRole: PlayerRole;
+    /** 所属チーム */
+    playerTeam: PlayerTeam;
+    /** プレイヤー状態 */
+    playerState: PlayerState;
+  };
+
+  /**
+   * 全プレイヤーデータ レスポンス APIデータ
+   */
+  export type APIReplyAllPlayerInfo = {
+    /** 全プレイヤーデータ */
+    apiAllPlayerInfo: APIAllPlayerInfo[];
   };
 }

@@ -29,6 +29,8 @@ export namespace APIRouting {
     GetExecEntryRegist: '/api/get-exec-entry-regist',
     /** POST: ゲーム状態変更 */
     PostChangeGameState: '/api/post-change-game-state',
+    /** GET: 全プレイヤーデータ取得 */
+    GetFetchAllPlayerInfo: '/api/get-fetch-all-player-info',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

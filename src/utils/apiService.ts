@@ -291,4 +291,20 @@ export namespace APIService {
     const resData: APIData.APIReplyProcessResult = await res.json();
     return resData.result;
   }
+
+  /**
+   * 全プレイヤーデータ取得 API GET実行
+   * @returns 全プレイヤーデータ（プロミス）
+   */
+  export async function getFetchAllPlayerInfo() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchAllPlayerInfo
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyAllPlayerInfo = await res.json();
+    return resData.apiAllPlayerInfo;
+  }
 }
