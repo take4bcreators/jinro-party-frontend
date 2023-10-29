@@ -307,4 +307,27 @@ export namespace APIService {
     const resData: APIData.APIReplyAllPlayerInfo = await res.json();
     return resData.apiAllPlayerInfo;
   }
+
+  /**
+   * 役職確認済み情報送信 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 処理結果 （プロミス）
+   */
+  export async function postSelfRoleChecked(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostSelfRoleChecked
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
 }

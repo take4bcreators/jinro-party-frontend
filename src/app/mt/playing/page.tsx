@@ -8,6 +8,7 @@ import { WsSenderType } from '@/config/wsSenderType';
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
 import PageDayPhase from './state/DayPhase';
+import PageDayPhaseStart from './state/DayPhaseStart';
 import PageNightPhase from './state/NightPhase';
 import PagePlayerJoining from './state/PlayerJoining';
 import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
@@ -60,7 +61,7 @@ export default function Home(): JSX.Element {
     case GameState.RoleAssignment:
       return <PageRoleAssignment />;
     case GameState.DayPhaseStart:
-      break; // @todo
+      return <PageDayPhaseStart />;
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:

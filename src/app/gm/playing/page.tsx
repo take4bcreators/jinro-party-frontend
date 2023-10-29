@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
+import PageDayPhaseStart from './state/DayPhaseStart';
 import PageDayPhase from './state/DayPhase';
 import PageNightPhase from './state/NightPhase';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
@@ -55,7 +56,7 @@ export default function Home(): JSX.Element {
     case GameState.RoleAssignment:
       return <PageRoleAssignment />;
     case GameState.DayPhaseStart:
-      break; // @todo
+      return <PageDayPhaseStart />;
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
