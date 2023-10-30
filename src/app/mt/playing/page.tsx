@@ -7,13 +7,14 @@ import { WsSenderType } from '@/config/wsSenderType';
 
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
-import PageDayPhase from './state/DayPhase';
-import PageDayPhaseStart from './state/DayPhaseStart';
-import PageNightPhase from './state/NightPhase';
 import PagePlayerJoining from './state/PlayerJoining';
 import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
 import PageRoleAssignment from './state/RoleAssignment';
+import PageDayPhaseStart from './state/DayPhaseStart';
+import PageDayPhase from './state/DayPhase';
+import PageDayPhaseEnd from './state/DayPhaseEnd';
+import PageNightPhase from './state/NightPhase';
 
 export default function Home(): JSX.Element {
   const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
@@ -65,7 +66,7 @@ export default function Home(): JSX.Element {
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
-      break; // @todo
+      return <PageDayPhaseEnd />;
     case GameState.Voting:
       break; // @todo
     case GameState.VotingEnd:

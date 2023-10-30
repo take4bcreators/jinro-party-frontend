@@ -3,15 +3,16 @@ import type { APIWsData } from '@/types/apiWsData';
 import { GameState } from '@/config/gameState';
 import { WsService } from '@/utils/wsService';
 import { useEffect, useState } from 'react';
+import { WsSenderType } from '@/config/wsSenderType';
 
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
-import PageDayPhaseStart from './state/DayPhaseStart';
-import PageDayPhase from './state/DayPhase';
-import PageNightPhase from './state/NightPhase';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
 import PageRoleAssignment from './state/RoleAssignment';
-import { WsSenderType } from '@/config/wsSenderType';
+import PageDayPhaseStart from './state/DayPhaseStart';
+import PageDayPhase from './state/DayPhase';
+import PageDayPhaseEnd from './state/DayPhaseEnd';
+import PageNightPhase from './state/NightPhase';
 
 export default function Home(): JSX.Element {
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
@@ -60,7 +61,7 @@ export default function Home(): JSX.Element {
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
-      break; // @todo
+      return <PageDayPhaseEnd />;
     case GameState.Voting:
       break; // @todo
     case GameState.VotingEnd:

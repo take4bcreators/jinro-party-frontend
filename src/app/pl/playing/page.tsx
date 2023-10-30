@@ -5,12 +5,13 @@ import { WsService } from '@/utils/wsService';
 import { useEffect, useRef, useState } from 'react';
 import PageLoading from './other/Loading';
 import PagePreGame from './state/PreGame';
-import PageDayPhaseStart from './state/DayPhaseStart';
-import PageDayPhase from './state/DayPhase';
-import PageNightPhase from './state/NightPhase';
 import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
 import PageRoleAssignment from './state/RoleAssignment';
+import PageDayPhaseStart from './state/DayPhaseStart';
+import PageDayPhase from './state/DayPhase';
+import PageDayPhaseEnd from './state/DayPhaseEnd';
+import PageNightPhase from './state/NightPhase';
 
 import { WsSenderType } from '@/config/wsSenderType';
 import { APIService } from '@/utils/apiService';
@@ -107,7 +108,7 @@ export default function Home(): JSX.Element {
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
-      break; // @todo
+      return <PageDayPhaseEnd />;
     case GameState.Voting:
       break; // @todo
     case GameState.VotingEnd:
