@@ -4,7 +4,7 @@ import { TypedFormGetter } from '@/utils/typedFormer';
 
 // @note レスポンスデータ指定箇所
 const RESPONSE_DATA: APIData.APIReplyCheckPlayerAlive = {
-  isAlive: true,
+  aliveStatus: true,
 };
 
 export async function POST(req: NextRequest) {
