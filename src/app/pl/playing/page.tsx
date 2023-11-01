@@ -17,6 +17,8 @@ import { WsSenderType } from '@/config/wsSenderType';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { useRouter } from 'next/navigation';
+import { LocalStorageService } from '@/utils/localStorageService';
+import { PlayerState } from '@/config/playerState';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -34,21 +36,17 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     (async () => {
       const deviceIdAPIData = DeviceIdService.getToAPIData();
-      const [deviceExists, playerAlive] = await Promise.all([
-        APIService.postExistsDeviceId(deviceIdAPIData),
-        APIService.postCheckPlayerAlive(deviceIdAPIData),
-      ]);
-      if (deviceExists == undefined) {
-        return;
-      }
-      if (playerAlive == undefined) {
-        return;
-      }
-      if (!deviceExists) {
+      const playerData = await APIService.postFetchPlayerData(deviceIdAPIData);
+      if (playerData == undefined) {
         movePage('/pl/error/');
         return;
       }
-      if (!playerAlive) {
+      if (playerData.deviceId === '') {
+        movePage('/pl/error/');
+        return;
+      }
+      LocalStorageService.setPlayingPlayerDataFromAPI(playerData);
+      if (playerData.playerState === PlayerState.Dead) {
         movePage('/pl/gameover/');
         return;
       }

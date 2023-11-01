@@ -33,6 +33,8 @@ export namespace APIRouting {
     GetFetchAllPlayerData: '/api/get-fetch-all-player-data',
     /** POST: 役職確認済み情報送信 */
     PostSelfRoleChecked: '/api/post-self-role-checked',
+    /** Post: プレイヤーデータ取得 */
+    PostFetchPlayerData: '/api/post-fetch-player-data',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

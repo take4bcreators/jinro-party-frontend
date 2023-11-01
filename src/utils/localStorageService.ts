@@ -62,4 +62,30 @@ export namespace LocalStorageService {
     LocalStorageRepository.set(LocalStorageKey.jrptEntryPlayericon, icon);
     return;
   }
+
+  export function setPlayingPlayerDataFromAPI(
+    playerData: APIData.APIReplyPlayerData
+  ) {
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayername,
+      playerData.playerName
+    );
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayericon,
+      playerData.playerIcon
+    );
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerrole,
+      playerData.playerRole
+    );
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerteam,
+      playerData.playerTeam
+    );
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerstate,
+      playerData.playerState
+    );
+    return;
+  }
 }

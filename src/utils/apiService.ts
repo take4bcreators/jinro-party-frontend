@@ -330,4 +330,27 @@ export namespace APIService {
     const resData: APIData.APIReplyProcessResult = await res.json();
     return resData.result;
   }
+
+  /**
+   * プレイヤーデータ取得 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns プレイヤーデータ (プロミス)
+   */
+  export async function postFetchPlayerData(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<APIData.APIReplyPlayerData | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostFetchPlayerData
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyPlayerData = await res.json();
+    return resData;
+  }
 }
