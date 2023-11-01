@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<
-    APIData.APIAllPlayerInfo[] | undefined
+    APIData.APIReplyPlayerData[] | undefined
   >(undefined);
 
   useEffect(() => {

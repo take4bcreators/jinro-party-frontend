@@ -298,14 +298,14 @@ export namespace APIService {
    */
   export async function getFetchAllPlayerInfo() {
     const apiEndpointURL = makeAPIEndpointURL(
-      APIRouting.Point.GetFetchAllPlayerInfo
+      APIRouting.Point.GetFetchAllPlayerData
     );
     if (apiEndpointURL === '') {
       return;
     }
     const res = await fetch(apiEndpointURL);
-    const resData: APIData.APIReplyAllPlayerInfo = await res.json();
-    return resData.apiAllPlayerInfo;
+    const resData: APIData.APIReplyAllPlayerData = await res.json();
+    return resData.allPlayerData;
   }
 
   /**

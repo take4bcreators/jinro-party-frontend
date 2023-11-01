@@ -5,8 +5,8 @@ import { PlayerTeam } from '@/config/playerTeam';
 import { PlayerState } from '@/config/playerState';
 
 // @note レスポンスデータ指定箇所
-const RESPONSE_DATA: APIData.APIReplyAllPlayerInfo = {
-  apiAllPlayerInfo: [
+const RESPONSE_DATA: APIData.APIReplyAllPlayerData = {
+  allPlayerData: [
     {
       deviceId: '001',
       playerName: 'taro',

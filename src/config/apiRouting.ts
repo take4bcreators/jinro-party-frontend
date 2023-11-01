@@ -30,7 +30,7 @@ export namespace APIRouting {
     /** POST: ゲーム状態変更 */
     PostChangeGameState: '/api/post-change-game-state',
     /** GET: 全プレイヤーデータ取得 */
-    GetFetchAllPlayerInfo: '/api/get-fetch-all-player-info',
+    GetFetchAllPlayerData: '/api/get-fetch-all-player-data',
     /** POST: 役職確認済み情報送信 */
     PostSelfRoleChecked: '/api/post-self-role-checked',
   } as const;

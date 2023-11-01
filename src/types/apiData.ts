@@ -81,7 +81,10 @@ export namespace APIData {
     gameState: GameState;
   };
 
-  export type APIAllPlayerInfo = {
+  /**
+   * プレイヤーデータ レスポンス APIデータ
+   */
+  export type APIReplyPlayerData = {
     /** デバイスID */
     deviceId: string;
     /** プレイヤー名 */
@@ -99,8 +102,8 @@ export namespace APIData {
   /**
    * 全プレイヤーデータ レスポンス APIデータ
    */
-  export type APIReplyAllPlayerInfo = {
+  export type APIReplyAllPlayerData = {
     /** 全プレイヤーデータ */
-    apiAllPlayerInfo: APIAllPlayerInfo[];
+    allPlayerData: APIReplyPlayerData[];
   };
 }
