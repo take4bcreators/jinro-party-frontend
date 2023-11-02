@@ -6,8 +6,17 @@ export default function Home(): JSX.Element {
   const [count, setCount] = useState(60);
   const [isRunning, setIsRunning] = useState(false);
 
+  // const [timerService, setTimerService] = useState(
+  //   new TimerService(count, setCount, isRunning, setIsRunning)
+  // );
+
   //  setCount関数をコンストラクタで受け取る、TimerServiceクラスを作る
-  const timerService = new TimerService(setCount, setIsRunning);
+  const timerService = new TimerService(
+    count,
+    setCount,
+    isRunning,
+    setIsRunning
+  );
 
   function start() {
     timerService.start();
@@ -20,6 +29,13 @@ export default function Home(): JSX.Element {
   function reset() {
     timerService.reset();
   }
+
+  useEffect(() => {
+    return timerService.runningTimer();
+  }, [isRunning, count]);
+  // useEffect(() => {
+  //   return timerService.runningTimer();
+  // }, [timerService]);
 
   return (
     <>
