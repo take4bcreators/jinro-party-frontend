@@ -19,6 +19,7 @@ import { DeviceIdService } from '@/utils/deviceIdService';
 import { useRouter } from 'next/navigation';
 import { LocalStorageService } from '@/utils/localStorageService';
 import { PlayerState } from '@/config/playerState';
+import { WsRequestAction } from '@/config/wsRequestAction';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function Home(): JSX.Element {
   const [wsIsOpen, setWsIsOpen] = useState(false);
   const pagePushProgress = useRef(false);
   const [pushPage, setPushPage] = useState('');
+  const lastGameState = useRef<GameState>(GameState.Empty);
 
   function movePage(page: string) {
     setPushPage(page);
@@ -86,7 +88,16 @@ export default function Home(): JSX.Element {
     return <PageLoading />;
   }
 
-  const nextState = wsRcvData.actionParameter01 as GameState;
+  let nextState: GameState = GameState.Empty;
+  let actionParameter01: string = '';
+  if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
+    nextState = wsRcvData.actionParameter01 as GameState;
+    lastGameState.current = nextState;
+  } else {
+    nextState = lastGameState.current;
+    actionParameter01 = wsRcvData.actionParameter01;
+  }
+
   switch (nextState) {
     case GameState.Empty:
       break; // @todo

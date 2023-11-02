@@ -2,7 +2,7 @@
 import type { APIWsData } from '@/types/apiWsData';
 import { GameState } from '@/config/gameState';
 import { WsService } from '@/utils/wsService';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { WsSenderType } from '@/config/wsSenderType';
 
 import PageLoading from './other/Loading';
@@ -15,11 +15,13 @@ import PageDayPhaseStart from './state/DayPhaseStart';
 import PageDayPhase from './state/DayPhase';
 import PageDayPhaseEnd from './state/DayPhaseEnd';
 import PageNightPhase from './state/NightPhase';
+import { WsRequestAction } from '@/config/wsRequestAction';
 
 export default function Home(): JSX.Element {
   const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   const [wsIsOpen, setWsIsOpen] = useState(false);
   const [wsService, setWsService] = useState<WsService | undefined>(undefined);
+  const lastGameState = useRef<GameState>(GameState.Empty);
 
   useEffect(() => {
     const wss = new WsService(
@@ -47,7 +49,17 @@ export default function Home(): JSX.Element {
     return <PageLoading />;
   }
 
-  const nextState = wsRcvData.actionParameter01 as GameState;
+  let nextState: GameState = GameState.Empty;
+  let actionParameter01: string = '';
+  if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
+    nextState = wsRcvData.actionParameter01 as GameState;
+    lastGameState.current = nextState;
+  } else {
+    nextState = lastGameState.current;
+    actionParameter01 = wsRcvData.actionParameter01;
+  }
+
+  // const nextState = wsRcvData.actionParameter01 as GameState;
   switch (nextState) {
     case GameState.Empty:
       break; // @todo
