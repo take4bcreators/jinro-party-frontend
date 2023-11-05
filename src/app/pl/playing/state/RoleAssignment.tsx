@@ -1,6 +1,7 @@
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { useState } from 'react';
+import RoleName from '@/components/elements/RoleName';
 
 export default function Home(): JSX.Element {
   const [sendSuccess, setSendSuccess] = useState(false);
@@ -29,7 +30,9 @@ export default function Home(): JSX.Element {
       <section>
         <h1>役職発表</h1>
         <p>あなたは...</p>
-        <p>〇〇</p>
+        <p>
+          <RoleName />
+        </p>
         <p>です。</p>
       </section>
       <section>
