@@ -353,4 +353,18 @@ export namespace APIService {
     const resData: APIData.APIReplyPlayerData = await res.json();
     return resData;
   }
+
+  /**
+   * 接続用疎通確認実行 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function getExecPing() {
+    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetExecPing);
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
 }

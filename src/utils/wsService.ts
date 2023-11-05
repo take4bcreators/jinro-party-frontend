@@ -10,6 +10,7 @@ import { DeviceIdService } from './deviceIdService';
 import { WS_ALLOWED_DESTINATION_TYPES } from '@/config/wsAllowedDestinationTypes';
 import { GameState } from '@/config/gameState';
 import { SessionIdService } from './sessionIdService';
+import { APIService } from './apiService';
 
 export class WsService {
   private setWsIsOpenFunc: Dispatch<SetStateAction<boolean>>;
@@ -72,7 +73,48 @@ export class WsService {
     // WebSocket接続終了時の処理
     this.socket.addEventListener('close', (_event) => {
       console.log('WebSocket disconnected.');
+
+      // 再接続処理
+      this.reconnectingWebSocket();
     });
+  }
+
+  private reconnectingWebSocket() {
+    (async () => {
+      const retryCount = 3;
+      for (let index = 1; index <= retryCount; index++) {
+        console.warn(`Warn: Reconnecting webSocket try ${index} times.`);
+        const waitTime = 1000 * index;
+        await this.sleep(waitTime);
+        const result = await this.checkAndOpenWebSocket();
+        if (result) {
+          break;
+        }
+        if (index === retryCount) {
+          console.error('Error: Reconnecting webSocket failed');
+        }
+      }
+      return;
+    })();
+  }
+
+  private async sleep(time: number) {
+    await new Promise((r) => setTimeout(r, time));
+  }
+
+  private async checkAndOpenWebSocket() {
+    let result: boolean | undefined = undefined;
+    try {
+      result = await APIService.getExecPing();
+    } catch (e) {
+      console.warn(e);
+      return false;
+    }
+    if (result != undefined) {
+      this.openWebSocket();
+      return true;
+    }
+    return false;
   }
 
   /**

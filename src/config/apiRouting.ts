@@ -35,6 +35,8 @@ export namespace APIRouting {
     PostSelfRoleChecked: '/api/post-self-role-checked',
     /** Post: プレイヤーデータ取得 */
     PostFetchPlayerData: '/api/post-fetch-player-data',
+    /** GET: 接続用疎通確認実行 */
+    GetExecPing: '/api/get-exec-ping',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }
