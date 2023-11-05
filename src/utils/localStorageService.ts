@@ -2,6 +2,8 @@ import { GameMode } from '@/config/gameMode';
 import { LocalStorageKey } from '@/config/localStorageKey';
 import { APIData } from '@/types/apiData';
 import { LocalStorageRepository } from './localStorageRepository';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerTeam } from '@/config/playerTeam';
 
 export namespace LocalStorageService {
   export function getDeviceId(): string | undefined {
@@ -85,6 +87,22 @@ export namespace LocalStorageService {
     LocalStorageRepository.set(
       LocalStorageKey.jrptPlayingPlayerstate,
       playerData.playerState
+    );
+    return;
+  }
+
+  export function setPlayingPlayerRole(playerRole: PlayerRole) {
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerrole,
+      playerRole
+    );
+    return;
+  }
+
+  export function setPlayingPlayerTeam(playerTeam: PlayerTeam) {
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerteam,
+      playerTeam
     );
     return;
   }
