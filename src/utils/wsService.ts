@@ -73,36 +73,35 @@ export class WsService {
     // WebSocket接続終了時の処理
     this.socket.addEventListener('close', (_event) => {
       console.log('WebSocket disconnected.');
+      this.setWsIsOpenFunc(false);
 
       // 再接続処理
       this.reconnectingWebSocket();
     });
   }
 
-  private reconnectingWebSocket() {
-    (async () => {
-      const retryCount = 3;
-      for (let index = 1; index <= retryCount; index++) {
-        console.warn(`Warn: Reconnecting webSocket try ${index} times.`);
-        const waitTime = 1000 * index;
-        await this.sleep(waitTime);
-        const result = await this.checkAndOpenWebSocket();
-        if (result) {
-          break;
-        }
-        if (index === retryCount) {
-          console.error('Error: Reconnecting webSocket failed');
-        }
+  public async reconnectingWebSocket(): Promise<boolean> {
+    const retryCount = 3;
+    for (let index = 1; index <= retryCount; index++) {
+      console.warn(`Warn: Reconnecting webSocket try ${index} times.`);
+      const waitTime = 1000 * index;
+      await this.sleep(waitTime);
+      const result = await this.checkAndOpenWebSocket();
+      if (result) {
+        return true;
       }
-      return;
-    })();
+      if (index === retryCount) {
+        console.error('Error: Reconnecting webSocket failed');
+      }
+    }
+    return false;
   }
 
-  private async sleep(time: number) {
+  private async sleep(time: number): Promise<void> {
     await new Promise((r) => setTimeout(r, time));
   }
 
-  private async checkAndOpenWebSocket() {
+  private async checkAndOpenWebSocket(): Promise<boolean> {
     let result: boolean | undefined = undefined;
     try {
       result = await APIService.getExecPing();
@@ -163,7 +162,6 @@ export class WsService {
       case WsRequestAction.RoleListInfoDisplay:
       case WsRequestAction.GameMasterGameInfoDisplay:
         return true;
-        break;
       default:
         break;
     }
