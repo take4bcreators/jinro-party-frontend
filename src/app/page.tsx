@@ -58,6 +58,9 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="/debug/timer4">Timer Debug4</Link>
           </li>
+          <li>
+            <Link href="/debug/qrcode">QRCode Debug</Link>
+          </li>
         </ul>
       </section>
     </main>
