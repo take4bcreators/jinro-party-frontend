@@ -1,7 +1,8 @@
 export default function Home(): JSX.Element {
   return (
     <>
-      <h1>昼のフェーズ開始</h1>
+      <h1>投票結果</h1>
+      <p>追放</p>
     </>
   );
 }
