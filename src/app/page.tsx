@@ -49,6 +49,15 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="/debug/timer">Timer Debug</Link>
           </li>
+          <li>
+            <Link href="/debug/timer2">Timer Debug2</Link>
+          </li>
+          <li>
+            <Link href="/debug/timer3">Timer Debug3</Link>
+          </li>
+          <li>
+            <Link href="/debug/timer4">Timer Debug4</Link>
+          </li>
         </ul>
       </section>
     </main>

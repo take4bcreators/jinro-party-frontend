@@ -81,6 +81,39 @@ export default function Home(): JSX.Element {
     wsService.getCurrentGameState();
   }, [wsService, wsIsOpen]);
 
+  const listenerAdd = useRef(false);
+  useEffect(() => {
+    if (wsService == undefined) {
+      return;
+    }
+    if (!wsIsOpen) {
+      return;
+    }
+    function visibleActionCallback() {
+      if (wsService == undefined) {
+        return;
+      }
+      if (!wsIsOpen) {
+        return;
+      }
+      switch (document.visibilityState) {
+        case 'visible':
+          wsService.reconnectingWebSocket();
+          break;
+        case 'hidden':
+          setWsIsOpen(false);
+          return;
+        default:
+          break;
+      }
+    }
+    if (listenerAdd.current) {
+      return;
+    }
+    addEventListener('visibilitychange', visibleActionCallback);
+    listenerAdd.current = true;
+  }, [wsIsOpen, wsService]);
+
   useEffect(() => {
     if (pushPage === '') {
       return;
@@ -102,13 +135,25 @@ export default function Home(): JSX.Element {
   }
 
   let nextState: GameState = GameState.Empty;
-  let actionParameter01: string = '';
+  let param01: string = '';
+  let param02: string = '';
+  let param03: string = '';
   if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
     nextState = wsRcvData.actionParameter01 as GameState;
     lastGameState.current = nextState;
+  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerStart) {
+    nextState = lastGameState.current;
+    param01 = 'start';
+    param02 = wsRcvData.actionParameter01;
+  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerPause) {
+    nextState = lastGameState.current;
+    param01 = 'pause';
+  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerResume) {
+    nextState = lastGameState.current;
+    param01 = 'start';
   } else {
     nextState = lastGameState.current;
-    actionParameter01 = wsRcvData.actionParameter01;
+    param01 = wsRcvData.actionParameter01;
   }
 
   switch (nextState) {
@@ -128,7 +173,8 @@ export default function Home(): JSX.Element {
     case GameState.DayPhaseStart:
       return <PageDayPhaseStart />;
     case GameState.DayPhase:
-      return <PageDayPhase />;
+      // return <PageDayPhase />;
+      return <PageDayPhase timerState={param01} initialCount={param02} />;
     case GameState.DayPhaseEnd:
       return <PageDayPhaseEnd />;
     case GameState.Voting:
