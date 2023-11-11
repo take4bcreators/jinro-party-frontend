@@ -367,4 +367,75 @@ export namespace APIService {
     const resData: APIData.APIReplyProcessResult = await res.json();
     return resData.result;
   }
+
+  /**
+   * 追放者投票対象プレイヤー取得 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function getFetchMainVoteReceivers() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchMainVoteReceivers
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyAllPlayerData = await res.json();
+    return resData;
+  }
+
+  /**
+   * 追放者投票登録 API POST実行
+   * @param requestDataObject リクエスト送信値オブジェクト
+   * @returns 処理結果（プロミス）
+   */
+  export async function postSaveMainVote(
+    requestDataObject: APIData.APISendVotePlayerData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostSaveMainVote
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  /**
+   * 投票結果取得 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function getFetchVoteResult() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchVoteResult
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyAllVotePlayerData = await res.json();
+    return resData;
+  }
+
+  /**
+   * 追放者プレイヤー情報取得 API GET実行
+   * @returns 処理結果（プロミス）
+   */
+  export async function getFetchExilePlayer() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchExilePlayer
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyPlayerData = await res.json();
+    return resData;
+  }
 }

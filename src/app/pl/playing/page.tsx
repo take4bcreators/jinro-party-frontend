@@ -173,8 +173,7 @@ export default function Home(): JSX.Element {
     case GameState.DayPhaseStart:
       return <PageDayPhaseStart />;
     case GameState.DayPhase:
-      // return <PageDayPhase />;
-      return <PageDayPhase timerState={param01} initialCount={param02} />;
+      return <PageDayPhase />;
     case GameState.DayPhaseEnd:
       return <PageDayPhaseEnd />;
     case GameState.Voting:

@@ -4,6 +4,7 @@ import { APIData } from '@/types/apiData';
 import { LocalStorageRepository } from './localStorageRepository';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerTeam } from '@/config/playerTeam';
+import { PlayerState } from '@/config/playerState';
 
 export namespace LocalStorageService {
   export function getDeviceId(): string | undefined {
@@ -105,5 +106,27 @@ export namespace LocalStorageService {
       playerTeam
     );
     return;
+  }
+
+  export function setPlayingPlayerState(playerState: PlayerState) {
+    LocalStorageRepository.set(
+      LocalStorageKey.jrptPlayingPlayerstate,
+      playerState
+    );
+    return;
+  }
+
+  export function getPlayingPlayerName(): string | undefined {
+    const name = LocalStorageRepository.get(
+      LocalStorageKey.jrptPlayingPlayername
+    );
+    return name;
+  }
+
+  export function getPlayingPlayerIcon(): string | undefined {
+    const icon = LocalStorageRepository.get(
+      LocalStorageKey.jrptPlayingPlayericon
+    );
+    return icon;
   }
 }

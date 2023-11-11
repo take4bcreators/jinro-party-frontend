@@ -37,6 +37,14 @@ export namespace APIRouting {
     PostFetchPlayerData: '/api/post-fetch-player-data',
     /** GET: 接続用疎通確認実行 */
     GetExecPing: '/api/get-exec-ping',
+    /** GET: 追放者投票対象プレイヤー取得 */
+    GetFetchMainVoteReceivers: '/api/get-fetch-main-vote-receivers',
+    /** POST: 追放者投票登録 */
+    PostSaveMainVote: '/api/post-save-main-vote',
+    /** GET: 投票結果取得 */
+    GetFetchVoteResult: '/api/get-fetch-vote-result',
+    /** GET: 追放者プレイヤー情報取得 */
+    GetFetchExilePlayer: '/api/get-fetch-exile-player',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }
