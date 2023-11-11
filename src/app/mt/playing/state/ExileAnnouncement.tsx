@@ -12,7 +12,7 @@ type Props = {
 
 export default function Home({ timerState, initialCount }: Props): JSX.Element {
   const [exilePlayer, setExilePlayer] = useState<
-    APIData.APIReplyPlayerData | undefined
+    APIData.APIPlayerBasicData | undefined
   >(undefined);
 
   // タイマー関連
@@ -27,7 +27,7 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const resData = await APIService.getFetchExilePlayer();
+      const resData = await APIService.getFetchDropoutPlayer();
       if (resData == undefined) {
         return;
       }

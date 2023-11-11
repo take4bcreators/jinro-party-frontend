@@ -9,7 +9,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const resData = await APIService.getFetchExilePlayer();
+      const resData = await APIService.getFetchDropoutPlayer();
       if (resData == undefined) {
         return;
       }

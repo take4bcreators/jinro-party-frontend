@@ -150,4 +150,20 @@ export namespace APIData {
     /** 被投票プレイヤーアイコン */
     receiverPlayerIcon: string;
   };
+
+  //
+  // リクエスト・レスポンス共通
+  //
+
+  /**
+   * プレイヤー基本データ APIデータ
+   */
+  export type APIPlayerBasicData = {
+    /** デバイスID */
+    deviceId: string;
+    /** プレイヤー名 */
+    playerName: string;
+    /** プレイヤーアイコン */
+    playerIcon: string;
+  };
 }

@@ -427,15 +427,15 @@ export namespace APIService {
    * 追放者プレイヤー情報取得 API GET実行
    * @returns 処理結果（プロミス）
    */
-  export async function getFetchExilePlayer() {
+  export async function getFetchDropoutPlayer() {
     const apiEndpointURL = makeAPIEndpointURL(
-      APIRouting.Point.GetFetchExilePlayer
+      APIRouting.Point.GetFetchDropoutPlayer
     );
     if (apiEndpointURL === '') {
       return;
     }
     const res = await fetch(apiEndpointURL);
-    const resData: APIData.APIReplyPlayerData = await res.json();
+    const resData: APIData.APIPlayerBasicData = await res.json();
     return resData;
   }
 }

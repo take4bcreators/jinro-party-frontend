@@ -44,7 +44,7 @@ export namespace APIRouting {
     /** GET: 投票結果取得 */
     GetFetchVoteResult: '/api/get-fetch-vote-result',
     /** GET: 追放者プレイヤー情報取得 */
-    GetFetchExilePlayer: '/api/get-fetch-exile-player',
+    GetFetchDropoutPlayer: '/api/get-fetch-dropout-player',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }
