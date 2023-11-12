@@ -129,4 +129,18 @@ export namespace LocalStorageService {
     );
     return icon;
   }
+
+  export function getPlayingPlayerState(): PlayerState {
+    const data = LocalStorageRepository.get(
+      LocalStorageKey.jrptPlayingPlayerstate
+    ) as PlayerState;
+    return data;
+  }
+
+  export function getPlayingPlayerRole(): PlayerRole {
+    const data = LocalStorageRepository.get(
+      LocalStorageKey.jrptPlayingPlayerrole
+    ) as PlayerRole;
+    return data;
+  }
 }

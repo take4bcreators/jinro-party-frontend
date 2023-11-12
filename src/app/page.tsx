@@ -61,6 +61,10 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="/debug/qrcode">QRCode Debug</Link>
           </li>
+          <li></li>
+          <li>
+            <Link href="/pl/playing/state">PL Playing Debug</Link>
+          </li>
         </ul>
       </section>
     </main>
