@@ -439,11 +439,11 @@ export namespace APIService {
     return resData;
   }
 
-  export async function postExistsSeerData(
+  export async function postExistsNightActionData(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<boolean | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
-      APIRouting.Point.PostExistsSeerData
+      APIRouting.Point.PostExistsNightActionData
     );
     if (apiEndpointURL === '') {
       return;
@@ -457,11 +457,11 @@ export namespace APIService {
     return resData.exists;
   }
 
-  export async function postFetchSeerData(
+  export async function postFetchNightActionData(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<APIData.APIReplyPlayerData | undefined> {
     const apiEndpointURL = makeAPIEndpointURL(
-      APIRouting.Point.PostFetchSeerData
+      APIRouting.Point.PostFetchNightActionData
     );
     if (apiEndpointURL === '') {
       return;

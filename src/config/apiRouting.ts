@@ -46,9 +46,9 @@ export namespace APIRouting {
     /** GET: 追放者プレイヤー情報取得 */
     GetFetchDropoutPlayer: '/api/get-fetch-dropout-player',
     /** POST: 占い師テーブルデータ存在確認 */
-    PostExistsSeerData: '/api/post-exists-seer-data',
+    PostExistsNightActionData: '/api/post-exists-night-action-data',
     /** POST: 占い師テーブルデータ取得 */
-    PostFetchSeerData: '/api/post-fetch-seer-data',
+    PostFetchNightActionData: '/api/post-fetch-night-action-data',
     /** POST: 占い師アクション実行 */
     PostExecSeerAction: '/api/post-exec-seer-action',
     /** POST: 他生存プレイヤーデータ取得 */

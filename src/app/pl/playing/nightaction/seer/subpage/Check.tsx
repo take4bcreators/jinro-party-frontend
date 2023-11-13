@@ -17,7 +17,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
   useEffect(() => {
     (async () => {
       const deviceId = DeviceIdService.getToAPIData();
-      const resData = await APIService.postFetchSeerData(deviceId);
+      const resData = await APIService.postFetchNightActionData(deviceId);
       if (resData == undefined) {
         return;
       }
