@@ -13,12 +13,12 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const deviceId = DeviceIdService.get();
       const resData = await APIService.getFetchMainVoteReceivers();
       if (resData == undefined) {
         return;
       }
       const allPlayer = resData.allPlayerData;
+      const deviceId = DeviceIdService.get();
       const receiverPlayers = allPlayer.filter(
         (player) => player.deviceId != deviceId
       );

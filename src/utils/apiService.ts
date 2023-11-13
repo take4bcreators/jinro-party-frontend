@@ -438,4 +438,76 @@ export namespace APIService {
     const resData: APIData.APIPlayerBasicData = await res.json();
     return resData;
   }
+
+  export async function postExistsSeerData(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExistsSeerData
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyExistsDeviceId = await res.json();
+    return resData.exists;
+  }
+
+  export async function postFetchSeerData(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<APIData.APIReplyPlayerData | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostFetchSeerData
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyPlayerData = await res.json();
+    return resData;
+  }
+
+  export async function postExecSeerAction(
+    requestDataObject: APIData.APISendSeerActionData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecSeerAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function postFetchOtherAlivePlayers(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<APIData.APIMultiPlayerBasicData | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostFetchOtherAlivePlayers
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIMultiPlayerBasicData = await res.json();
+    return resData;
+  }
 }

@@ -151,6 +151,16 @@ export namespace APIData {
     receiverPlayerIcon: string;
   };
 
+  /**
+   * 占い師アクション用データ レスポンス APIデータ
+   */
+  export type APISendSeerActionData = {
+    /** 占い師自身のデバイスID */
+    seerDeviceId: string;
+    /** 占い対象プレイヤーのデバイスID */
+    receiverDeviceId: string;
+  };
+
   //
   // リクエスト・レスポンス共通
   //
@@ -165,5 +175,13 @@ export namespace APIData {
     playerName: string;
     /** プレイヤーアイコン */
     playerIcon: string;
+  };
+
+  /**
+   * 複数プレイヤー基本データ APIデータ
+   */
+  export type APIMultiPlayerBasicData = {
+    /** すべてのデータ */
+    allData: APIPlayerBasicData[];
   };
 }
