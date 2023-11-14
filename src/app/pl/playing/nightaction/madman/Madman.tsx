@@ -26,7 +26,7 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <h1>市民アクション</h1>
+      <h1>狂人アクション</h1>
       <ActionPage setPageFunc={setPage} />
     </>
   );

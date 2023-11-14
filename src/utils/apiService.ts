@@ -475,24 +475,6 @@ export namespace APIService {
     return resData;
   }
 
-  export async function postExecSeerAction(
-    requestDataObject: APIData.APISendSeerActionData
-  ): Promise<boolean | undefined> {
-    const apiEndpointURL = makeAPIEndpointURL(
-      APIRouting.Point.PostExecSeerAction
-    );
-    if (apiEndpointURL === '') {
-      return;
-    }
-    const form = new TypedFormData(requestDataObject);
-    const res = await fetch(apiEndpointURL, {
-      method: 'POST',
-      body: form,
-    });
-    const resData: APIData.APIReplyProcessResult = await res.json();
-    return resData.result;
-  }
-
   export async function postFetchOtherAlivePlayers(
     requestDataObject: APIData.APISendDeviceId
   ): Promise<APIData.APIMultiPlayerBasicData | undefined> {
@@ -509,5 +491,125 @@ export namespace APIService {
     });
     const resData: APIData.APIMultiPlayerBasicData = await res.json();
     return resData;
+  }
+
+  export async function postExecSeerAction(
+    requestDataObject: APIData.APISendNightActionData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecSeerAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function postExecEnqueteAction(
+    requestDataObject: APIData.APISendNightActionData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecEnqueteAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function postExecHunterAction(
+    requestDataObject: APIData.APISendNightActionData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecHunterAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function postExecWerewolfAction(
+    requestDataObject: APIData.APISendNightActionData
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecWerewolfAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function postExecMediumAction(
+    requestDataObject: APIData.APISendDeviceId
+  ): Promise<boolean | undefined> {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostExecMediumAction
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
+
+  export async function getFetchAliversForWerewolf() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchAliversForWerewolf
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIMultiPlayerBasicData = await res.json();
+    return resData;
+  }
+
+  export async function postCheckWerewolfExecuter(
+    requestDataObject: APIData.APISendDeviceId
+  ) {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.PostCheckWerewolfExecuter
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const form = new TypedFormData(requestDataObject);
+    const res = await fetch(apiEndpointURL, {
+      method: 'POST',
+      body: form,
+    });
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
   }
 }

@@ -22,10 +22,8 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const sendDeviceId = DeviceIdService.getToAPIData();
-      const existsData = await APIService.postExistsNightActionData(
-        sendDeviceId
-      );
+      const deviceId = DeviceIdService.getToAPIData();
+      const existsData = await APIService.postExistsNightActionData(deviceId);
       if (existsData == undefined) {
         return;
       }
@@ -33,7 +31,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
         setPageFunc(RoleActionSubPage.Check);
         return;
       }
-      const resData = await APIService.postFetchOtherAlivePlayers(sendDeviceId);
+      const resData = await APIService.postFetchOtherAlivePlayers(deviceId);
       if (resData == undefined) {
         return;
       }
@@ -57,7 +55,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     if (playersData == undefined) {
       return;
     }
-    const seerDeviceId = DeviceIdService.get();
+    const deviceId = DeviceIdService.get();
     const receiverPlayer = playersData.find(
       (e) => e.deviceId === selectPlayerId
     );
@@ -65,7 +63,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       return;
     }
     const result = await APIService.postExecSeerAction({
-      seerDeviceId: seerDeviceId,
+      deviceId: deviceId,
       receiverDeviceId: receiverPlayer.deviceId,
     });
     if (result == undefined) {

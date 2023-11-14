@@ -49,10 +49,22 @@ export namespace APIRouting {
     PostExistsNightActionData: '/api/post-exists-night-action-data',
     /** POST: 占い師テーブルデータ取得 */
     PostFetchNightActionData: '/api/post-fetch-night-action-data',
-    /** POST: 占い師アクション実行 */
-    PostExecSeerAction: '/api/post-exec-seer-action',
     /** POST: 他生存プレイヤーデータ取得 */
     PostFetchOtherAlivePlayers: '/api/post-fetch-other-alive-players',
+    /** POST: 占い師アクション実行 */
+    PostExecSeerAction: '/api/post-exec-seer-action',
+    /** POST: アンケートアクション実行 */
+    PostExecEnqueteAction: '/api/post-exec-enquete-action',
+    /** POST: 狩人アクション実行 */
+    PostExecHunterAction: '/api/post-exec-hunter-action',
+    /** POST: 人狼アクション実行 */
+    PostExecWerewolfAction: '/api/post-exec-werewolf-action',
+    /** POST: 霊能者アクション実行 */
+    PostExecMediumAction: '/api/post-exec-medium-action',
+    /** GET: 人狼以外生存プレイヤー情報取得 */
+    GetFetchAliversForWerewolf: '/api/get-fetch-alivers-for-werewolf',
+    /** POST: 人狼アクション実行プレイヤー確認 */
+    PostCheckWerewolfExecuter: '/api/post-check-werewolf-executer',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

@@ -152,12 +152,12 @@ export namespace APIData {
   };
 
   /**
-   * 占い師アクション用データ レスポンス APIデータ
+   * 夜アクション用データ レスポンス APIデータ
    */
-  export type APISendSeerActionData = {
-    /** 占い師自身のデバイスID */
-    seerDeviceId: string;
-    /** 占い対象プレイヤーのデバイスID */
+  export type APISendNightActionData = {
+    /** デバイスID */
+    deviceId: string;
+    /** 対象プレイヤーのデバイスID */
     receiverDeviceId: string;
   };
 
