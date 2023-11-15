@@ -184,4 +184,12 @@ export namespace APIData {
     /** すべてのデータ */
     allData: APIPlayerBasicData[];
   };
+
+  /**
+   * 勝利チーム APIデータ
+   */
+  export type APIWinningTeam = {
+    /** 勝利チーム */
+    winningTeam: PlayerTeam;
+  };
 }

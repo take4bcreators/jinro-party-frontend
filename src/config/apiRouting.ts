@@ -65,6 +65,8 @@ export namespace APIRouting {
     GetFetchAliversForWerewolf: '/api/get-fetch-alivers-for-werewolf',
     /** POST: 人狼アクション実行プレイヤー確認 */
     PostCheckWerewolfExecuter: '/api/post-check-werewolf-executer',
+    /** GET: 勝利チーム取得 */
+    GetFetchWinningTeam: '/api/get-fetch-winning-team',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

@@ -143,4 +143,11 @@ export namespace LocalStorageService {
     ) as PlayerRole;
     return data;
   }
+
+  export function getPlayingPlayerTeam() {
+    const data = LocalStorageRepository.get(
+      LocalStorageKey.jrptPlayingPlayerteam
+    ) as PlayerTeam;
+    return data;
+  }
 }

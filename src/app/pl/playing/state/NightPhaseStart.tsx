@@ -1,19 +1,26 @@
 import { PlayerState } from '@/config/playerState';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function Home(): JSX.Element {
-  const router = useRouter();
+import { Dispatch, SetStateAction } from 'react';
+
+type Props = {
+  setDropOutFunc: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Home({ setDropOutFunc }: Props): JSX.Element {
+  // const router = useRouter();
   useEffect(() => {
     const playerState = LocalStorageService.getPlayingPlayerState();
     if (playerState === PlayerState.Dead) {
       // 脱落した場合は、ページを再読み込みし、
       // 脱落用のページへ進む
-      router.refresh();
+      // router.refresh();
+      setDropOutFunc(true);
       return;
     }
-  }, [router]);
+  }, [setDropOutFunc]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { PlayerRoleSetting } from '@/config/playerRoleSetting';
+import { PlayerRole } from '@/config/playerRole';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
@@ -11,7 +11,7 @@ type Props = {
 
 export default function Home({ setPageFunc }: Props): JSX.Element {
   const [receivePlayer, setReceivePlayer] = useState<
-    APIData.APIReplyPlayerData | undefined
+    APIData.APIReplyPlayerData | undefined | null
   >(undefined);
 
   useEffect(() => {
@@ -19,13 +19,14 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       const deviceId = DeviceIdService.getToAPIData();
       const resData = await APIService.postFetchNightActionData(deviceId);
       if (resData == undefined) {
+        setReceivePlayer(null);
         return;
       }
       setReceivePlayer(resData);
     })();
   }, []);
 
-  if (receivePlayer == undefined) {
+  if (receivePlayer === undefined) {
     return <></>;
   }
 
@@ -33,12 +34,28 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Wait);
   }
 
+  if (receivePlayer === null) {
+    return (
+      <>
+        <p>最後の処刑されたプレイヤーを確認できませんでした</p>
+        <p>
+          <button type="button" onClick={buttonHandler}>
+            OK
+          </button>
+        </p>
+      </>
+    );
+  }
+
   return (
     <>
       <p>
         {receivePlayer.playerName} さんは{' '}
         <strong>
-          {PlayerRoleSetting.RoleName.get(receivePlayer.playerRole)}
+          人狼{' '}
+          {receivePlayer.playerRole === PlayerRole.Werewolf
+            ? 'です'
+            : 'ではありません'}
         </strong>{' '}
         です
       </p>

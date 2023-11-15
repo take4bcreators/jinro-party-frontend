@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function Home({ timerState, initialCount }: Props): JSX.Element {
-  const [exilePlayer, setExilePlayer] = useState<
+  const [dropoutPlayer, setDropoutPlayer] = useState<
     APIData.APIPlayerBasicData | undefined
   >(undefined);
 
@@ -31,11 +31,11 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
       if (resData == undefined) {
         return;
       }
-      setExilePlayer(resData);
+      setDropoutPlayer(resData);
     })();
   }, []);
 
-  if (exilePlayer == undefined) {
+  if (dropoutPlayer == undefined) {
     return <></>;
   }
 
@@ -43,8 +43,8 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     <>
       <section>
         <h1>投票結果</h1>
-        <p>{exilePlayer.playerName}</p>
-        <p>{exilePlayer.playerIcon}</p>
+        <p>{dropoutPlayer.playerName}</p>
+        <p>{dropoutPlayer.playerIcon}</p>
         <p>追放</p>
         <p>10秒で遺言をどうぞ</p>
         <p>残り時間..</p>

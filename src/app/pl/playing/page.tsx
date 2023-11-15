@@ -5,6 +5,7 @@ import { WsService } from '@/utils/wsService';
 import { useEffect, useRef, useState } from 'react';
 
 import PageLoading from './other/Loading';
+import PageDropOut from './other/DropOut';
 import PagePreGame from './state/PreGame';
 import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
@@ -42,6 +43,7 @@ export default function Home(): JSX.Element {
   const pagePushProgress = useRef(false);
   const [pushPage, setPushPage] = useState('');
   const lastGameState = useRef<GameState>(GameState.Empty);
+  const [isDropOut, setDropOut] = useState(false);
 
   function movePage(page: string) {
     setPushPage(page);
@@ -61,13 +63,13 @@ export default function Home(): JSX.Element {
         return;
       }
       LocalStorageService.setPlayingPlayerDataFromAPI(playerData);
-      if (playerData.playerState === PlayerState.Dead) {
-        movePage('/pl/gameover/');
-        return;
-      }
       setWsService(
         new WsService(WsSenderType.PlayerSite, setWsIsOpen, setWsRcvData)
       );
+      if (playerData.playerState === PlayerState.Dead) {
+        // movePage('/pl/gameover/');
+        setDropOut(true);
+      }
     })();
   }, []);
 
@@ -156,6 +158,17 @@ export default function Home(): JSX.Element {
     param01 = wsRcvData.actionParameter01;
   }
 
+  if (isDropOut) {
+    switch (nextState) {
+      case GameState.GameEnd:
+      case GameState.FinalResult:
+      case GameState.RoleReveal:
+        break;
+      default:
+        return <PageDropOut />;
+    }
+  }
+
   switch (nextState) {
     case GameState.Empty:
       break; // @todo
@@ -171,7 +184,7 @@ export default function Home(): JSX.Element {
     case GameState.RoleAssignment:
       return <PageRoleAssignment />;
     case GameState.DayPhaseStart:
-      return <PageDayPhaseStart />;
+      return <PageDayPhaseStart setDropOutFunc={setDropOut} />;
     case GameState.DayPhase:
       return <PageDayPhase />;
     case GameState.DayPhaseEnd:
@@ -187,7 +200,7 @@ export default function Home(): JSX.Element {
     case GameState.FinalExileAnnouncement:
       return <PageFinalExileAnnouncement />;
     case GameState.NightPhaseStart:
-      return <PageNightPhaseStart />;
+      return <PageNightPhaseStart setDropOutFunc={setDropOut} />;
     case GameState.NightPhase:
       return <PageNightPhase />;
     case GameState.NightPhaseEnd:

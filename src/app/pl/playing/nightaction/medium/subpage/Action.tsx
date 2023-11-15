@@ -16,7 +16,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
         return;
       }
       if (existsData) {
-        setPageFunc(RoleActionSubPage.Wait);
+        setPageFunc(RoleActionSubPage.Check);
         return;
       }
     })();
@@ -38,7 +38,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
-      <p>最後に処刑されたプレイヤーの役職を確認します</p>
+      <p>最後に処刑されたプレイヤーが人狼かどうかを確認します</p>
       <p>
         <button type="button" onClick={handleButton}>
           OK

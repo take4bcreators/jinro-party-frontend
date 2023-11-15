@@ -612,4 +612,16 @@ export namespace APIService {
     const resData: APIData.APIReplyProcessResult = await res.json();
     return resData.result;
   }
+
+  export async function getFetchWinningTeam() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchWinningTeam
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIWinningTeam = await res.json();
+    return resData.winningTeam;
+  }
 }
