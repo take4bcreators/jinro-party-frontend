@@ -37,6 +37,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
   if (receivePlayer === null) {
     return (
       <>
+        <h1>霊能者アクション</h1>
         <p>最後の処刑されたプレイヤーを確認できませんでした</p>
         <p>
           <button type="button" onClick={buttonHandler}>
@@ -49,6 +50,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>霊能者アクション</h1>
       <p>
         {receivePlayer.playerName} さんは{' '}
         <strong>

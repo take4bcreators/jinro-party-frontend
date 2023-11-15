@@ -43,6 +43,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   if (!isExecuter) {
     <>
+      <h1>人狼アクション</h1>
       <p>襲撃は他のプレイヤーが行います。</p>
       <form>
         <p>
@@ -91,6 +92,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>人狼アクション</h1>
       <p>襲撃するプレイヤーを選んでください</p>
       <form>
         <ul>

@@ -38,6 +38,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>霊能者アクション</h1>
       <p>最後に処刑されたプレイヤーが人狼かどうかを確認します</p>
       <p>
         <button type="button" onClick={handleButton}>

@@ -69,6 +69,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>狩人アクション</h1>
       <p>人狼から守りたいプレイヤーを選んでください</p>
       <form>
         <ul>

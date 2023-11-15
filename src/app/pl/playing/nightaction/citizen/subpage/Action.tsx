@@ -69,6 +69,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>市民アクション</h1>
       <p>人狼だと思うプレイヤーを投票してください</p>
       <form>
         <ul>

@@ -30,7 +30,6 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <h1>霊能者アクション</h1>
       <ActionPage setPageFunc={setPage} />
     </>
   );

@@ -6,17 +6,12 @@ import Seer from '@/app/pl/playing/nightaction/seer/Seer';
 import Werewolf from '@/app/pl/playing/nightaction/werewolf/Werewolf';
 import { PlayerRole } from '@/config/playerRole';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [playerRole, setPlayerRole] = useState<PlayerRole | undefined>(
     undefined
   );
-
-  // useEffect(() => {
-  //   const selfRole = LocalStorageService.getPlayingPlayerRole();
-  //   setPlayerRole(selfRole);
-  // }, []);
 
   function buttonHandler() {
     const selfRole = LocalStorageService.getPlayingPlayerRole();

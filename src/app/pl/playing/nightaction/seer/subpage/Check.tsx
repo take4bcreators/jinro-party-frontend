@@ -35,6 +35,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>占い師アクション</h1>
       <p>
         {receivePlayer.playerName} さんは{' '}
         <strong>

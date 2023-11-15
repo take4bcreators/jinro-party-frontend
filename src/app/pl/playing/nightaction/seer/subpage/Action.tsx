@@ -77,6 +77,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
 
   return (
     <>
+      <h1>占い師アクション</h1>
       <p>占いたいプレイヤーを選択してください</p>
       <form>
         <ul>

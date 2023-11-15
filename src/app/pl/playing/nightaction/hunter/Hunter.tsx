@@ -26,7 +26,6 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <h1>狩人アクション</h1>
       <ActionPage setPageFunc={setPage} />
     </>
   );
