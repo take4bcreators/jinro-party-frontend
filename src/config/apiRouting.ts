@@ -67,6 +67,8 @@ export namespace APIRouting {
     PostCheckWerewolfExecuter: '/api/post-check-werewolf-executer',
     /** GET: 勝利チーム取得 */
     GetFetchWinningTeam: '/api/get-fetch-winning-team',
+    /** GET: 終了ゲームリセット */
+    GetEndGameReset: '/api/get-end-game-reset',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

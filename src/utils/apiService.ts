@@ -624,4 +624,14 @@ export namespace APIService {
     const resData: APIData.APIWinningTeam = await res.json();
     return resData.winningTeam;
   }
+
+  export async function getEndGameReset() {
+    const apiEndpointURL = makeAPIEndpointURL(APIRouting.Point.GetEndGameReset);
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIReplyProcessResult = await res.json();
+    return resData.result;
+  }
 }

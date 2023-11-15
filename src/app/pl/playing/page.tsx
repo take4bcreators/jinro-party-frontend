@@ -163,6 +163,7 @@ export default function Home(): JSX.Element {
       case GameState.GameEnd:
       case GameState.FinalResult:
       case GameState.RoleReveal:
+      case GameState.PreGame:
         break;
       default:
         return <PageDropOut />;
@@ -171,7 +172,7 @@ export default function Home(): JSX.Element {
 
   switch (nextState) {
     case GameState.Empty:
-      break; // @todo
+      break;
     case GameState.PreGame:
       return <PagePreGame />;
     case GameState.PlayerJoining:
