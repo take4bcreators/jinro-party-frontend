@@ -35,7 +35,15 @@ export class WsService {
    * @returns
    */
   private openWebSocket() {
-    const wsHost = process.env.NEXT_PUBLIC_WEB_SOCKET_HOST;
+    let host = process.env.NEXT_PUBLIC_WEB_SOCKET_HOST;
+    if (host == undefined || host === '') {
+      host = window.location.hostname;
+    }
+    let port = process.env.NEXT_PUBLIC_WEB_SOCKET_PORT;
+    if (port == undefined || port === '') {
+      port = '8080';
+    }
+    const wsHost = `http://${host}:${port}`;
     const wsEndPoint = APIRouting.Point.WebSocket;
     const wsURL = `${wsHost}${wsEndPoint}`;
     if (wsURL == undefined) {

@@ -10,10 +10,15 @@ export namespace APIService {
    * @returns 作成したURL
    */
   function makeAPIEndpointURL(routingPoint: APIRouting.Point): string {
-    const apiHost = process.env.NEXT_PUBLIC_HOST;
-    if (apiHost == undefined) {
-      return '';
+    let host = process.env.NEXT_PUBLIC_HOSTNAME;
+    if (host == undefined || host === '') {
+      host = window.location.hostname;
     }
+    let port = process.env.NEXT_PUBLIC_PORT;
+    if (port == undefined || port === '') {
+      port = '8080';
+    }
+    const apiHost = `http://${host}:${port}`;
     return `${apiHost}${routingPoint}`;
   }
 

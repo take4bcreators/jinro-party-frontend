@@ -3,7 +3,7 @@
 import QRCode from '@/components/elements/qrcode';
 
 export default function Home(): JSX.Element {
-  const selfURL = process.env.NEXT_PUBLIC_SELF_HOST;
+  const selfURL = 'http//localhost:3000/';
   if (selfURL == undefined) {
     return <></>;
   }
