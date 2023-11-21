@@ -2,69 +2,20 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "npx next dev",
-      "detail": "開発プレビュー用のサーバーを立ち上げます",
-      "icon": {
-        "color": "terminal.ansiYellow",
-        "id": "run-all"
-      },
-      "type": "shell",
-      "command": "npx",
-      "args": ["next", "dev"],
-      "group": "none",
-      "presentation": {
-        "reveal": "always",
-        "clear": true,
-        "echo": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "npx next build",
-      "detail": "本番用ファイルを.nextフォルダ配下に出力します",
+      "label": "本番用tarファイル作成",
+      "detail": "本番用にtarファイルを作成します（作成先：/project/build.tar）",
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "package"
       },
       "type": "shell",
-      "command": "npx",
-      "args": ["next", "build"],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "clear": true,
-        "echo": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "npx next start",
-      "detail": "本番モードでアプリケーションを起動します。先にbuildをする必要があります",
-      "icon": {
-        "color": "terminal.ansiMagenta",
-        "id": "window"
-      },
-      "type": "shell",
-      "command": "npx",
-      "args": ["next", "start"],
-      "group": "none",
-      "presentation": {
-        "reveal": "always",
-        "clear": true,
-        "echo": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "WebSocket テスト用サーバー起動",
-      "detail": "WebSocketのテスト用サーバーを起動します",
-      "icon": {
-        "color": "terminal.ansiGreen",
-        "id": "window"
-      },
-      "type": "shell",
-      "command": "${workspaceFolder}/node_modules/.bin/ts-node",
-      "args": ["${workspaceFolder}/test/customServer/webSocketTestServer.ts"],
+      "command": "tar",
+      "args": [
+        "cvf",
+        "${workspaceFolder}/project/build.tar",
+        "-T",
+        "${workspaceFolder}/project/buildlist.txt"
+      ],
       "group": "none",
       "presentation": {
         "reveal": "always",
@@ -73,9 +24,12 @@
       },
       "problemMatcher": [],
       "windows": {
-        "command": "${workspaceFolder}\\node_modules\\.bin\\ts-node",
+        "command": "tar",
         "args": [
-          "${workspaceFolder}\\test\\customServer\\webSocketTestServer.ts"
+          "cvf",
+          "${workspaceFolder}\\project\\build.tar",
+          "-T",
+          "${workspaceFolder}\\project\\buildlist.txt"
         ]
       }
     }
