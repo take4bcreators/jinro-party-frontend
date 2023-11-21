@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   const formGetter = new TypedFormGetter<APIData.APISendNightActionData>(
     postData
   );
-  const deviceId = formGetter.get('seerDeviceId');
+  const deviceId = formGetter.get('deviceId');
   console.log('info: post data is ' + deviceId);
   const res = NextResponse.json(RESPONSE_DATA);
   return res;
