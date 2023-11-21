@@ -2,8 +2,8 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "本番用tarファイル作成",
-      "detail": "本番用にtarファイルを作成します（作成先：/project/build.tar）",
+      "label": "本番用tar.gzファイル作成",
+      "detail": "本番用にtar.gzファイルを作成します（作成先：/project/build.tar.gz）",
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "package"
@@ -11,8 +11,8 @@
       "type": "shell",
       "command": "tar",
       "args": [
-        "cvf",
-        "${workspaceFolder}/project/build.tar",
+        "cvfz",
+        "${workspaceFolder}/project/build.tar.gz",
         "-T",
         "${workspaceFolder}/project/buildlist.txt"
       ],
@@ -26,8 +26,8 @@
       "windows": {
         "command": "tar",
         "args": [
-          "cvf",
-          "${workspaceFolder}\\project\\build.tar",
+          "cvfz",
+          "${workspaceFolder}\\project\\build.tar.gz",
           "-T",
           "${workspaceFolder}\\project\\buildlist.txt"
         ]
