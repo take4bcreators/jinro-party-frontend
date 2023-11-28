@@ -1,5 +1,4 @@
-// import './globals.css';
-import './ress.min.css';
+import 'ress';
 import '@/styles/app/globals.scss';
 import Favicon from '/public/images/favicon.ico';
 import type { Metadata } from 'next';
