@@ -1,6 +1,5 @@
 import styles from '@/styles/components/elements/playerIconElemList.module.scss';
 import { PlayerIcon } from '@/config/playerIcon';
-import { PlayerIconElemStyle } from '@/config/playerIconElemStyle';
 import PlayerIconElem from './playerIconElem';
 import { ChangeEvent } from 'react';
 
@@ -16,7 +15,16 @@ export default function Home({
   return (
     <div className={styles.outer}>
       {Object.entries(PlayerIcon).map(([key, value], index) => (
-        <label key={index} className={styles.inner}>
+        <label
+          key={index}
+          className={
+            selectedIcon !== ''
+              ? selectedIcon !== value
+                ? styles.innerDisable
+                : styles.innerDefault
+              : styles.innerDefault
+          }
+        >
           <input
             type="radio"
             value={value}
@@ -24,16 +32,7 @@ export default function Home({
             onChange={selectEvent}
             className={styles.input}
           />
-          <PlayerIconElem
-            icon={value}
-            type={
-              selectedIcon !== ''
-                ? selectedIcon !== value
-                  ? PlayerIconElemStyle.Disable
-                  : PlayerIconElemStyle.Default
-                : PlayerIconElemStyle.Default
-            }
-          />
+          <PlayerIconElem icon={value} />
         </label>
       ))}
     </div>

@@ -8,13 +8,23 @@
   width: 80vw;
 }
 
-.inner {
+%innerBase {
   margin: 1rem;
   transform: scale(1);
-  transition: transform 0.3s;
+  opacity: 1;
+  transition: transform 0.3s, opacity 0.3s;
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.15);
   }
+}
+
+.innerDefault {
+  @extend %innerBase;
+}
+
+.innerDisable {
+  @extend %innerBase;
+  opacity: 0.3;
 }
 
 .input {
