@@ -106,7 +106,7 @@ export default function Home(): JSX.Element {
           <p>エントリー完了！</p>
           <p>他のプレイヤーを待っています...</p>
           <ul className={styles.bottomButtons}>
-            <li className={styles.bottomButtons__button}>
+            <li className={styles.bottomButtons__button_first}>
               <span onClick={doCancel}>
                 <Button type={ButtonStyle.None}>キャンセルする</Button>
               </span>

@@ -99,7 +99,7 @@ export default function Home(): JSX.Element {
       </ul>
       <p>{errorText}</p>
       <ul className={styles.bottomButtons}>
-        <li className={styles.bottomButtons__button}>
+        <li className={styles.bottomButtons__button_first}>
           <span onClick={saveAndMove}>
             <Button type={ButtonStyle.Pink}>エントリー</Button>
           </span>

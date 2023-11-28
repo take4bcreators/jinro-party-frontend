@@ -13,7 +13,6 @@ import Logo from '@/components/elements/logo';
 import { LogoStyle } from '@/config/logoStyle';
 import { PlayerIcon } from '@/config/playerIcon';
 import PlayerIconElem from '@/components/elements/playerIconElem';
-import { PlayerIconElemStyle } from '@/config/playerIconElemStyle';
 import PlayerIconElemList from '@/components/elements/playerIconElemList';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
@@ -115,7 +114,7 @@ export default function Home(): JSX.Element {
       </form>
       <p>{errorText}</p>
       <ul className={styles.bottomButtons}>
-        <li className={styles.bottomButtons__button}>
+        <li className={styles.bottomButtons__button_first}>
           <span onClick={dataSaveAndMove}>
             <Button type={ButtonStyle.Blue}>次へ</Button>
           </span>

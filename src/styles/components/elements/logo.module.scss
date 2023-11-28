@@ -12,10 +12,10 @@
 }
 
 .small {
-  width: 50vw;
+  width: 30vw;
   height: auto;
   @include g.mq(tab) {
-    width: 30vw;
+    width: 25vw;
   }
   @include g.mq(pc) {
     width: 20vw;
