@@ -74,6 +74,9 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="/pl/playing/state">PL Playing Debug</Link>
           </li>
+          <li>
+            <Link href="/debug/styledebug">STYLE DEBUG</Link>
+          </li>
         </ul>
       </section>
       <section>

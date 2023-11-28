@@ -6,6 +6,17 @@ import { LocalStorageService } from '@/utils/localStorageService';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { PlayerIcon } from '@/config/playerIcon';
+import PlayerIconElem from '@/components/elements/playerIconElem';
+import { PlayerIconElemStyle } from '@/config/playerIconElemStyle';
+import PlayerIconElemList from '@/components/elements/playerIconElemList';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import styles from '@/styles/app/pl/entry/entry.module.scss';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -74,116 +85,42 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <>
-      <h1>プレイヤー情報入力</h1>
-      <form action="#" method="post">
-        <div>
-          <label htmlFor="name">名前入力</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            onChange={handleInputNameChange}
-            value={playerName}
-            autoComplete="off"
-          />
+    <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+      <h1 className={styles.topLogo}>
+        <Logo type={LogoStyle.Small} />
+      </h1>
+      <form>
+        <div className={styles.nameInput}>
+          <div className={styles.nameInput__label}>
+            <label htmlFor="name">名前を入力してください</label>
+          </div>
+          <div className={styles.nameInput__input}>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              onChange={handleInputNameChange}
+              value={playerName}
+              autoComplete="off"
+            />
+          </div>
         </div>
-        <div>
-          <p>アイコン選択</p>
-          <label>
-            <input
-              type="radio"
-              value="icon01"
-              checked={playerIcon === 'icon01'}
-              onChange={handleOptionChange}
-            />
-            icon01
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon02"
-              checked={playerIcon === 'icon02'}
-              onChange={handleOptionChange}
-            />
-            icon02
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon03"
-              checked={playerIcon === 'icon03'}
-              onChange={handleOptionChange}
-            />
-            icon03
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon04"
-              checked={playerIcon === 'icon04'}
-              onChange={handleOptionChange}
-            />
-            icon04
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon05"
-              checked={playerIcon === 'icon05'}
-              onChange={handleOptionChange}
-            />
-            icon05
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon06"
-              checked={playerIcon === 'icon06'}
-              onChange={handleOptionChange}
-            />
-            icon06
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon07"
-              checked={playerIcon === 'icon07'}
-              onChange={handleOptionChange}
-            />
-            icon07
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon08"
-              checked={playerIcon === 'icon08'}
-              onChange={handleOptionChange}
-            />
-            icon08
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="icon09"
-              checked={playerIcon === 'icon09'}
-              onChange={handleOptionChange}
-            />
-            icon09
-          </label>
+        <div className={styles.iconSelect}>
+          <p className={styles.iconSelect__label}>アイコンを選択してください</p>
+          <PlayerIconElemList
+            selectedIcon={playerIcon}
+            selectEvent={handleOptionChange}
+          />
         </div>
       </form>
       <p>{errorText}</p>
-      <ul>
-        <li>
-          <span onClick={dataSaveAndMove}>次へ</span>
-        </li>
-        <li>
-          <Link href="/pl/" onClick={dataSave}>
-            戻る
-          </Link>
+      <ul className={styles.bottomButtons}>
+        <li className={styles.bottomButtons__button}>
+          <span onClick={dataSaveAndMove}>
+            <Button type={ButtonStyle.Blue}>次へ</Button>
+          </span>
         </li>
       </ul>
-    </>
+    </DarkForestLayout>
   );
 }

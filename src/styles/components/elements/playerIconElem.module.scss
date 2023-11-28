@@ -1,0 +1,14 @@
+@use '../../global' as g;
+
+%base {
+  opacity: 1;
+}
+
+.default {
+  @extend %base;
+}
+
+.disable {
+  @extend %base;
+  opacity: 0.3;
+}

@@ -3,6 +3,8 @@ import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
 import { ChangeEvent, useEffect, useState } from 'react';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 
 export default function Home(): JSX.Element {
   const [playerList, setPlayerList] = useState<APIData.APIReplyPlayerData[]>(
@@ -74,21 +76,23 @@ export default function Home(): JSX.Element {
 
   if (isVoted) {
     return (
-      <>
-        <h1>投票完了</h1>
+      <PlayingLayout type={PlayingLayoutStyle.Orange}>
+        <h1>Voting Time</h1>
+        <p>投票完了</p>
         <p>そのままお待ち下さい...</p>
         <p>
           <button type="button" onClick={handleBackButton}>
             投票し直す
           </button>
         </p>
-      </>
+      </PlayingLayout>
     );
   }
 
   return (
-    <>
-      <h1>投票してください</h1>
+    <PlayingLayout type={PlayingLayoutStyle.Orange}>
+      <h1>Voting Time</h1>
+      <p>処刑する人を投票してください</p>
       <form>
         <ul>
           {playerList.map((player, index) => {
@@ -117,6 +121,6 @@ export default function Home(): JSX.Element {
           </button>
         </p>
       </form>
-    </>
+    </PlayingLayout>
   );
 }

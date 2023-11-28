@@ -1,0 +1,23 @@
+@use '../../global' as g;
+
+.default {
+  width: 80vw;
+  height: auto;
+  @include g.mq(tab) {
+    width: 50vw;
+  }
+  @include g.mq(pc) {
+    width: 30vw;
+  }
+}
+
+.small {
+  width: 50vw;
+  height: auto;
+  @include g.mq(tab) {
+    width: 30vw;
+  }
+  @include g.mq(pc) {
+    width: 20vw;
+  }
+}

@@ -9,6 +9,13 @@ import { WsService } from '@/utils/wsService';
 import { WsSenderType } from '@/config/wsSenderType';
 import { WsRequestAction } from '@/config/wsRequestAction';
 import Link from 'next/link';
+import styles from '@/styles/app/pl/page.module.scss';
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -75,16 +82,16 @@ export default function Home(): JSX.Element {
   }, [wsService, wsIsOpen]);
 
   const loadScreen = (
-    <>
-      <h1>人狼パーティ</h1>
+    <DarkForestLayout flexType={FlexBaseLayoutStyle.Default}>
+      <Logo type={LogoStyle.Default} />
       <p>ロード中...</p>
-    </>
+    </DarkForestLayout>
   );
   const errorScreen = (
-    <>
+    <DarkForestLayout flexType={FlexBaseLayoutStyle.Default}>
       <h1>募集画面</h1>
       <p>エラーが発生しました</p>
-    </>
+    </DarkForestLayout>
   );
   if (gameState == undefined) {
     return loadScreen;
@@ -105,11 +112,14 @@ export default function Home(): JSX.Element {
   switch (wsRcvData.actionParameter01) {
     case GameState.PreGame:
       return (
-        <>
-          <h1>人狼パーティ</h1>
-          <p>募集前です...</p>
-          <p>しばらくお待ちください</p>
-        </>
+        <DarkForestLayout flexType={FlexBaseLayoutStyle.Default}>
+          <Logo type={LogoStyle.Default} />
+          <p>
+            ゲーム開始まで
+            <wbr />
+            お待ちください...
+          </p>
+        </DarkForestLayout>
       );
     case GameState.PlayerJoining:
       const deviceId = DeviceIdService.getToAPIData();
@@ -124,12 +134,12 @@ export default function Home(): JSX.Element {
         pageChange.current = true;
       });
       return (
-        <>
-          <h1>人狼パーティ</h1>
-          <p>
-            <Link href="/pl/entry/input/">参加する</Link>
-          </p>
-        </>
+        <DarkForestLayout flexType={FlexBaseLayoutStyle.Default}>
+          <Logo type={LogoStyle.Default} />
+          <Link href="/pl/entry/input/">
+            <Button type={ButtonStyle.Blue}>参加する</Button>
+          </Link>
+        </DarkForestLayout>
       );
     default:
       break;

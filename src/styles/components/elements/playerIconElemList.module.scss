@@ -1,0 +1,22 @@
+@use '../../global' as g;
+
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
+.inner {
+  margin: 1rem;
+  transform: scale(1);
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.input {
+  display: none;
+}

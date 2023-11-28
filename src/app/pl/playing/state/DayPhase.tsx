@@ -1,8 +1,15 @@
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+
 export default function Home(): JSX.Element {
   return (
-    <>
-      <h1>昼のフェーズ</h1>
-      <p>話し合いを開始してください</p>
-    </>
+    <PlayingLayout type={PlayingLayoutStyle.SkyBlue}>
+      <h1>Debate Time</h1>
+      <p>
+        今夜処刑する人を
+        <wbr />
+        話し合いで決めてください
+      </p>
+    </PlayingLayout>
   );
 }

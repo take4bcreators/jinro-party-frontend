@@ -1,10 +1,14 @@
 // import './globals.css';
 import './ress.min.css';
+import '@/styles/app/globals.scss';
 import Favicon from '/public/images/favicon.ico';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const notojp = Noto_Sans_JP({
+  weight: ['400', '500', '600', '700', '800'],
+  subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
   title: 'Jinro Party',
@@ -19,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={notojp.className}>{children}</body>
     </html>
   );
 }

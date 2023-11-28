@@ -6,6 +6,13 @@ import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import styles from '@/styles/app/pl/entry/entry.module.scss';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -18,11 +25,21 @@ export default function Home(): JSX.Element {
     setPlayerIcon(LocalStorageService.getEntryPlayerIcon() ?? '');
   }, []);
 
+  function LoadingScreen() {
+    return (
+      <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+        <h1 className={styles.topLogo}>
+          <Logo type={LogoStyle.Small} />
+        </h1>
+      </DarkForestLayout>
+    );
+  }
+
   if (playerName === '') {
-    return <></>;
+    return <LoadingScreen />;
   }
   if (playerIcon === '') {
-    return <></>;
+    return <LoadingScreen />;
   }
 
   async function saveAndMove() {
@@ -71,22 +88,28 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <>
-      <h1>確認画面</h1>
+    <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+      <h1 className={styles.topLogo}>
+        <Logo type={LogoStyle.Small} />
+      </h1>
       <p>これでよろしいでしょうか？</p>
-      <ul>
+      <ul className={styles.confirm}>
         <li>{playerName}</li>
         <li>{playerIcon}</li>
       </ul>
       <p>{errorText}</p>
-      <ul>
-        <li>
-          <span onClick={saveAndMove}>ゲームへ参加</span>
+      <ul className={styles.bottomButtons}>
+        <li className={styles.bottomButtons__button}>
+          <span onClick={saveAndMove}>
+            <Button type={ButtonStyle.Pink}>エントリー</Button>
+          </span>
         </li>
-        <li>
-          <span onClick={doCancel}>戻る</span>
+        <li className={styles.bottomButtons__button}>
+          <span onClick={doCancel}>
+            <Button type={ButtonStyle.None}>戻る</Button>
+          </span>
         </li>
       </ul>
-    </>
+    </DarkForestLayout>
   );
 }

@@ -3,6 +3,8 @@ import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
 import { useEffect, useState } from 'react';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 
 export default function Home(): JSX.Element {
   const [isDropOut, setDropOut] = useState<boolean | undefined>(undefined);
@@ -28,14 +30,13 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <>
-      <section>
-        <p>あなたは...</p>
-        <p>
-          <strong>{isDropOut ? '脱落' : '生存'}</strong>
-        </p>
-        <p>しました。</p>
-      </section>
-    </>
+    <PlayingLayout type={PlayingLayoutStyle.Purple}>
+      <h1>Voting Result</h1>
+      <p>あなたは...</p>
+      <p>
+        <strong>{isDropOut ? '脱落' : '生存'}</strong>
+      </p>
+      <p>しました。</p>
+    </PlayingLayout>
   );
 }

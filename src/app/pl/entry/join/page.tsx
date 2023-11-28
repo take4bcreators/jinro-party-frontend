@@ -6,6 +6,13 @@ import { APIWsData } from '@/types/apiWsData';
 import { WsService } from '@/utils/wsService';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import styles from '@/styles/app/pl/entry/entry.module.scss';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -53,32 +60,35 @@ export default function Home(): JSX.Element {
     pagePushProgress.current = true;
   }, [pushPage, router]);
 
-  const loadScreen = (
-    <>
-      <h1>エントリー完了！</h1>
-      <p>ロード中...</p>
-    </>
-  );
-  const errorScreen = (
-    <>
-      <h1>エントリー完了！</h1>
-      <p>エラーが発生しました</p>
-    </>
-  );
+  type LoadingScreenProps = {
+    message?: string;
+  };
+
+  function LoadingScreen({ message }: LoadingScreenProps) {
+    return (
+      <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+        <h1 className={styles.topLogo}>
+          <Logo type={LogoStyle.Small} />
+        </h1>
+        {message != undefined ? <p>{message}</p> : <></>}
+      </DarkForestLayout>
+    );
+  }
+
   if (pagePushProgress.current) {
-    return loadScreen;
+    return <LoadingScreen />;
   }
   if (pushPage !== '') {
-    return loadScreen;
+    return <LoadingScreen />;
   }
   if (wsRcvData == undefined) {
-    return loadScreen;
+    return <LoadingScreen />;
   }
   if (wsService == undefined) {
-    return loadScreen;
+    return <LoadingScreen />;
   }
   if (wsRcvData.requestAction !== WsRequestAction.GameScreenChange) {
-    return errorScreen;
+    return <LoadingScreen message={'エラーが発生しました'} />;
   }
 
   function doCancel() {
@@ -89,22 +99,27 @@ export default function Home(): JSX.Element {
   switch (wsRcvData.actionParameter01) {
     case GameState.PlayerJoining:
       return (
-        <>
-          <h1>エントリー完了！</h1>
+        <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+          <h1 className={styles.topLogo}>
+            <Logo type={LogoStyle.Small} />
+          </h1>
+          <p>エントリー完了！</p>
           <p>他のプレイヤーを待っています...</p>
-          <ul>
-            <li>
-              <span onClick={doCancel}>キャンセルする</span>
+          <ul className={styles.bottomButtons}>
+            <li className={styles.bottomButtons__button}>
+              <span onClick={doCancel}>
+                <Button type={ButtonStyle.None}>キャンセルする</Button>
+              </span>
             </li>
           </ul>
-        </>
+        </DarkForestLayout>
       );
     case GameState.PlayerJoiningEnded:
       setPushPage('/pl/playing/');
-      return loadScreen;
+      return <LoadingScreen />;
     default:
       break;
   }
 
-  return errorScreen;
+  return <LoadingScreen message={'エラーが発生しました'} />;
 }
