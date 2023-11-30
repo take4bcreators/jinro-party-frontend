@@ -15,6 +15,7 @@ import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
 import PlayerPanel from '@/components/elements/playerPanel';
 import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
+import LogoHeader from '@/components/layouts/logoHeader';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -69,9 +70,10 @@ export default function Home(): JSX.Element {
   function LoadingScreen({ message }: LoadingScreenProps) {
     return (
       <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-        <h1 className={styles.topLogo}>
+        {/* <h1 className={styles.topLogo}>
           <Logo type={LogoStyle.Small} />
-        </h1>
+        </h1> */}
+        <LogoHeader />
         {message != undefined ? <p>{message}</p> : <></>}
       </DarkForestLayout>
     );
@@ -102,9 +104,10 @@ export default function Home(): JSX.Element {
     case GameState.PlayerJoining:
       return (
         <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-          <h1 className={styles.topLogo}>
+          {/* <h1 className={styles.topLogo}>
             <Logo type={LogoStyle.Small} />
-          </h1>
+          </h1> */}
+          <LogoHeader />
           <p>エントリー完了！</p>
           <ul className={styles.playerPanel}>
             <li className={styles.playerPanel__panel}>

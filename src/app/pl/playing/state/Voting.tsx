@@ -6,6 +6,13 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import PlayerPanel from '@/components/elements/playerPanel';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
+import PlayingFooter from '@/components/layouts/playingFooter';
+
 export default function Home(): JSX.Element {
   const [playerList, setPlayerList] = useState<APIData.APIReplyPlayerData[]>(
     []
@@ -85,6 +92,7 @@ export default function Home(): JSX.Element {
             投票し直す
           </button>
         </p>
+        <PlayingFooter />
       </PlayingLayout>
     );
   }
@@ -121,6 +129,7 @@ export default function Home(): JSX.Element {
           </button>
         </p>
       </form>
+      <PlayingFooter />
     </PlayingLayout>
   );
 }

@@ -3,6 +3,17 @@ import { DeviceIdService } from '@/utils/deviceIdService';
 import { useState } from 'react';
 import RoleName from '@/components/elements/RoleName';
 
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import PlayerPanel from '@/components/elements/playerPanel';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
+import LogoHeader from '@/components/layouts/logoHeader';
+import PlayingFooter from '@/components/layouts/playingFooter';
+
 export default function Home(): JSX.Element {
   const [sendSuccess, setSendSuccess] = useState(false);
 
@@ -20,26 +31,30 @@ export default function Home(): JSX.Element {
 
   const OkButton = () => {
     if (sendSuccess) {
-      return <li>ほかのプレイヤーを待っています...</li>;
+      return <>ほかのプレイヤーを待っています...</>;
     }
-    return <li onClick={sendRoleChecked}>OK !!</li>;
+    return (
+      <span onClick={sendRoleChecked}>
+        <Button type={ButtonStyle.Blue}>OK</Button>
+      </span>
+    );
   };
 
   return (
-    <>
-      <section>
-        <h1>役職発表</h1>
+    <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
+      <LogoHeader />
+      <div className={styles.topInformation}>
         <p>あなたは...</p>
         <p>
           <RoleName />
         </p>
-        <p>です。</p>
-      </section>
-      <section>
-        <ul>
+      </div>
+      <ul>
+        <li>
           <OkButton />
-        </ul>
-      </section>
-    </>
+        </li>
+      </ul>
+      <PlayingFooter />
+    </DarkForestLayout>
   );
 }

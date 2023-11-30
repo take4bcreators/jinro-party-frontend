@@ -16,6 +16,7 @@ import PlayerIconElem from '@/components/elements/playerIconElem';
 import PlayerIconElemList from '@/components/elements/playerIconElemList';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
+import LogoHeader from '@/components/layouts/logoHeader';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -93,9 +94,10 @@ export default function Home(): JSX.Element {
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      <h1 className={styles.topLogo}>
+      {/* <h1 className={styles.topLogo}>
         <Logo type={LogoStyle.Small} />
-      </h1>
+      </h1> */}
+      <LogoHeader />
       <form>
         <div className={styles.nameInput}>
           <div className={styles.nameInput__label}>

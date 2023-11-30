@@ -4,18 +4,21 @@ import { LogoStyle } from '@/config/logoStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import PlayerPanel from '@/components/elements/playerPanel';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
+import LogoHeader from '@/components/layouts/logoHeader';
+import PlayingFooter from '@/components/layouts/playingFooter';
 
 export default function Home(): JSX.Element {
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      <h1 className={styles.topLogo}>
+      {/* <h1 className={styles.topLogo}>
         <Logo type={LogoStyle.Small} />
-      </h1>
+      </h1> */}
+      <LogoHeader />
       <div className={styles.topInformation}>
         <p>ゲームマスターがゲームの設定を行っています。</p>
         <p>しばらくお待ちください...</p>
       </div>
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <ul className={styles.footer__flexwrapper}>
           <li>
             <PlayerPanel />
@@ -24,7 +27,8 @@ export default function Home(): JSX.Element {
             <Logo type={LogoStyle.FixedSmall} />
           </li>
         </ul>
-      </footer>
+      </footer> */}
+      <PlayingFooter />
     </DarkForestLayout>
   );
 }

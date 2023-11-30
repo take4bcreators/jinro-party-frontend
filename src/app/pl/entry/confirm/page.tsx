@@ -15,6 +15,7 @@ import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
 import PlayerPanel from '@/components/elements/playerPanel';
 import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
+import LogoHeader from '@/components/layouts/logoHeader';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -30,9 +31,10 @@ export default function Home(): JSX.Element {
   function LoadingScreen() {
     return (
       <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-        <h1 className={styles.topLogo}>
+        {/* <h1 className={styles.topLogo}>
           <Logo type={LogoStyle.Small} />
-        </h1>
+        </h1> */}
+        <LogoHeader />
       </DarkForestLayout>
     );
   }
@@ -91,9 +93,10 @@ export default function Home(): JSX.Element {
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      <h1 className={styles.topLogo}>
+      {/* <h1 className={styles.topLogo}>
         <Logo type={LogoStyle.Small} />
-      </h1>
+      </h1> */}
+      <LogoHeader />
       <p>これでよろしいでしょうか？</p>
       <ul className={styles.playerPanel}>
         {/* <li>{playerName}</li>
