@@ -47,8 +47,16 @@ export default function Home(): JSX.Element {
   }
 
   function dataSave() {
+    const icon = (() => {
+      switch (playerIcon) {
+        case '':
+          return PlayerIcon.Icon01;
+        default:
+          return playerIcon as PlayerIcon;
+      }
+    })();
     LocalStorageService.setEntryPlayerName(playerName);
-    LocalStorageService.setEntryPlayerIcon(playerIcon);
+    LocalStorageService.setEntryPlayerIcon(icon);
   }
 
   async function dataSaveAndMove() {

@@ -13,6 +13,8 @@ import Logo from '@/components/elements/logo';
 import { LogoStyle } from '@/config/logoStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
+import PlayerPanel from '@/components/elements/playerPanel';
+import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
 
 export default function Home(): JSX.Element {
   const router = useRouter();
@@ -93,9 +95,12 @@ export default function Home(): JSX.Element {
         <Logo type={LogoStyle.Small} />
       </h1>
       <p>これでよろしいでしょうか？</p>
-      <ul className={styles.confirm}>
-        <li>{playerName}</li>
-        <li>{playerIcon}</li>
+      <ul className={styles.playerPanel}>
+        {/* <li>{playerName}</li>
+        <li>{playerIcon}</li> */}
+        <li className={styles.playerPanel__panel}>
+          <PlayerPanel dataSrc={PlayerPanelDataSrc.Entry} />
+        </li>
       </ul>
       <p>{errorText}</p>
       <ul className={styles.bottomButtons}>

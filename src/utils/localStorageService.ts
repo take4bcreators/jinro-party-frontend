@@ -5,6 +5,7 @@ import { LocalStorageRepository } from './localStorageRepository';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerTeam } from '@/config/playerTeam';
 import { PlayerState } from '@/config/playerState';
+import { PlayerIcon } from '@/config/playerIcon';
 
 export namespace LocalStorageService {
   export function getDeviceId(): string | undefined {
@@ -54,14 +55,24 @@ export namespace LocalStorageService {
     return;
   }
 
-  export function getEntryPlayerIcon(): string | undefined {
-    const icon = LocalStorageRepository.get(
+  // export function getEntryPlayerIcon(): string | undefined {
+  //   const icon = LocalStorageRepository.get(
+  //     LocalStorageKey.jrptEntryPlayericon
+  //   );
+  //   return icon;
+  // }
+  export function getEntryPlayerIcon(): PlayerIcon | undefined {
+    const data = LocalStorageRepository.get(
       LocalStorageKey.jrptEntryPlayericon
-    );
-    return icon;
+    ) as PlayerIcon;
+    return data;
   }
 
-  export function setEntryPlayerIcon(icon: string) {
+  // export function setEntryPlayerIcon(icon: string) {
+  //   LocalStorageRepository.set(LocalStorageKey.jrptEntryPlayericon, icon);
+  //   return;
+  // }
+  export function setEntryPlayerIcon(icon: PlayerIcon) {
     LocalStorageRepository.set(LocalStorageKey.jrptEntryPlayericon, icon);
     return;
   }
@@ -123,11 +134,17 @@ export namespace LocalStorageService {
     return name;
   }
 
-  export function getPlayingPlayerIcon(): string | undefined {
-    const icon = LocalStorageRepository.get(
+  // export function getPlayingPlayerIcon(): string | undefined {
+  //   const icon = LocalStorageRepository.get(
+  //     LocalStorageKey.jrptPlayingPlayericon
+  //   );
+  //   return icon;
+  // }
+  export function getPlayingPlayerIcon(): PlayerIcon | undefined {
+    const data = LocalStorageRepository.get(
       LocalStorageKey.jrptPlayingPlayericon
-    );
-    return icon;
+    ) as PlayerIcon;
+    return data;
   }
 
   export function getPlayingPlayerState(): PlayerState {

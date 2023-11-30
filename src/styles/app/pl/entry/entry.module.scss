@@ -21,8 +21,11 @@
   }
 }
 
-.confirm {
+.playerPanel {
   margin: 0 0 50px;
+  &__panel {
+    margin: 40px 0;
+  }
 }
 
 .bottomButtons {

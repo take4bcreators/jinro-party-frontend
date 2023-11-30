@@ -13,11 +13,11 @@ import Icon09 from '@/components/svg/icon09';
 import Icon10 from '@/components/svg/icon10';
 
 type Props = {
-  icon: PlayerIcon;
+  icon?: PlayerIcon;
 };
 
 export default function Home({ icon }: Props): JSX.Element {
-  const Icon = ((icon: PlayerIcon) => {
+  const Icon = ((icon?: PlayerIcon) => {
     switch (icon) {
       case 'Icon01':
         return Icon01;
