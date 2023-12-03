@@ -5,6 +5,7 @@ export const ButtonStyle = {
   Orange: 'Orange',
   Purple: 'Purple',
   Plane: 'Plane',
+  Disable: 'Disable',
   None: 'None',
 } as const;
 export type ButtonStyle = (typeof ButtonStyle)[keyof typeof ButtonStyle];

@@ -12,6 +12,8 @@ import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import PlayerPanel from '@/components/elements/playerPanel';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
 import PlayingFooter from '@/components/layouts/playingFooter';
+import StateTitle from '@/components/elements/stateTitle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
 
 export default function Home(): JSX.Element {
   const [isDropOut, setDropOut] = useState<boolean | undefined>(undefined);
@@ -37,13 +39,20 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <PlayingLayout type={PlayingLayoutStyle.Purple}>
-      <h1>Voting Result</h1>
-      <p>あなたは...</p>
-      <p>
-        <strong>{isDropOut ? '脱落' : '生存'}</strong>
-      </p>
-      <p>しました</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Top}
+      type={PlayingLayoutStyle.Purple}
+    >
+      <div className={styles.headerTitle}>
+        <StateTitle type={StateTitleStyle.Purple} title={'Voting Result'} />
+      </div>
+      <div className={styles.topInformation}>
+        <p>あなたは...</p>
+        <p className={styles.largeInformation}>
+          <strong>{isDropOut ? '脱落' : '生存'}</strong>
+        </p>
+        <p>しました</p>
+      </div>
       <PlayingFooter />
     </PlayingLayout>
   );

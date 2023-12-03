@@ -12,6 +12,8 @@ import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import PlayerPanel from '@/components/elements/playerPanel';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
 import PlayingFooter from '@/components/layouts/playingFooter';
+import StateTitle from '@/components/elements/stateTitle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
 
 export default function Home(): JSX.Element {
   const [playerList, setPlayerList] = useState<APIData.APIReplyPlayerData[]>(
@@ -83,10 +85,16 @@ export default function Home(): JSX.Element {
 
   if (isVoted) {
     return (
-      <PlayingLayout type={PlayingLayoutStyle.Orange}>
-        <h1>Voting Time</h1>
-        <p>投票完了</p>
-        <p>そのままお待ち下さい...</p>
+      <PlayingLayout
+        flexType={FlexBaseLayoutStyle.Top}
+        type={PlayingLayoutStyle.Orange}
+      >
+        <div className={styles.headerTitle}>
+          <StateTitle type={StateTitleStyle.Orange} title={'Voting Time'}>
+            <p>投票完了</p>
+            <p>そのままお待ち下さい...</p>
+          </StateTitle>
+        </div>
         <p>
           <button type="button" onClick={handleBackButton}>
             投票し直す
@@ -98,9 +106,19 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <PlayingLayout type={PlayingLayoutStyle.Orange}>
-      <h1>Voting Time</h1>
-      <p>処刑する人を投票してください</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Top}
+      type={PlayingLayoutStyle.Orange}
+    >
+      <div className={styles.headerTitle}>
+        <StateTitle type={StateTitleStyle.Orange} title={'Voting Time'}>
+          <p>
+            処刑する人を
+            <wbr />
+            投票してください
+          </p>
+        </StateTitle>
+      </div>
       <form>
         <ul>
           {playerList.map((player, index) => {

@@ -10,24 +10,15 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 export default function Home(): JSX.Element {
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      {/* <h1 className={styles.topLogo}>
-        <Logo type={LogoStyle.Small} />
-      </h1> */}
       <LogoHeader />
       <div className={styles.topInformation}>
-        <p>ゲームマスターがゲームの設定を行っています。</p>
+        <p>
+          ゲームマスターが
+          <wbr />
+          ゲームの設定を行っています。
+        </p>
         <p>しばらくお待ちください...</p>
       </div>
-      {/* <footer className={styles.footer}>
-        <ul className={styles.footer__flexwrapper}>
-          <li>
-            <PlayerPanel />
-          </li>
-          <li>
-            <Logo type={LogoStyle.FixedSmall} />
-          </li>
-        </ul>
-      </footer> */}
       <PlayingFooter />
     </DarkForestLayout>
   );

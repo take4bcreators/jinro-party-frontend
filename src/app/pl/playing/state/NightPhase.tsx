@@ -8,6 +8,20 @@ import { PlayerRole } from '@/config/playerRole';
 import { LocalStorageService } from '@/utils/localStorageService';
 import { useState } from 'react';
 
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
+
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import Logo from '@/components/elements/logo';
+import { LogoStyle } from '@/config/logoStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import PlayerPanel from '@/components/elements/playerPanel';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
+import PlayingFooter from '@/components/layouts/playingFooter';
+import StateTitle from '@/components/elements/stateTitle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
+
 export default function Home(): JSX.Element {
   const [playerRole, setPlayerRole] = useState<PlayerRole | undefined>(
     undefined
@@ -20,14 +34,16 @@ export default function Home(): JSX.Element {
 
   if (playerRole == undefined) {
     return (
-      <>
-        <h1>夜のフェーズ</h1>
-        <p>
-          <button type="button" onClick={buttonHandler}>
-            はじめる
-          </button>
-        </p>
-      </>
+      <PlayingLayout
+        flexType={FlexBaseLayoutStyle.FooterCenter}
+        type={PlayingLayoutStyle.Dark}
+      >
+        <StateTitle type={StateTitleStyle.Dark} title={'Night Time'} />
+        <span onClick={buttonHandler}>
+          <Button type={ButtonStyle.Purple}>はじめる</Button>
+        </span>
+        <PlayingFooter />
+      </PlayingLayout>
     );
   }
 

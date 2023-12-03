@@ -37,10 +37,12 @@ export default function Home(): JSX.Element {
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <LogoHeader />
-      <h1>最終結果</h1>
-      <p>
-        <strong>{winningTeam === selfTeam ? '勝利！！' : '敗北...'}</strong>
-      </p>
+      <div className={styles.topInformation}>
+        <h1>最終結果</h1>
+        <p className={styles.largeInformation}>
+          <strong>{winningTeam === selfTeam ? '勝ち！' : '負け...'}</strong>
+        </p>
+      </div>
       <PlayingFooter />
     </DarkForestLayout>
   );

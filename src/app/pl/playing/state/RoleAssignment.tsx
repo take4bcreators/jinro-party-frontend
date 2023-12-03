@@ -45,7 +45,7 @@ export default function Home(): JSX.Element {
       <LogoHeader />
       <div className={styles.topInformation}>
         <p>あなたは...</p>
-        <p>
+        <p className={styles.largeInformation}>
           <RoleName />
         </p>
       </div>

@@ -11,6 +11,8 @@ import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import PlayerPanel from '@/components/elements/playerPanel';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
 import PlayingFooter from '@/components/layouts/playingFooter';
+import StateTitle from '@/components/elements/stateTitle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
 
 type Props = {
   setDropOutFunc: Dispatch<SetStateAction<boolean>>;
@@ -26,13 +28,17 @@ export default function Home({ setDropOutFunc }: Props): JSX.Element {
   }, [setDropOutFunc]);
 
   return (
-    <PlayingLayout type={PlayingLayoutStyle.SkyBlue}>
-      <h1>Debate Time</h1>
-      <p>
-        今夜処刑する人を
-        <wbr />
-        話し合いで決めてください
-      </p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.FooterCenter}
+      type={PlayingLayoutStyle.SkyBlue}
+    >
+      <StateTitle type={StateTitleStyle.Default} title={'Debate Time'}>
+        <p>
+          今夜処刑する人を
+          <wbr />
+          話し合いで決めてください
+        </p>
+      </StateTitle>
       <PlayingFooter />
     </PlayingLayout>
   );

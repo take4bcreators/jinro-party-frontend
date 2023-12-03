@@ -82,6 +82,17 @@ $border-size: 6.5px;
   }
 }
 
+.disable {
+  @extend %base;
+  cursor: default;
+  opacity: 0.4;
+  &:before {
+    background: none;
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
 .none {
   @extend %base;
   border: none;

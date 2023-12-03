@@ -34,3 +34,10 @@
   @extend %flex;
   justify-content: flex-start;
 }
+
+.flexFooterCenter {
+  @extend %flex;
+  $footer-size: 70px;
+  height: calc(100vh - $footer-size);
+  height: calc(100svh - $footer-size);
+}

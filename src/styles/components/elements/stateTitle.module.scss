@@ -1,0 +1,68 @@
+$border-size: 6.5px;
+
+.flexWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.titleText {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 2rem 0.5rem;
+}
+
+.text {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 1.5rem 2rem 0;
+}
+
+%base {
+  width: 80vw;
+  height: 10px;
+  background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
+  border-radius: 25px;
+  // animation: 3s ease-in-out infinite alternate bggradient;
+  animation: 3s ease-in-out infinite alternate bggradient;
+}
+
+@keyframes bggradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.default {
+  @extend %base;
+  background: linear-gradient(to right, #6282f1, #bc74be);
+}
+
+.orange {
+  @extend %base;
+  background: linear-gradient(to right, #ff5858, #f09819);
+}
+
+.purple {
+  @extend %base;
+  background: linear-gradient(to right, #ff5988, #500c7f);
+}
+
+.dark {
+  @extend %base;
+  background: linear-gradient(to right, #9962f1, #bc74be);
+}
+
+.red {
+  @extend %base;
+  background: linear-gradient(to right, #ff1722, #fd2da2);
+}

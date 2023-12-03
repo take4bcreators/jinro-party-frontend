@@ -14,6 +14,7 @@ import { LogoStyle } from '@/config/logoStyle';
 import { PlayerIcon } from '@/config/playerIcon';
 import PlayerIconElem from '@/components/elements/playerIconElem';
 import PlayerIconElemList from '@/components/elements/playerIconElemList';
+import PlayerNameInput from '@/components/elements/playerNameInput';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import styles from '@/styles/app/pl/entry/entry.module.scss';
 import LogoHeader from '@/components/layouts/logoHeader';
@@ -94,9 +95,6 @@ export default function Home(): JSX.Element {
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      {/* <h1 className={styles.topLogo}>
-        <Logo type={LogoStyle.Small} />
-      </h1> */}
       <LogoHeader />
       <form>
         <div className={styles.nameInput}>
@@ -104,13 +102,9 @@ export default function Home(): JSX.Element {
             <label htmlFor="name">名前を入力してください</label>
           </div>
           <div className={styles.nameInput__input}>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              onChange={handleInputNameChange}
-              value={playerName}
-              autoComplete="off"
+            <PlayerNameInput
+              initValue={playerName}
+              changeEvent={handleInputNameChange}
             />
           </div>
         </div>
@@ -125,9 +119,13 @@ export default function Home(): JSX.Element {
       <p>{errorText}</p>
       <ul className={styles.bottomButtons}>
         <li className={styles.bottomButtons__button_first}>
-          <span onClick={dataSaveAndMove}>
-            <Button type={ButtonStyle.Blue}>次へ</Button>
-          </span>
+          {playerName === '' || playerIcon === '' ? (
+            <Button type={ButtonStyle.Disable}>次へ</Button>
+          ) : (
+            <span onClick={dataSaveAndMove}>
+              <Button type={ButtonStyle.Blue}>次へ</Button>
+            </span>
+          )}
         </li>
       </ul>
     </DarkForestLayout>
