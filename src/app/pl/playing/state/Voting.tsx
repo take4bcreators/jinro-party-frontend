@@ -14,6 +14,9 @@ import styles from '@/styles/app/pl/playing/playing.module.scss';
 import PlayingFooter from '@/components/layouts/playingFooter';
 import StateTitle from '@/components/elements/stateTitle';
 import { StateTitleStyle } from '@/config/stateTitleStyle';
+import VotingList from '@/components/elements/votingList';
+import Button from '@/components/elements/button';
+import { ButtonStyle } from '@/config/buttonStyle';
 
 export default function Home(): JSX.Element {
   const [playerList, setPlayerList] = useState<APIData.APIReplyPlayerData[]>(
@@ -86,7 +89,7 @@ export default function Home(): JSX.Element {
   if (isVoted) {
     return (
       <PlayingLayout
-        flexType={FlexBaseLayoutStyle.Top}
+        flexType={FlexBaseLayoutStyle.FooterCenter}
         type={PlayingLayoutStyle.Orange}
       >
         <div className={styles.headerTitle}>
@@ -96,9 +99,12 @@ export default function Home(): JSX.Element {
           </StateTitle>
         </div>
         <p>
-          <button type="button" onClick={handleBackButton}>
+          {/* <button type="button" onClick={handleBackButton}>
             投票し直す
-          </button>
+          </button> */}
+          <span onClick={handleBackButton}>
+            <Button type={ButtonStyle.Plane}>投票し直す</Button>
+          </span>
         </p>
         <PlayingFooter />
       </PlayingLayout>
@@ -121,23 +127,13 @@ export default function Home(): JSX.Element {
       </div>
       <form>
         <ul>
-          {playerList.map((player, index) => {
-            return (
-              <li key={index}>
-                <label>
-                  <input
-                    type="radio"
-                    value={player.deviceId}
-                    checked={selectPlayerId === player.deviceId}
-                    onChange={handleOptionChange}
-                  />
-                  {player.playerIcon}:{player.playerName}
-                </label>
-              </li>
-            );
-          })}
+          <VotingList
+            playerList={playerList}
+            selectPlayerId={selectPlayerId}
+            selectEvent={handleOptionChange}
+          />
         </ul>
-        <p>
+        {/* <p>
           <button
             type="button"
             disabled={selectPlayerId === ''}
@@ -145,7 +141,18 @@ export default function Home(): JSX.Element {
           >
             投票する
           </button>
-        </p>
+        </p> */}
+        <ul className={styles.bottomButtons}>
+          <li className={styles.bottomButtons__button_first}>
+            {selectPlayerId === '' ? (
+              <Button type={ButtonStyle.Disable}>投票する</Button>
+            ) : (
+              <span onClick={handleSubmitButton}>
+                <Button type={ButtonStyle.Orange}>投票する</Button>
+              </span>
+            )}
+          </li>
+        </ul>
       </form>
       <PlayingFooter />
     </PlayingLayout>

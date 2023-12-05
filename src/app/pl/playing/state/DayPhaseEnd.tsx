@@ -17,11 +17,7 @@ export default function Home(): JSX.Element {
       type={PlayingLayoutStyle.SkyBlue}
     >
       <StateTitle type={StateTitleStyle.Default} title={'Debate Time'}>
-        <p>
-          今夜処刑する人を
-          <wbr />
-          話し合いで決めてください
-        </p>
+        <p>話し合い終了</p>
       </StateTitle>
       <PlayingFooter />
     </PlayingLayout>

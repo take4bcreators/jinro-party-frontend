@@ -7,13 +7,26 @@ import { PlayerIcon } from '@/config/playerIcon';
 
 type Props = {
   dataSrc?: PlayerPanelDataSrc;
+  initPlayerName?: string;
+  initPlayerIcon?: PlayerIcon;
 };
 
-export default function Home({ dataSrc }: Props): JSX.Element {
-  const [playerName, setPlayerName] = useState<string | undefined>();
-  const [playerIcon, setPlayerIcon] = useState<PlayerIcon | undefined>();
+export default function Home({
+  dataSrc,
+  initPlayerName,
+  initPlayerIcon,
+}: Props): JSX.Element {
+  const [playerName, setPlayerName] = useState<string | undefined>(
+    initPlayerName
+  );
+  const [playerIcon, setPlayerIcon] = useState<PlayerIcon | undefined>(
+    initPlayerIcon
+  );
 
   useEffect(() => {
+    if (playerName != undefined) {
+      return;
+    }
     const [name, icon] = ((dataSrc?: PlayerPanelDataSrc) => {
       switch (dataSrc) {
         case PlayerPanelDataSrc.Entry:
@@ -29,7 +42,7 @@ export default function Home({ dataSrc }: Props): JSX.Element {
     })(dataSrc);
     setPlayerName(name);
     setPlayerIcon(icon);
-  }, [dataSrc]);
+  }, [dataSrc, playerName]);
 
   return (
     <div className={styles.panel}>

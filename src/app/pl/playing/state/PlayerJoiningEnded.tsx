@@ -11,7 +11,7 @@ export default function Home(): JSX.Element {
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <LogoHeader />
-      <div className={styles.topInformation}>
+      <div className={styles.flexInformation}>
         <p>
           ゲームマスターが
           <wbr />

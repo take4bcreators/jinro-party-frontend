@@ -27,10 +27,10 @@ $border-size: 6.5px;
 %base {
   width: 80vw;
   height: 10px;
-  background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
   border-radius: 25px;
-  // animation: 3s ease-in-out infinite alternate bggradient;
+  background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
   animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }
 
 @keyframes bggradient {
@@ -45,24 +45,34 @@ $border-size: 6.5px;
 .default {
   @extend %base;
   background: linear-gradient(to right, #6282f1, #bc74be);
+  animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }
 
 .orange {
   @extend %base;
   background: linear-gradient(to right, #ff5858, #f09819);
+  animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }
 
 .purple {
   @extend %base;
   background: linear-gradient(to right, #ff5988, #500c7f);
+  animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }
 
 .dark {
   @extend %base;
   background: linear-gradient(to right, #9962f1, #bc74be);
+  animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }
 
 .red {
   @extend %base;
   background: linear-gradient(to right, #ff1722, #fd2da2);
+  animation: 3s ease-in-out infinite alternate bggradient;
+  background-size: 200% 200%;
 }

@@ -110,10 +110,12 @@ export default function Home(): JSX.Element {
         </div>
         <div className={styles.iconSelect}>
           <p className={styles.iconSelect__label}>アイコンを選択してください</p>
-          <PlayerIconElemList
-            selectedIcon={playerIcon}
-            selectEvent={handleOptionChange}
-          />
+          <ul>
+            <PlayerIconElemList
+              selectedIcon={playerIcon}
+              selectEvent={handleOptionChange}
+            />
+          </ul>
         </div>
       </form>
       <p>{errorText}</p>

@@ -11,7 +11,7 @@ export default function Home({ type, children }: Props): JSX.Element {
   const styleClass = styles[type.toLocaleLowerCase()];
   return (
     <>
-      <button className={styleClass}>{children}</button>
+      <div className={styleClass}>{children}</div>
     </>
   );
 }

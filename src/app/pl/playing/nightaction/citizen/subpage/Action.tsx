@@ -1,4 +1,13 @@
+import Button from '@/components/elements/button';
+import StateTitle from '@/components/elements/stateTitle';
+import VotingList from '@/components/elements/votingList';
+import PlayingFooter from '@/components/layouts/playingFooter';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
@@ -9,6 +18,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
 
 type Props = {
   setPageFunc: Dispatch<SetStateAction<RoleActionSubPage>>;
@@ -68,37 +78,73 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
   }
 
   return (
-    <>
-      <h1>市民アクション</h1>
-      <p>人狼だと思うプレイヤーを投票してください</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Top}
+      type={PlayingLayoutStyle.Dark}
+    >
+      <div className={styles.headerTitle}>
+        <p>市民アクション</p>
+        <p>
+          人狼だと思うプレイヤーを
+          <wbr />
+          投票してください
+        </p>
+      </div>
       <form>
         <ul>
-          {playersData.map((player, index) => {
-            return (
-              <li key={index}>
-                <label>
-                  <input
-                    type="radio"
-                    value={player.deviceId}
-                    checked={selectPlayerId === player.deviceId}
-                    onChange={handleOptionChange}
-                  />
-                  {player.playerIcon}:{player.playerName}
-                </label>
-              </li>
-            );
-          })}
+          <VotingList
+            playerList={playersData}
+            selectPlayerId={selectPlayerId}
+            selectEvent={handleOptionChange}
+          />
         </ul>
-        <p>
-          <button
-            type="button"
-            disabled={selectPlayerId === ''}
-            onClick={handleButton}
-          >
-            OK
-          </button>
-        </p>
+        <ul className={styles.bottomButtons}>
+          <li className={styles.bottomButtons__button_first}>
+            {selectPlayerId === '' ? (
+              <Button type={ButtonStyle.Disable}>OK</Button>
+            ) : (
+              <span onClick={handleButton}>
+                <Button type={ButtonStyle.Purple}>OK</Button>
+              </span>
+            )}
+          </li>
+        </ul>
       </form>
-    </>
+      <PlayingFooter />
+    </PlayingLayout>
   );
+  // return (
+  //   <>
+  //     <h1>市民アクション</h1>
+  //     <p>人狼だと思うプレイヤーを投票してください</p>
+  //     <form>
+  //       <ul>
+  //         {playersData.map((player, index) => {
+  //           return (
+  //             <li key={index}>
+  //               <label>
+  //                 <input
+  //                   type="radio"
+  //                   value={player.deviceId}
+  //                   checked={selectPlayerId === player.deviceId}
+  //                   onChange={handleOptionChange}
+  //                 />
+  //                 {player.playerIcon}:{player.playerName}
+  //               </label>
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //       <p>
+  //         <button
+  //           type="button"
+  //           disabled={selectPlayerId === ''}
+  //           onClick={handleButton}
+  //         >
+  //           OK
+  //         </button>
+  //       </p>
+  //     </form>
+  //   </>
+  // );
 }

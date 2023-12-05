@@ -1,5 +1,12 @@
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import { Dispatch, SetStateAction } from 'react';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
+import Button from '@/components/elements/button';
+import PlayingFooter from '@/components/layouts/playingFooter';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 
 type Props = {
   setPageFunc: Dispatch<SetStateAction<RoleActionSubPage>>;
@@ -11,13 +18,23 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
   }
 
   return (
-    <>
-      <p>そのままお待ちください...</p>
-      <p>
-        <button type="button" onClick={buttonHandler}>
-          戻る
-        </button>
-      </p>
-    </>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.FooterCenter}
+      type={PlayingLayoutStyle.Dark}
+    >
+      <div className={styles.headerTitle}>
+        <p>そのままお待ちください...</p>
+      </div>
+      <form>
+        <ul className={styles.bottomButtons}>
+          <li className={styles.bottomButtons__button_first}>
+            <span onClick={buttonHandler}>
+              <Button type={ButtonStyle.Purple}>戻る</Button>
+            </span>
+          </li>
+        </ul>
+      </form>
+      <PlayingFooter />
+    </PlayingLayout>
   );
 }

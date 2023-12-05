@@ -11,7 +11,7 @@ export default function Home(): JSX.Element {
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <LogoHeader />
-      <main className={styles.topInformation}>
+      <main className={styles.flexInformation}>
         <p>
           <strong>モニターに注目！</strong>
         </p>

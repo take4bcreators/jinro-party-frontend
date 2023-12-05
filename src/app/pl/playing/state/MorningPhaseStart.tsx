@@ -15,7 +15,9 @@ export default function Home(): JSX.Element {
       flexType={FlexBaseLayoutStyle.FooterCenter}
       type={PlayingLayoutStyle.Red}
     >
-      <StateTitle type={StateTitleStyle.Red} title={'Morning Time'} />
+      <StateTitle type={StateTitleStyle.Red} title={'Morning Time'}>
+        朝になりました
+      </StateTitle>
       <PlayingFooter />
     </PlayingLayout>
   );

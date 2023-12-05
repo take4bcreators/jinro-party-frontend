@@ -15,7 +15,7 @@ export default function Home({
   return (
     <div className={styles.outer}>
       {Object.entries(PlayerIcon).map(([key, value], index) => (
-        <label
+        <li
           key={index}
           className={
             selectedIcon !== ''
@@ -25,15 +25,17 @@ export default function Home({
               : styles.innerDefault
           }
         >
-          <input
-            type="radio"
-            value={value}
-            checked={selectedIcon === value}
-            onChange={selectEvent}
-            className={styles.input}
-          />
-          <PlayerIconElem icon={value} />
-        </label>
+          <label>
+            <input
+              type="radio"
+              value={value}
+              checked={selectedIcon === value}
+              onChange={selectEvent}
+              className={styles.input}
+            />
+            <PlayerIconElem icon={value} />
+          </label>
+        </li>
       ))}
     </div>
   );

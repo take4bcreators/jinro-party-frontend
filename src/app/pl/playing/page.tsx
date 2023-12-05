@@ -164,6 +164,7 @@ export default function Home(): JSX.Element {
       case GameState.FinalResult:
       case GameState.RoleReveal:
       case GameState.PreGame:
+      case GameState.PlayerJoining:
         break;
       default:
         return <PageDropOut />;
