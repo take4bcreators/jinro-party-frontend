@@ -1,22 +1,18 @@
+import { ChangeEvent, useEffect, useState } from 'react';
+import Button from '@/components/elements/button';
+import StateTitle from '@/components/elements/stateTitle';
+import VotingList from '@/components/elements/votingList';
+import PlayingFooter from '@/components/layouts/playingFooter';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { ChangeEvent, useEffect, useState } from 'react';
-import PlayingLayout from '@/components/layouts/playingLayout';
-import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
-
-import Logo from '@/components/elements/logo';
-import { LogoStyle } from '@/config/logoStyle';
-import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
-import PlayerPanel from '@/components/elements/playerPanel';
-import styles from '@/styles/app/pl/playing/playing.module.scss';
-import PlayingFooter from '@/components/layouts/playingFooter';
-import StateTitle from '@/components/elements/stateTitle';
-import { StateTitleStyle } from '@/config/stateTitleStyle';
-import VotingList from '@/components/elements/votingList';
-import Button from '@/components/elements/button';
-import { ButtonStyle } from '@/config/buttonStyle';
 
 export default function Home(): JSX.Element {
   const [playerList, setPlayerList] = useState<APIData.APIReplyPlayerData[]>(
@@ -99,9 +95,6 @@ export default function Home(): JSX.Element {
           </StateTitle>
         </div>
         <p>
-          {/* <button type="button" onClick={handleBackButton}>
-            投票し直す
-          </button> */}
           <span onClick={handleBackButton}>
             <Button type={ButtonStyle.Plane}>投票し直す</Button>
           </span>
@@ -133,15 +126,6 @@ export default function Home(): JSX.Element {
             selectEvent={handleOptionChange}
           />
         </ul>
-        {/* <p>
-          <button
-            type="button"
-            disabled={selectPlayerId === ''}
-            onClick={handleSubmitButton}
-          >
-            投票する
-          </button>
-        </p> */}
         <ul className={styles.bottomButtons}>
           <li className={styles.bottomButtons__button_first}>
             {selectPlayerId === '' ? (

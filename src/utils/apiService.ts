@@ -1,7 +1,7 @@
 import { APIRouting } from '@/config/apiRouting';
-import type { APIData } from '@/types/apiData';
-import { TypedFormData } from './typedFormer';
 import { GameState } from '@/config/gameState';
+import { TypedFormData } from './typedFormer';
+import type { APIData } from '@/types/apiData';
 
 export namespace APIService {
   /**

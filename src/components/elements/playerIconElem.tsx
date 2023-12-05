@@ -1,6 +1,3 @@
-import styles from '@/styles/components/elements/playerIconElem.module.scss';
-import { PlayerIcon } from '@/config/playerIcon';
-import IconDummy from '@/components/svg/iconDummy';
 import Icon01 from '@/components/svg/icon01';
 import Icon02 from '@/components/svg/icon02';
 import Icon03 from '@/components/svg/icon03';
@@ -11,6 +8,9 @@ import Icon07 from '@/components/svg/icon07';
 import Icon08 from '@/components/svg/icon08';
 import Icon09 from '@/components/svg/icon09';
 import Icon10 from '@/components/svg/icon10';
+import IconDummy from '@/components/svg/iconDummy';
+import { PlayerIcon } from '@/config/playerIcon';
+import styles from '@/styles/components/elements/playerIconElem.module.scss';
 
 type Props = {
   icon?: PlayerIcon;

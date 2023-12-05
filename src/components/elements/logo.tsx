@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import styles from '@/styles/components/elements/logo.module.scss';
 import { LogoStyle } from '@/config/logoStyle';
+import styles from '@/styles/components/elements/logo.module.scss';
 
 type Props = {
   type: LogoStyle;

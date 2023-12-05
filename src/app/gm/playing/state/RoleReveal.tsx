@@ -1,5 +1,5 @@
-import { APIService } from '@/utils/apiService';
 import Link from 'next/link';
+import { APIService } from '@/utils/apiService';
 
 export default function Home(): JSX.Element {
   async function handleButton() {

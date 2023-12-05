@@ -1,9 +1,9 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { APIService } from '@/utils/apiService';
-import { GameState } from '@/config/gameState';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { GameState } from '@/config/gameState';
+import { APIService } from '@/utils/apiService';
 
 export default function Home(): JSX.Element {
   const router = useRouter();

@@ -1,5 +1,5 @@
-import { SessionStorageService } from './sessionStorageService';
 import { v4 as uuidv4 } from 'uuid';
+import { SessionStorageService } from './sessionStorageService';
 
 export namespace SessionIdService {
   export function registerIfNotExists(): void {

@@ -1,5 +1,5 @@
-import styles from '@/styles/components/elements/playerNameInput.module.scss';
 import { ChangeEvent } from 'react';
+import styles from '@/styles/components/elements/playerNameInput.module.scss';
 
 type Props = {
   initValue: string;

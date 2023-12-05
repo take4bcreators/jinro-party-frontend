@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import FlexBaseLayout from '@/components/layouts/flexBaseLayout';
-import styles from '@/styles/components/layouts/darkForestLayout.module.scss';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import styles from '@/styles/components/layouts/darkForestLayout.module.scss';
 
 type Props = {
   flexType: FlexBaseLayoutStyle;

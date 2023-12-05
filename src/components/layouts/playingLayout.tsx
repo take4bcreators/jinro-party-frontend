@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import FlexBaseLayout from '@/components/layouts/flexBaseLayout';
-import styles from '@/styles/components/layouts/playingLayout.module.scss';
-import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import styles from '@/styles/components/layouts/playingLayout.module.scss';
 
 type Props = {
   flexType: FlexBaseLayoutStyle;

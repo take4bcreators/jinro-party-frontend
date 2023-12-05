@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
 import Button from '@/components/elements/button';
-import { ButtonStyle } from '@/config/buttonStyle';
-import DarkForestLayout from '@/components/layouts/darkForestLayout';
 import Logo from '@/components/elements/logo';
-import { LogoStyle } from '@/config/logoStyle';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { LogoStyle } from '@/config/logoStyle';
 
 export default function Home(): JSX.Element {
   return (

@@ -1,23 +1,19 @@
 'use client';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Button from '@/components/elements/button';
+import PlayerIconElemList from '@/components/elements/playerIconElemList';
+import PlayerNameInput from '@/components/elements/playerNameInput';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import LogoHeader from '@/components/layouts/logoHeader';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerIcon } from '@/config/playerIcon';
+import styles from '@/styles/app/pl/entry/entry.module.scss';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import Button from '@/components/elements/button';
-import { ButtonStyle } from '@/config/buttonStyle';
-import DarkForestLayout from '@/components/layouts/darkForestLayout';
-import Logo from '@/components/elements/logo';
-import { LogoStyle } from '@/config/logoStyle';
-import { PlayerIcon } from '@/config/playerIcon';
-import PlayerIconElem from '@/components/elements/playerIconElem';
-import PlayerIconElemList from '@/components/elements/playerIconElemList';
-import PlayerNameInput from '@/components/elements/playerNameInput';
-import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
-import styles from '@/styles/app/pl/entry/entry.module.scss';
-import LogoHeader from '@/components/layouts/logoHeader';
 
 export default function Home(): JSX.Element {
   const router = useRouter();

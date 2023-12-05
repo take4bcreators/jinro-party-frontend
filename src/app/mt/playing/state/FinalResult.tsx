@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { PlayerTeam } from '@/config/playerTeam';
 import { PlayerTeamSetting } from '@/config/playerTeamSetting';
 import { APIService } from '@/utils/apiService';
-import { useState, useEffect } from 'react';
 
 export default function Home(): JSX.Element {
   const [winningTeam, setWinningTeam] = useState<PlayerTeam | undefined>(

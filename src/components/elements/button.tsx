@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import styles from '@/styles/components/elements/button.module.scss';
 import { ButtonStyle } from '@/config/buttonStyle';
+import styles from '@/styles/components/elements/button.module.scss';
 
 type Props = {
   type: ButtonStyle;

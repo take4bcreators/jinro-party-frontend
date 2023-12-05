@@ -1,13 +1,12 @@
-import { PlayerTeam } from '@/config/playerTeam';
-import { APIService } from '@/utils/apiService';
-import { LocalStorageService } from '@/utils/localStorageService';
 import { useState, useEffect } from 'react';
-
 import DarkForestLayout from '@/components/layouts/darkForestLayout';
-import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
-import styles from '@/styles/app/pl/playing/playing.module.scss';
 import LogoHeader from '@/components/layouts/logoHeader';
 import PlayingFooter from '@/components/layouts/playingFooter';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerTeam } from '@/config/playerTeam';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
+import { APIService } from '@/utils/apiService';
+import { LocalStorageService } from '@/utils/localStorageService';
 
 export default function Home(): JSX.Element {
   const [winningTeam, setWinningTeam] = useState<PlayerTeam | undefined>(

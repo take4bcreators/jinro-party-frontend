@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import Action from './subpage/Action';
 import Wait from '../common/Wait';
-import { RoleActionSubPage } from '@/config/roleActionSubPage';
 
 type Props = {
   setPageFunc: Dispatch<SetStateAction<RoleActionSubPage>>;

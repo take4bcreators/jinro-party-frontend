@@ -1,9 +1,8 @@
 'use client';
-
+import Link from 'next/link';
 import { GameState } from '@/config/gameState';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
-import Link from 'next/link';
 
 export default function Home(): JSX.Element {
   async function stateChange(gameState: GameState) {

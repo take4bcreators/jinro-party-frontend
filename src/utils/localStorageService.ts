@@ -1,11 +1,11 @@
 import { GameMode } from '@/config/gameMode';
 import { LocalStorageKey } from '@/config/localStorageKey';
+import { PlayerIcon } from '@/config/playerIcon';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerState } from '@/config/playerState';
+import { PlayerTeam } from '@/config/playerTeam';
 import { APIData } from '@/types/apiData';
 import { LocalStorageRepository } from './localStorageRepository';
-import { PlayerRole } from '@/config/playerRole';
-import { PlayerTeam } from '@/config/playerTeam';
-import { PlayerState } from '@/config/playerState';
-import { PlayerIcon } from '@/config/playerIcon';
 
 export namespace LocalStorageService {
   export function getDeviceId(): string | undefined {

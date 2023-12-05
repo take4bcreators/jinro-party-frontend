@@ -1,5 +1,5 @@
-import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import Action from './subpage/Action';
 import Wait from '../common/Wait';
 

@@ -1,6 +1,13 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": false,
+  // 保存時のアクション
+  "editor.codeActionsOnSave": {
+    // 不足しているimportの追加
+    "source.addMissingImports": true,
+    // ファイルのfix
+    "source.fixAll": true
+  },
   "[javascript]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

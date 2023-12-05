@@ -1,7 +1,7 @@
 'use client';
+import Link from 'next/link';
 import { GameMode } from '@/config/gameMode';
 import { LocalStorageService } from '@/utils/localStorageService';
-import Link from 'next/link';
 
 export default function Home(): JSX.Element {
   function saveMode(mode: GameMode) {

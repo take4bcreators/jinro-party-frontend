@@ -1,6 +1,6 @@
-import { LocalStorageService } from './localStorageService';
 import { v4 as uuidv4 } from 'uuid';
 import { APIData } from '@/types/apiData';
+import { LocalStorageService } from './localStorageService';
 
 export namespace DeviceIdService {
   export function registerIfNotExists(): void {

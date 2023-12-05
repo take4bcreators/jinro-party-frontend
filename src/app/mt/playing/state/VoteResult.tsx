@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
-import { useState, useEffect } from 'react';
 
 export default function Home(): JSX.Element {
   const [voteResult, setVoteResult] = useState<

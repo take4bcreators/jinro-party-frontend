@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import styles from '@/styles/components/layouts/flexBaseLayout.module.scss';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import styles from '@/styles/components/layouts/flexBaseLayout.module.scss';
 
 type Props = {
   flexType: FlexBaseLayoutStyle;

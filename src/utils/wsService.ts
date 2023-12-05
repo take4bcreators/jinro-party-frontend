@@ -1,16 +1,16 @@
-import { WsRequestAction } from '@/config/wsRequestAction';
 import { Dispatch, SetStateAction } from 'react';
-import type { APIWsData } from '@/types/apiWsData';
-import { WsDestinationType } from '@/config/wsDestinationType';
 import SockJS from 'sockjs-client';
 import { APIRouting } from '@/config/apiRouting';
-import { APIWsSelfInfo } from '@/types/apiWsSelfInfo';
-import { WsSenderType } from '@/config/wsSenderType';
-import { DeviceIdService } from './deviceIdService';
-import { WS_ALLOWED_DESTINATION_TYPES } from '@/config/wsAllowedDestinationTypes';
 import { GameState } from '@/config/gameState';
-import { SessionIdService } from './sessionIdService';
+import { WS_ALLOWED_DESTINATION_TYPES } from '@/config/wsAllowedDestinationTypes';
+import { WsDestinationType } from '@/config/wsDestinationType';
+import { WsRequestAction } from '@/config/wsRequestAction';
+import { WsSenderType } from '@/config/wsSenderType';
+import { APIWsSelfInfo } from '@/types/apiWsSelfInfo';
 import { APIService } from './apiService';
+import { DeviceIdService } from './deviceIdService';
+import { SessionIdService } from './sessionIdService';
+import type { APIWsData } from '@/types/apiWsData';
 
 export class WsService {
   private setWsIsOpenFunc: Dispatch<SetStateAction<boolean>>;
@@ -145,7 +145,6 @@ export class WsService {
       switch (receiveData.requestAction) {
         case WsRequestAction.ReturnCurrentGameState:
           return true;
-          break;
         default:
           break;
       }

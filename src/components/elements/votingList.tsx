@@ -1,9 +1,8 @@
-import styles from '@/styles/components/elements/votingList.module.scss';
-import { PlayerIcon } from '@/config/playerIcon';
-import PlayerIconElem from './playerIconElem';
-import PlayerPanel from './playerPanel';
 import { ChangeEvent } from 'react';
+import { PlayerIcon } from '@/config/playerIcon';
+import styles from '@/styles/components/elements/votingList.module.scss';
 import { APIData } from '@/types/apiData';
+import PlayerPanel from './playerPanel';
 
 type Props = {
   playerList: APIData.APIReplyPlayerData[] | APIData.APIPlayerBasicData[];

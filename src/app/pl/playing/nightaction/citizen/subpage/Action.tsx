@@ -1,16 +1,3 @@
-import Button from '@/components/elements/button';
-import StateTitle from '@/components/elements/stateTitle';
-import VotingList from '@/components/elements/votingList';
-import PlayingFooter from '@/components/layouts/playingFooter';
-import PlayingLayout from '@/components/layouts/playingLayout';
-import { ButtonStyle } from '@/config/buttonStyle';
-import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
-import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
-import { RoleActionSubPage } from '@/config/roleActionSubPage';
-import { StateTitleStyle } from '@/config/stateTitleStyle';
-import { APIData } from '@/types/apiData';
-import { APIService } from '@/utils/apiService';
-import { DeviceIdService } from '@/utils/deviceIdService';
 import {
   ChangeEvent,
   Dispatch,
@@ -18,7 +5,18 @@ import {
   useEffect,
   useState,
 } from 'react';
+import Button from '@/components/elements/button';
+import VotingList from '@/components/elements/votingList';
+import PlayingFooter from '@/components/layouts/playingFooter';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
+import { APIData } from '@/types/apiData';
+import { APIService } from '@/utils/apiService';
+import { DeviceIdService } from '@/utils/deviceIdService';
 
 type Props = {
   setPageFunc: Dispatch<SetStateAction<RoleActionSubPage>>;

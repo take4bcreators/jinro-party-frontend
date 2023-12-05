@@ -1,5 +1,5 @@
-import { SessionStorageRepository } from './sessionStorageRepository';
 import { SessionStorageKey } from '@/config/sessionStorageKey';
+import { SessionStorageRepository } from './sessionStorageRepository';
 
 export namespace SessionStorageService {
   export function getSessionId(): string | undefined {

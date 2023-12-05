@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayerStateSetting } from '@/config/playerStateSetting';
 import { PlayerTeam } from '@/config/playerTeam';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
-import { useEffect, useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<

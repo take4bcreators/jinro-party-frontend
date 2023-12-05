@@ -1,7 +1,6 @@
 'use client';
-
-import QRCode from '@/components/elements/qrcode';
 import { useEffect, useState } from 'react';
+import QRCode from '@/components/elements/qrcode';
 
 export default function Home(): JSX.Element {
   const [playerSite, setPlayerSite] = useState<string | undefined>(undefined);

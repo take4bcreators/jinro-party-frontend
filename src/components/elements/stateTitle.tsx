@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import styles from '@/styles/components/elements/stateTitle.module.scss';
 import { StateTitleStyle } from '@/config/stateTitleStyle';
+import styles from '@/styles/components/elements/stateTitle.module.scss';
 
 type Props = {
   type: StateTitleStyle;

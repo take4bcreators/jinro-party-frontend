@@ -1,21 +1,19 @@
 'use client';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Button from '@/components/elements/button';
+import PlayerPanel from '@/components/elements/playerPanel';
+import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import LogoHeader from '@/components/layouts/logoHeader';
+import { ButtonStyle } from '@/config/buttonStyle';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { GameState } from '@/config/gameState';
+import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
+import styles from '@/styles/app/pl/entry/entry.module.scss';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import Button from '@/components/elements/button';
-import { ButtonStyle } from '@/config/buttonStyle';
-import DarkForestLayout from '@/components/layouts/darkForestLayout';
-import Logo from '@/components/elements/logo';
-import { LogoStyle } from '@/config/logoStyle';
-import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
-import styles from '@/styles/app/pl/entry/entry.module.scss';
-import PlayerPanel from '@/components/elements/playerPanel';
-import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
-import LogoHeader from '@/components/layouts/logoHeader';
 
 export default function Home(): JSX.Element {
   const router = useRouter();

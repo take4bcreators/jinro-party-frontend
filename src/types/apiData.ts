@@ -1,8 +1,8 @@
 import { GameMode } from '@/config/gameMode';
-import { GameState } from '../config/gameState';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerState } from '@/config/playerState';
 import { PlayerTeam } from '@/config/playerTeam';
+import { GameState } from '../config/gameState';
 
 export namespace APIData {
   /**

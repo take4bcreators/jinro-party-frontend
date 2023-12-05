@@ -1,6 +1,6 @@
 import Logo from '@/components/elements/logo';
-import { LogoStyle } from '@/config/logoStyle';
 import PlayerPanel from '@/components/elements/playerPanel';
+import { LogoStyle } from '@/config/logoStyle';
 import styles from '@/styles/components/layouts/playingFooter.module.scss';
 
 export default function Home(): JSX.Element {

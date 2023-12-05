@@ -1,7 +1,7 @@
-import styles from '@/styles/components/elements/playerIconElemList.module.scss';
-import { PlayerIcon } from '@/config/playerIcon';
-import PlayerIconElem from './playerIconElem';
 import { ChangeEvent } from 'react';
+import { PlayerIcon } from '@/config/playerIcon';
+import styles from '@/styles/components/elements/playerIconElemList.module.scss';
+import PlayerIconElem from './playerIconElem';
 
 type Props = {
   selectedIcon: string;

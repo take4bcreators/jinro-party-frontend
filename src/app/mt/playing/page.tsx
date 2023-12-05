@@ -1,34 +1,32 @@
 'use client';
-import type { APIWsData } from '@/types/apiWsData';
-import { GameState } from '@/config/gameState';
-import { WsService } from '@/utils/wsService';
 import { useEffect, useRef, useState } from 'react';
+import { GameState } from '@/config/gameState';
+import { WsRequestAction } from '@/config/wsRequestAction';
 import { WsSenderType } from '@/config/wsSenderType';
-
+import { WsService } from '@/utils/wsService';
 import PageLoading from './other/Loading';
-import PagePreGame from './state/PreGame';
+import PageDayPhase from './state/DayPhase';
+import PageDayPhaseEnd from './state/DayPhaseEnd';
+import PageDayPhaseStart from './state/DayPhaseStart';
+import PageExileAnnouncement from './state/ExileAnnouncement';
+import PageFinalExileAnnouncement from './state/FinalExileAnnouncement';
+import PageFinalResult from './state/FinalResult';
+import PageGameEnd from './state/GameEnd';
+import PageMorningPhaseStart from './state/MorningPhaseStart';
+import PageNightActionResult from './state/NightActionResult';
+import PageNightPhase from './state/NightPhase';
+import PageNightPhaseEnd from './state/NightPhaseEnd';
+import PageNightPhaseStart from './state/NightPhaseStart';
 import PagePlayerJoining from './state/PlayerJoining';
 import PagePlayerJoiningEnded from './state/PlayerJoiningEnded';
 import PagePlayerListDisplay from './state/PlayerListDisplay';
+import PagePreGame from './state/PreGame';
 import PageRoleAssignment from './state/RoleAssignment';
-import PageDayPhaseStart from './state/DayPhaseStart';
-import PageDayPhase from './state/DayPhase';
-import PageDayPhaseEnd from './state/DayPhaseEnd';
+import PageRoleReveal from './state/RoleReveal';
+import PageVoteResult from './state/VoteResult';
 import PageVoting from './state/Voting';
 import PageVotingEnd from './state/VotingEnd';
-import PageVoteResult from './state/VoteResult';
-import PageExileAnnouncement from './state/ExileAnnouncement';
-import PageFinalExileAnnouncement from './state/FinalExileAnnouncement';
-import PageNightPhaseStart from './state/NightPhaseStart';
-import PageNightPhase from './state/NightPhase';
-import PageNightPhaseEnd from './state/NightPhaseEnd';
-import PageMorningPhaseStart from './state/MorningPhaseStart';
-import PageNightActionResult from './state/NightActionResult';
-import PageGameEnd from './state/GameEnd';
-import PageFinalResult from './state/FinalResult';
-import PageRoleReveal from './state/RoleReveal';
-
-import { WsRequestAction } from '@/config/wsRequestAction';
+import type { APIWsData } from '@/types/apiWsData';
 
 export default function Home(): JSX.Element {
   const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);

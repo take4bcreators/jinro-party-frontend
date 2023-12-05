@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function Home(): JSX.Element {
   // URLのパラメータを取得してそれぞれのページに遷移する

@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { APIService } from '@/utils/apiService';
 import { DeviceIdService } from '@/utils/deviceIdService';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { useEffect, useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [roleName, setRoleName] = useState('');

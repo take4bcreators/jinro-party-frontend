@@ -1,5 +1,5 @@
-import { QRCodeCanvas } from 'qrcode.react';
 import { FC } from 'react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 interface QRCodeProps {
   url: string;

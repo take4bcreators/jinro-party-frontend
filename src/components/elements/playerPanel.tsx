@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
+import { PlayerIcon } from '@/config/playerIcon';
 import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
 import styles from '@/styles/components/elements/playerPanel.module.scss';
 import { LocalStorageService } from '@/utils/localStorageService';
-import { useEffect, useState } from 'react';
 import PlayerIconElem from './playerIconElem';
-import { PlayerIcon } from '@/config/playerIcon';
 
 type Props = {
   dataSrc?: PlayerPanelDataSrc;

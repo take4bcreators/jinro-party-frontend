@@ -1,12 +1,12 @@
-import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import { Dispatch, SetStateAction } from 'react';
-import styles from '@/styles/app/pl/playing/playing.module.scss';
 import Button from '@/components/elements/button';
 import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { RoleActionSubPage } from '@/config/roleActionSubPage';
+import styles from '@/styles/app/pl/playing/playing.module.scss';
 
 type Props = {
   setPageFunc: Dispatch<SetStateAction<RoleActionSubPage>>;

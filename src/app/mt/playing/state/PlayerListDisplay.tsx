@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
-import { useEffect, useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<

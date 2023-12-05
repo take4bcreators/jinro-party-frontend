@@ -1,12 +1,12 @@
 'use client';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { GameMode } from '@/config/gameMode';
 import { GAME_MODE_TITLES } from '@/config/gameModeTitles';
 import { GameState } from '@/config/gameState';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { LocalStorageService } from '@/utils/localStorageService';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function Home(): JSX.Element {
   const [gameMode, setGameMode] = useState<GameMode | undefined>(undefined);
