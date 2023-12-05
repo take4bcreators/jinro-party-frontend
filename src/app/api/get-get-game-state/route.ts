@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { APIData } from '@/types/apiData';
 import { GameState } from '@/config/gameState';
+import type { APIData } from '@/types/apiData';
 
 // @note レスポンスデータ指定箇所
 const RESPONSE_DATA: APIData.APIReplyGameState = {

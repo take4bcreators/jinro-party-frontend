@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { APIData } from '@/types/apiData';
 import { PlayerRole } from '@/config/playerRole';
-import { PlayerTeam } from '@/config/playerTeam';
 import { PlayerState } from '@/config/playerState';
+import { PlayerTeam } from '@/config/playerTeam';
+import type { APIData } from '@/types/apiData';
 
 // @note レスポンスデータ指定箇所
 const RESPONSE_DATA: APIData.APIReplyAllPlayerData = {
