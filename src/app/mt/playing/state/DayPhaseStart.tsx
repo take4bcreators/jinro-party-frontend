@@ -1,5 +1,4 @@
 import StateTitle from '@/components/elements/stateTitle';
-import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';

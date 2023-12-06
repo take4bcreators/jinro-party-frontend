@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
+import StateTitle from '@/components/elements/stateTitle';
 import Timer from '@/components/elements/timer';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
+import { TimerStyle } from '@/config/timerStyle';
+import styles from '@/styles/app/mt/playing/playing.module.scss';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 
@@ -38,19 +45,40 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     return <></>;
   }
 
+  // return (
+  //   <>
+  //     <section>
+  //       <h1>投票結果</h1>
+  //       <p>{dropoutPlayer.playerName}</p>
+  //       <p>{dropoutPlayer.playerIcon}</p>
+  //       <p>追放</p>
+  //       <p>10秒で遺言をどうぞ</p>
+  //       <p>残り時間..</p>
+  //       <p>
+  //         <Timer timerState={timerState} initialCount={timerCount} />
+  //       </p>
+  //     </section>
+  //   </>
+  // );
   return (
-    <>
-      <section>
-        <h1>投票結果</h1>
-        <p>{dropoutPlayer.playerName}</p>
-        <p>{dropoutPlayer.playerIcon}</p>
-        <p>追放</p>
-        <p>10秒で遺言をどうぞ</p>
-        <p>残り時間..</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Default}
+      type={PlayingLayoutStyle.Purple}
+      bgDecoration={true}
+    >
+      <StateTitle type={StateTitleStyle.Purple} title={'Voting Result'} />
+      <p>{dropoutPlayer.playerName}</p>
+      <p>{dropoutPlayer.playerIcon}</p>
+      <div className={styles.textFlexSet}>
+        <p className={styles.textCenterMid}>DROP OUT</p>
         <p>
-          <Timer timerState={timerState} initialCount={timerCount} />
+          <Timer
+            timerState={timerState}
+            initialCount={timerCount}
+            timerStyle={TimerStyle.Medium}
+          />
         </p>
-      </section>
-    </>
+      </div>
+    </PlayingLayout>
   );
 }

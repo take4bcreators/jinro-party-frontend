@@ -34,6 +34,9 @@ $border-size: 6.5px;
   font-weight: 700;
   text-align: center;
   margin: 1.5rem 2rem 0;
+  @include g.mq(pc) {
+    font-size: 2.2vmax;
+  }
 }
 
 %base {

@@ -1,5 +1,11 @@
 import { useRef } from 'react';
+import StateTitle from '@/components/elements/stateTitle';
 import Timer from '@/components/elements/timer';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
+import styles from '@/styles/app/mt/playing/playing.module.scss';
 
 type Props = {
   timerState: string;
@@ -16,14 +22,31 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     count.current = timerCount;
   }
 
+  // return (
+  //   <>
+  //     <h1>夜のフェーズ</h1>
+  //     <p>各自の端末で操作してください</p>
+  //     <p>残り時間..</p>
+  //     <p>
+  //       <Timer timerState={timerState} initialCount={timerCount} />
+  //     </p>
+  //   </>
+  // );
   return (
-    <>
-      <h1>夜のフェーズ</h1>
-      <p>各自の端末で操作してください</p>
-      <p>残り時間..</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Default}
+      type={PlayingLayoutStyle.Dark}
+      bgDecoration={true}
+    >
+      <StateTitle type={StateTitleStyle.Dark} title={'Night Time'} />
       <p>
         <Timer timerState={timerState} initialCount={timerCount} />
       </p>
-    </>
+      <p className={styles.textUnderInformation}>
+        各自のスマートフォンで、
+        <wbr />
+        役職の操作をしてください
+      </p>
+    </PlayingLayout>
   );
 }

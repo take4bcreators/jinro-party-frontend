@@ -18,4 +18,9 @@ $TIMER_STYLE_ID: 'timer';
   &NoStyle {
     font-size: 1rem;
   }
+
+  &Medium {
+    @extend %timerBase;
+    font-size: 6vmax;
+  }
 }
