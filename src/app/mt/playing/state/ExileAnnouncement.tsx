@@ -1,9 +1,8 @@
+import { useEffect, useState } from 'react';
+import { useRef } from 'react';
+import Timer from '@/components/elements/timer';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
-import { useEffect, useState } from 'react';
-
-import Timer from '@/components/elements/Timer';
-import { useRef } from 'react';
 
 type Props = {
   timerState: string;

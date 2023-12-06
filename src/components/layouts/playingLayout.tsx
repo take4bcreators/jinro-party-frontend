@@ -7,10 +7,16 @@ import styles from '@/styles/components/layouts/playingLayout.module.scss';
 type Props = {
   flexType: FlexBaseLayoutStyle;
   type: PlayingLayoutStyle;
+  bgDecoration?: boolean;
   children: ReactNode;
 };
 
-export default function Home({ flexType, type, children }: Props): JSX.Element {
+export default function Home({
+  flexType,
+  type,
+  bgDecoration = false,
+  children,
+}: Props): JSX.Element {
   let bgColor = '';
   switch (type) {
     case PlayingLayoutStyle.SkyBlue:
@@ -32,14 +38,42 @@ export default function Home({ flexType, type, children }: Props): JSX.Element {
       break;
   }
 
+  // if (bgDecoration) {
+  //   return (
+  //     <div className={styles.bgDecoration}>
+  //       <FlexBaseLayout flexType={flexType}>
+  //         {children}
+  //         <style jsx global>{`
+  //           body {
+  //             background-color: ${bgColor};
+  //           }
+  //         `}</style>
+  //       </FlexBaseLayout>
+  //     </div>
+  //   );
+  // }
+
+  // return (
+  //   <FlexBaseLayout flexType={flexType}>
+  //     {children}
+  //     <style jsx global>{`
+  //       body {
+  //         background-color: ${bgColor};
+  //       }
+  //     `}</style>
+  //   </FlexBaseLayout>
+  // );
+
   return (
-    <FlexBaseLayout flexType={flexType}>
-      {children}
-      <style jsx global>{`
-        body {
-          background-color: ${bgColor};
-        }
-      `}</style>
-    </FlexBaseLayout>
+    <div className={bgDecoration ? styles.bgDecoration : ''}>
+      <FlexBaseLayout flexType={flexType}>
+        {children}
+        <style jsx global>{`
+          body {
+            background-color: ${bgColor};
+          }
+        `}</style>
+      </FlexBaseLayout>
+    </div>
   );
 }

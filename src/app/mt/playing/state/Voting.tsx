@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Timer from '@/components/elements/Timer';
+import Timer from '@/components/elements/timer';
 
 type Props = {
   timerState: string;

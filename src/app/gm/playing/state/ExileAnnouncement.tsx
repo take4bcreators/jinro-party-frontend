@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-import Timer from '@/components/elements/Timer';
+import Timer from '@/components/elements/timer';
 import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 

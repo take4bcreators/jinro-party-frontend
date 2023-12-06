@@ -1,4 +1,5 @@
 'use client';
+import DayPhase from '@/app/mt/playing/state/DayPhase';
 import Button from '@/components/elements/button';
 import StateTitle from '@/components/elements/stateTitle';
 import PlayingLayout from '@/components/layouts/playingLayout';
@@ -8,14 +9,5 @@ import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { StateTitleStyle } from '@/config/stateTitleStyle';
 
 export default function Home(): JSX.Element {
-  return (
-    <PlayingLayout
-      flexType={FlexBaseLayoutStyle.Default}
-      type={PlayingLayoutStyle.Dark}
-    >
-      <StateTitle type={StateTitleStyle.Default} title={'Style Debug'}>
-        <p>スタイルデバッグ</p>
-      </StateTitle>
-    </PlayingLayout>
-  );
+  return <DayPhase timerState={'start'} initialCount={'300000'} />;
 }

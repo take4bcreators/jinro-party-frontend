@@ -1,3 +1,5 @@
+@use '../../global' as g;
+
 $border-size: 6.5px;
 
 .flexWrapper {
@@ -14,6 +16,16 @@ $border-size: 6.5px;
   font-weight: 800;
   text-align: center;
   margin: 0 2rem 0.5rem;
+  @include g.mq(tab) {
+    // font-size: 4rem;
+    // font-size: 4.5vw;
+    font-size: 4.5vmax;
+  }
+  @include g.mq(pc) {
+    // font-size: 4rem;
+    // font-size: 4.5vw;
+    font-size: 4.5vmax;
+  }
 }
 
 .text {
@@ -31,6 +43,14 @@ $border-size: 6.5px;
   background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
   animation: 3s ease-in-out infinite alternate bggradient;
   background-size: 200% 200%;
+  @include g.mq(tab) {
+    width: 50vw;
+    height: 1vw;
+  }
+  @include g.mq(pc) {
+    width: 50vw;
+    height: 1vw;
+  }
 }
 
 @keyframes bggradient {

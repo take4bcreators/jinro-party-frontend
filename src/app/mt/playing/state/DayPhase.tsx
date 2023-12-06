@@ -1,5 +1,11 @@
 import { useRef } from 'react';
-import Timer from '@/components/elements/Timer';
+import StateTitle from '@/components/elements/stateTitle';
+import Timer from '@/components/elements/timer';
+import PlayingLayout from '@/components/layouts/playingLayout';
+import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
+import { StateTitleStyle } from '@/config/stateTitleStyle';
+import styles from '@/styles/app/mt/playing/playing.module.scss';
 
 type Props = {
   timerState: string;
@@ -16,13 +22,30 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     count.current = timerCount;
   }
 
+  // return (
+  //   <>
+  //     <h1>昼のフェーズ</h1>
+  //     <p>残り時間..</p>
+  //     <p>
+  //       <Timer timerState={timerState} initialCount={timerCount} />
+  //     </p>
+  //   </>
+  // );
   return (
-    <>
-      <h1>昼のフェーズ</h1>
-      <p>残り時間..</p>
+    <PlayingLayout
+      flexType={FlexBaseLayoutStyle.Default}
+      type={PlayingLayoutStyle.SkyBlue}
+      bgDecoration={true}
+    >
+      <StateTitle type={StateTitleStyle.Default} title={'Debate Time'} />
       <p>
         <Timer timerState={timerState} initialCount={timerCount} />
       </p>
-    </>
+      <p className={styles.textUnderInformation}>
+        今夜処刑する人を
+        <wbr />
+        話し合いで決めてください
+      </p>
+    </PlayingLayout>
   );
 }
