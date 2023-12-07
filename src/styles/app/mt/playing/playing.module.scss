@@ -18,6 +18,10 @@
   font-size: 2.1vmax;
 }
 
+.textUnderInformationMid {
+  font-size: 1.8vmax;
+}
+
 .textFlexSet {
   display: flex;
   flex-direction: column;
@@ -25,9 +29,77 @@
   align-items: center;
 }
 
+.qrPage {
+  &CenterSet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10vw;
+  }
+
+  &QrcodeArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 45px;
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+  }
+
+  &EntryPlayerInformations {
+    text-align: center;
+  }
+
+  &EntryPlayerInformationText {
+    margin: 3rem 0;
+    font-size: 8vmax;
+  }
+}
+
+.playerDisplay {
+  &TitleText {
+    font-size: 0.8vmax;
+    margin: 50px 0 0;
+  }
+  &List {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // max-height: 50vh;
+    padding: 50px 0;
+    position: relative;
+    z-index: 0;
+  }
+}
+
 // .topLogo {
 //   margin: 50px 0;
 // }
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #061636;
+  z-index: 10;
+}
+
+.stickyTopDefault {
+  @extend .stickyTop;
+}
+
+.bottomDummy {
+  width: 10px;
+  height: 10px;
+  padding: 50px 0;
+}
 
 // .headerTitle {
 //   margin: 50px 0;

@@ -8,6 +8,11 @@ import NightActionResult from '@/app/mt/playing/state/NightActionResult';
 import NightPhase from '@/app/mt/playing/state/NightPhase';
 import NightPhaseEnd from '@/app/mt/playing/state/NightPhaseEnd';
 import NightPhaseStart from '@/app/mt/playing/state/NightPhaseStart';
+import PlayerJoining from '@/app/mt/playing/state/PlayerJoining';
+import PlayerJoiningEnded from '@/app/mt/playing/state/PlayerJoiningEnded';
+import PlayerListDisplay from '@/app/mt/playing/state/PlayerListDisplay';
+import PreGame from '@/app/mt/playing/state/PreGame';
+import RoleAssignment from '@/app/mt/playing/state/RoleAssignment';
 import VoteResult from '@/app/mt/playing/state/VoteResult';
 import Voting from '@/app/mt/playing/state/Voting';
 import VotingEnd from '@/app/mt/playing/state/VotingEnd';
@@ -20,6 +25,11 @@ import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { StateTitleStyle } from '@/config/stateTitleStyle';
 
 export default function Home(): JSX.Element {
+  // return <PreGame />;
+  // return <PlayerJoining />;
+  // return <PlayerJoiningEnded />;
+  // return <PlayerListDisplay />;
+  return <RoleAssignment />;
   // return <DayPhaseStart />;
   // return <DayPhase timerState={'start'} initialCount={'300000'} />;
   // return <DayPhaseEnd />;
@@ -31,5 +41,5 @@ export default function Home(): JSX.Element {
   // return <NightPhase timerState={'start'} initialCount={'300000'} />;
   // return <NightPhaseEnd />;
   // return <MorningPhaseStart />;
-  return <NightActionResult />;
+  // return <NightActionResult />;
 }
