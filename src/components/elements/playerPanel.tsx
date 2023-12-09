@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PlayerIcon } from '@/config/playerIcon';
 import { PlayerPanelDataSrc } from '@/config/playerPanelDataSrc';
+import { PlayerPanelStyle } from '@/config/playerPanelStyle';
 import styles from '@/styles/components/elements/playerPanel.module.scss';
 import { LocalStorageService } from '@/utils/localStorageService';
 import PlayerIconElem from './playerIconElem';
@@ -9,12 +10,14 @@ type Props = {
   dataSrc?: PlayerPanelDataSrc;
   initPlayerName?: string;
   initPlayerIcon?: PlayerIcon;
+  type?: PlayerPanelStyle;
 };
 
 export default function Home({
   dataSrc,
   initPlayerName,
   initPlayerIcon,
+  type = PlayerPanelStyle.Default,
 }: Props): JSX.Element {
   const [playerName, setPlayerName] = useState<string | undefined>(
     initPlayerName
@@ -44,12 +47,15 @@ export default function Home({
     setPlayerIcon(icon);
   }, [dataSrc, playerName]);
 
+  const iconStyleClass = styles['icon' + type];
+  const nameStyleClass = styles['name' + type];
+
   return (
     <div className={styles.panel}>
-      <div className={styles.icon}>
+      <div className={iconStyleClass}>
         <PlayerIconElem icon={playerIcon} />
       </div>
-      <div className={styles.name}>{playerName ?? ''}</div>
+      <div className={nameStyleClass}>{playerName ?? ''}</div>
     </div>
   );
 }

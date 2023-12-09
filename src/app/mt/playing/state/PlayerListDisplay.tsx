@@ -88,21 +88,12 @@ export default function Home(): JSX.Element {
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
-      {/* <div className={styles.headerTitle}>
-        <h1>参加プレイヤー</h1>
-      </div> */}
       <div className={styles.stickyTopDefault}>
         <Logo type={LogoStyle.Small} />
-        {/* <h1>参加プレイヤー</h1> */}
         <div className={styles.playerDisplayTitleText}>
           <h1>参加プレイヤー</h1>
         </div>
       </div>
-      {/* <Logo type={LogoStyle.Small} /> */}
-      {/* <div className={styles.topInformation}> */}
-      {/* <div className={styles.playerDisplayTitleText}>
-        <h1>参加プレイヤー</h1>
-      </div> */}
       {allPlayer == undefined ? (
         <></>
       ) : (

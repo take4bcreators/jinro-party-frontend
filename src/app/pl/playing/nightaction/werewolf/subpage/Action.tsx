@@ -104,7 +104,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <h1>人狼アクション</h1>
+        <p>人狼アクション</p>
         <p>
           襲撃するプレイヤーを
           <wbr />

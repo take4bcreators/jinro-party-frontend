@@ -36,6 +36,43 @@
   @extend %innerBase;
 }
 
+.innerRoleReveal {
+  @extend %innerBase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.roleReveal {
+  &Team {
+    text-align: center;
+    width: 15rem;
+    margin: 0 1rem;
+    padding: 0.3rem;
+    border: 0.2rem solid;
+    border-radius: 45px;
+  }
+  &Win {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    margin: 0 1rem 0 0;
+    // border: 0.2rem solid;
+    background-color: rgb(255, 208, 0);
+    color: #181818;
+  }
+}
+
+.voteResult {
+  &FlexWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &Arrow {
+    margin: 0 2rem;
+  }
+}
+
 // .innerDisable {
 //   @extend %innerBase;
 //   opacity: 0.3;

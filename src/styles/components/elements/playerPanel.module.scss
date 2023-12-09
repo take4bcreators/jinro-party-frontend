@@ -4,22 +4,41 @@
   align-items: center;
 }
 
-.icon {
-  // scale: 0.8;
-  // width: 30px;
+%iconBase {
   svg {
-    // width: 40px;
     width: 10vw;
     max-width: 50px;
-    // width: unquote('min(150px, 25vw)');
     height: auto;
   }
 }
 
-.name {
+.iconDefault {
+  @extend %iconBase;
+}
+
+.iconLarge {
+  svg {
+    width: 10vmax;
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+%nameBase {
   padding-bottom: 0.3rem;
   margin: 0 1rem;
-  // font-size: 1.5rem;
   font-size: unquote('min(1.5rem, 4vw)');
   word-break: break-all;
+}
+
+.nameDefault {
+  @extend %nameBase;
+}
+
+.nameLarge {
+  @extend %nameBase;
+  margin: 0 2rem;
+  // margin: 0 1rem;
+  // margin: 0 unquote('min(6rem, 6vw)');
+  font-size: unquote('min(6rem, 6vw)');
 }
