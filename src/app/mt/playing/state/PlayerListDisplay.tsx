@@ -59,32 +59,7 @@ export default function Home(): JSX.Element {
         behavior: 'smooth',
       });
     }, 2500);
-    // console.log(document.documentElement.scrollHeight);
   }, []);
-
-  // if (allPlayer == undefined) {
-  //   return (
-  //     <>
-  //       <p>ロード中...</p>
-  //     </>
-  //   );
-  // }
-
-  // return (
-  //   <>
-  //     <section>
-  //       <h1>プレイヤーリスト発表</h1>
-  //       {allPlayer.map((player, index) => {
-  //         return (
-  //           <section key={index}>
-  //             <h2>{player.playerName}</h2>
-  //             <p>アイコン：{player.playerIcon}</p>
-  //           </section>
-  //         );
-  //       })}
-  //     </section>
-  //   </>
-  // );
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>

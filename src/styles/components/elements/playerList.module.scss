@@ -11,9 +11,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  // flex-wrap: wrap;
-  // max-height: 50vh;
+  // align-items: center;
+  align-items: flex-start;
 }
 
 %innerBase {
@@ -60,12 +59,24 @@
     background-color: rgb(255, 208, 0);
     color: #181818;
   }
+  &Players {
+    width: 15rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
 .voteResult {
   &FlexWrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+  &Players {
+    width: 15rem;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
   }
   &Arrow {
