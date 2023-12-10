@@ -22,16 +22,6 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     count.current = timerCount;
   }
 
-  // return (
-  //   <>
-  //     <h1>投票中</h1>
-  //     <p>各自の端末で投票してください</p>
-  //     <p>残り時間..</p>
-  //     <p>
-  //       <Timer timerState={timerState} initialCount={timerCount} />
-  //     </p>
-  //   </>
-  // );
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.Default}

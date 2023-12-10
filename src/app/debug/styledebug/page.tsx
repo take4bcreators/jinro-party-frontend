@@ -38,13 +38,13 @@ export default function Home(): JSX.Element {
   // return <DayPhaseEnd />;
   // return <Voting timerState={'start'} initialCount={'300000'} />;
   // return <VotingEnd />;
-  return <VoteResult />;
+  // return <VoteResult />;
   // return <ExileAnnouncement timerState={'start'} initialCount={'10000'} />;
   // return <NightPhaseStart />;
   // return <NightPhase timerState={'start'} initialCount={'300000'} />;
   // return <NightPhaseEnd />;
   // return <MorningPhaseStart />;
-  // return <NightActionResult />;
+  return <NightActionResult />;
   // return <GameEnd />;
   // return <FinalResult />;
   // return <RoleReveal />;

@@ -59,21 +59,6 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
     return <></>;
   }
 
-  // return (
-  //   <>
-  //     <section>
-  //       <h1>投票結果</h1>
-  //       <p>{dropoutPlayer.playerName}</p>
-  //       <p>{dropoutPlayer.playerIcon}</p>
-  //       <p>追放</p>
-  //       <p>10秒で遺言をどうぞ</p>
-  //       <p>残り時間..</p>
-  //       <p>
-  //         <Timer timerState={timerState} initialCount={timerCount} />
-  //       </p>
-  //     </section>
-  //   </>
-  // );
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.Default}
@@ -86,8 +71,6 @@ export default function Home({ timerState, initialCount }: Props): JSX.Element {
         initPlayerIcon={dropoutPlayer.playerIcon as PlayerIcon}
         type={PlayerPanelStyle.Large}
       />
-      {/* <p>{dropoutPlayer.playerName}</p>
-      <p>{dropoutPlayer.playerIcon}</p> */}
       <div className={styles.textFlexSet}>
         <p className={styles.textCenterSmall}>DROP OUT</p>
       </div>

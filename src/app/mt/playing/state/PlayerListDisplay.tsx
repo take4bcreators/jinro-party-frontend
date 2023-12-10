@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 import Logo from '@/components/elements/logo';
 import PlayerList from '@/components/elements/playerList';
-import PlayerPanel from '@/components/elements/playerPanel';
 import DarkForestLayout from '@/components/layouts/darkForestLayout';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { LogoStyle } from '@/config/logoStyle';
