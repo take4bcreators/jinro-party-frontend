@@ -10,8 +10,8 @@ const notojp = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'Jinro Party',
-  description: '人狼パーティプロジェクト',
+  title: 'WOLFFICE',
+  description: 'パーティ向け人狼ツール',
   icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
