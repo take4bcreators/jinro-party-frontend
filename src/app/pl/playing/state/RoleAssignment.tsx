@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import RoleName from '@/components/elements/RoleName';
 import Button from '@/components/elements/button';
+import RoleName from '@/components/elements/roleName';
 import DarkForestLayout from '@/components/layouts/darkForestLayout';
 import LogoHeader from '@/components/layouts/logoHeader';
 import PlayingFooter from '@/components/layouts/playingFooter';
