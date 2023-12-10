@@ -69,6 +69,8 @@ export namespace APIRouting {
     GetFetchWinningTeam: '/api/get-fetch-winning-team',
     /** GET: 終了ゲームリセット */
     GetEndGameReset: '/api/get-end-game-reset',
+    /** GET: エントリープレイヤーデータ取得 */
+    GetFetchEntryPlayers: '/api/get-fetch-entry-players',
   } as const;
   export type Point = (typeof Point)[keyof typeof Point];
 }

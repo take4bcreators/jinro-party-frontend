@@ -160,14 +160,7 @@ export class WsService {
       case WsRequestAction.CountdownTimerStart:
       case WsRequestAction.CountdownTimerPause:
       case WsRequestAction.CountdownTimerResume:
-      case WsRequestAction.SurvivorInfoDisplay:
-      case WsRequestAction.WerewolfAttackVoteInfoDisplay:
-      case WsRequestAction.PlayerEliminationInfoDisplay:
-      case WsRequestAction.SpectatorEliminationInfoDisplay:
-      case WsRequestAction.VoteResultInfoDisplay:
-      case WsRequestAction.FinalResultInfoDisplay:
-      case WsRequestAction.RoleListInfoDisplay:
-      case WsRequestAction.GameMasterGameInfoDisplay:
+      case WsRequestAction.ReturnEntryPlayerCount:
         return true;
       default:
         break;

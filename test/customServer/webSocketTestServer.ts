@@ -1,10 +1,10 @@
 import * as Http from 'http';
 import * as Sockjs from 'sockjs';
-import type { APIWsData } from '../../src/types/apiWsData';
-import { WsRequestAction } from '../../src/config/wsRequestAction';
-import { WsDestinationType } from '../../src/config/wsDestinationType';
-import { WsSenderType } from '../../src/config/wsSenderType';
 import { GameState } from '../../src/config/gameState';
+import { WsDestinationType } from '../../src/config/wsDestinationType';
+import { WsRequestAction } from '../../src/config/wsRequestAction';
+import { WsSenderType } from '../../src/config/wsSenderType';
+import type { APIWsData } from '../../src/types/apiWsData';
 
 // 接続情報指定
 const LISTEN_HOST: string = 'localhost';

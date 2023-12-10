@@ -64,22 +64,49 @@ export default function Home(): JSX.Element {
   let param01: string = '';
   let param02: string = '';
   let param03: string = '';
-  if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
-    nextState = wsRcvData.actionParameter01 as GameState;
-    lastGameState.current = nextState;
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerStart) {
-    nextState = lastGameState.current;
-    param01 = 'start';
-    param02 = wsRcvData.actionParameter01;
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerPause) {
-    nextState = lastGameState.current;
-    param01 = 'pause';
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerResume) {
-    nextState = lastGameState.current;
-    param01 = 'start';
-  } else {
-    nextState = lastGameState.current;
-    param01 = wsRcvData.actionParameter01;
+  // if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
+  //   nextState = wsRcvData.actionParameter01 as GameState;
+  //   lastGameState.current = nextState;
+  // } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerStart) {
+  //   nextState = lastGameState.current;
+  //   param01 = 'start';
+  //   param02 = wsRcvData.actionParameter01;
+  // } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerPause) {
+  //   nextState = lastGameState.current;
+  //   param01 = 'pause';
+  // } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerResume) {
+  //   nextState = lastGameState.current;
+  //   param01 = 'start';
+  // } else {
+  //   nextState = lastGameState.current;
+  //   param01 = wsRcvData.actionParameter01;
+  // }
+  switch (wsRcvData.requestAction) {
+    case WsRequestAction.GameScreenChange:
+      nextState = wsRcvData.actionParameter01 as GameState;
+      lastGameState.current = nextState;
+      break;
+    case WsRequestAction.CountdownTimerStart:
+      nextState = lastGameState.current;
+      param01 = 'start';
+      param02 = wsRcvData.actionParameter01;
+      break;
+    case WsRequestAction.CountdownTimerPause:
+      nextState = lastGameState.current;
+      param01 = 'pause';
+      break;
+    case WsRequestAction.CountdownTimerResume:
+      nextState = lastGameState.current;
+      param01 = 'start';
+      break;
+    case WsRequestAction.ReturnEntryPlayerCount:
+      nextState = lastGameState.current;
+      param01 = wsRcvData.actionParameter01;
+      break;
+    default:
+      nextState = lastGameState.current;
+      param01 = wsRcvData.actionParameter01;
+      break;
   }
 
   // const nextState = wsRcvData.actionParameter01 as GameState;
@@ -89,7 +116,7 @@ export default function Home(): JSX.Element {
     case GameState.PreGame:
       return <PagePreGame />;
     case GameState.PlayerJoining:
-      return <PagePlayerJoining />;
+      return <PagePlayerJoining entryPlayerCount={param01} />;
     case GameState.PlayerJoiningEnded:
       return <PagePlayerJoiningEnded />;
     case GameState.PlayerListDisplay:

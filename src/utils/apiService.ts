@@ -639,4 +639,16 @@ export namespace APIService {
     const resData: APIData.APIReplyProcessResult = await res.json();
     return resData.result;
   }
+
+  export async function getFetchEntryPlayers() {
+    const apiEndpointURL = makeAPIEndpointURL(
+      APIRouting.Point.GetFetchEntryPlayers
+    );
+    if (apiEndpointURL === '') {
+      return;
+    }
+    const res = await fetch(apiEndpointURL);
+    const resData: APIData.APIMultiPlayerBasicData = await res.json();
+    return resData;
+  }
 }
