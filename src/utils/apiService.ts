@@ -138,6 +138,13 @@ export namespace APIService {
     return responseData;
   }
 
+  export async function getFetchTimerData() {
+    const responseData = await apiGet<APIData.APITimerData>(
+      APIRouting.Point.GetFetchTimerData
+    );
+    return responseData;
+  }
+
   // POST
 
   export async function postExistsDeviceId(

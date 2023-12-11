@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Racing_Sans_One } from 'next/font/google';
 import { Roboto_Mono } from 'next/font/google';
+import { TimerState } from '@/config/timerState';
 import { TimerStyle } from '@/config/timerStyle';
 import styles from '@/styles/components/elements/timer.module.scss';
 
@@ -16,8 +17,8 @@ const robotomono = Roboto_Mono({
 });
 
 type Props = {
-  timerState: string;
-  initialCount: number;
+  timerState: TimerState | undefined;
+  initialCount: number | undefined;
   timerStyle?: TimerStyle;
 };
 
@@ -26,7 +27,7 @@ export default function Timer({
   initialCount,
   timerStyle = TimerStyle.Default,
 }: Props): JSX.Element {
-  const [count, setCount] = useState(initialCount);
+  const [count, setCount] = useState(initialCount ?? 0);
   const [isRunning, setIsRunning] = useState(false);
 
   const TIMER_STYLE_ID = 'timer';
@@ -55,20 +56,23 @@ export default function Timer({
   }
 
   useEffect(() => {
+    if (initialCount == undefined) {
+      return;
+    }
     setCount(initialCount);
   }, [initialCount]);
 
   useEffect(() => {
     switch (timerState) {
-      case 'start':
+      case TimerState.Start:
         start();
         break;
-      case 'pause':
+      case TimerState.Pause:
         pause();
         break;
-      case 'reset':
-        reset(initialCount);
-        break;
+      // case 'reset':
+      //   reset(initialCount);
+      //   break;
       default:
         break;
     }

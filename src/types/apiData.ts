@@ -2,6 +2,7 @@ import { GameMode } from '@/config/gameMode';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerState } from '@/config/playerState';
 import { PlayerTeam } from '@/config/playerTeam';
+import { TimerState } from '@/config/timerState';
 import { GameState } from '../config/gameState';
 
 export namespace APIData {
@@ -191,5 +192,15 @@ export namespace APIData {
   export type APIWinningTeam = {
     /** 勝利チーム */
     winningTeam: PlayerTeam;
+  };
+
+  /**
+   * タイマー情報 APIデータ
+   */
+  export type APITimerData = {
+    /** 現在のタイムカウント */
+    timeCountMSec: number;
+    /** タイマー状態 */
+    timerState: TimerState;
   };
 }

@@ -29,6 +29,8 @@ export namespace APIRouting {
     GetEndGameReset: '/api/get-end-game-reset',
     /** GET: エントリープレイヤーデータ取得 */
     GetFetchEntryPlayers: '/api/get-fetch-entry-players',
+    /** GET: タイマー情報取得 */
+    GetFetchTimerData: '/api/get-fetch-timer-data',
     /** POST: デバイスIDの存在確認 */
     PostExistsDeviceId: '/api/post-exists-device-id',
     /** POST: プレイヤー生存確認 */

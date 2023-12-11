@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { GameState } from '@/config/gameState';
+import { TimerState } from '@/config/timerState';
 import { WsRequestAction } from '@/config/wsRequestAction';
 import { WsSenderType } from '@/config/wsSenderType';
 import { WsService } from '@/utils/wsService';
@@ -88,16 +89,19 @@ export default function Home(): JSX.Element {
       break;
     case WsRequestAction.CountdownTimerStart:
       nextState = lastGameState.current;
-      param01 = 'start';
+      // param01 = 'start';
+      param01 = TimerState.Start;
       param02 = wsRcvData.actionParameter01;
       break;
     case WsRequestAction.CountdownTimerPause:
       nextState = lastGameState.current;
-      param01 = 'pause';
+      // param01 = 'pause';
+      param01 = TimerState.Pause;
       break;
     case WsRequestAction.CountdownTimerResume:
       nextState = lastGameState.current;
-      param01 = 'start';
+      // param01 = 'start';
+      param01 = TimerState.Start;
       break;
     case WsRequestAction.ReturnEntryPlayerCount:
       nextState = lastGameState.current;
@@ -126,7 +130,7 @@ export default function Home(): JSX.Element {
     case GameState.DayPhaseStart:
       return <PageDayPhaseStart />;
     case GameState.DayPhase:
-      return <PageDayPhase timerState={param01} initialCount={param02} />;
+      return <PageDayPhase timerStateStr={param01} initialCountStr={param02} />;
     case GameState.DayPhaseEnd:
       return <PageDayPhaseEnd />;
     case GameState.Voting:
