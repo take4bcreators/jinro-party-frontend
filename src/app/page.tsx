@@ -41,21 +41,20 @@ export default function Home(): JSX.Element {
   return (
     <main>
       <section>
-        <h1>Jinro Party</h1>
-        <p>人狼パーティプロジェクト</p>
-      </section>
-      <section>
-        <ul>
-          <li>
-            <Link href="./?site=gm">GameMaster Site</Link>
-          </li>
-          <li>
-            <Link href="./?site=mt">Monitor Site</Link>
-          </li>
-          <li>
-            <Link href="./?site=pl">Player Site</Link>
-          </li>
-          <li>
+        <h1>WOLFFICE</h1>
+        <section>
+          <h2>MAIN PAGE</h2>
+          <ul>
+            <li>
+              <Link href="./?site=gm">GameMaster Site</Link>
+            </li>
+            <li>
+              <Link href="./?site=mt">Monitor Site</Link>
+            </li>
+            <li>
+              <Link href="./?site=pl">Player Site</Link>
+            </li>
+            {/* <li>
             <Link href="/debug/timer">Timer Debug</Link>
           </li>
           <li>
@@ -70,18 +69,24 @@ export default function Home(): JSX.Element {
           <li>
             <Link href="/debug/qrcode">QRCode Debug</Link>
           </li>
-          <li></li>
-          <li>
+          <li></li> */}
+            {/* <li>
             <Link href="/pl/playing/state">PL Playing Debug</Link>
-          </li>
-          <li>
-            <Link href="/debug/styledebug">STYLE DEBUG</Link>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h1>DEBUG...</h1>
-        <p>{myLocation.hostname}</p>
+          </li> */}
+          </ul>
+        </section>
+        <section>
+          <h2>DEBUG</h2>
+          <ul>
+            <li>
+              <Link href="/debug/styledebug">STYLE DEBUG</Link>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>IP Address</h2>
+          <p>{myLocation.hostname}</p>
+        </section>
       </section>
     </main>
   );
