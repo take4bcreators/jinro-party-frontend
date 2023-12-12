@@ -141,16 +141,6 @@ export default function Home(): JSX.Element {
   if (wsRcvData.requestAction === WsRequestAction.GameScreenChange) {
     nextState = wsRcvData.actionParameter01 as GameState;
     lastGameState.current = nextState;
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerStart) {
-    nextState = lastGameState.current;
-    param01 = 'start';
-    param02 = wsRcvData.actionParameter01;
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerPause) {
-    nextState = lastGameState.current;
-    param01 = 'pause';
-  } else if (wsRcvData.requestAction === WsRequestAction.CountdownTimerResume) {
-    nextState = lastGameState.current;
-    param01 = 'start';
   } else {
     nextState = lastGameState.current;
     param01 = wsRcvData.actionParameter01;
