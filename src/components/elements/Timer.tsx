@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Racing_Sans_One } from 'next/font/google';
 import { Roboto_Mono } from 'next/font/google';
 import { TimerState } from '@/config/timerState';
 import { TimerStyle } from '@/config/timerStyle';
 import styles from '@/styles/components/elements/timer.module.scss';
-
-const racingsans = Racing_Sans_One({
-  weight: ['400'],
-  subsets: ['latin'],
-});
 
 const robotomono = Roboto_Mono({
   weight: ['400', '600', '700'],
@@ -17,7 +11,7 @@ const robotomono = Roboto_Mono({
 });
 
 type Props = {
-  timerState: TimerState | undefined;
+  timerState: TimerState;
   initialCount: number | undefined;
   timerStyle?: TimerStyle;
 };

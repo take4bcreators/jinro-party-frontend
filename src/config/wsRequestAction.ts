@@ -8,12 +8,8 @@ export const WsRequestAction = {
   GameStateUpdate: 'GameStateUpdate',
   /** ゲーム画面変更 */
   GameScreenChange: 'GameScreenChange',
-  /** カウントダウンタイマー開始 */
-  CountdownTimerStart: 'CountdownTimerStart',
-  /** カウントダウンタイマー一時停止 */
-  CountdownTimerPause: 'CountdownTimerPause',
-  /** カウントダウンタイマー再開 */
-  CountdownTimerResume: 'CountdownTimerResume',
+  /** タイマー状態変更 */
+  TimerStateChange: 'TimerStateChange',
   /** ゲーム状態確認 */
   ReturnCurrentGameState: 'ReturnCurrentGameState',
   /** エントリープレイヤー数 */

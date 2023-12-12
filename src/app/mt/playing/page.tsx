@@ -87,21 +87,9 @@ export default function Home(): JSX.Element {
       nextState = wsRcvData.actionParameter01 as GameState;
       lastGameState.current = nextState;
       break;
-    case WsRequestAction.CountdownTimerStart:
-      nextState = lastGameState.current;
-      // param01 = 'start';
-      param01 = TimerState.Start;
-      param02 = wsRcvData.actionParameter01;
-      break;
-    case WsRequestAction.CountdownTimerPause:
-      nextState = lastGameState.current;
-      // param01 = 'pause';
-      param01 = TimerState.Pause;
-      break;
-    case WsRequestAction.CountdownTimerResume:
-      nextState = lastGameState.current;
-      // param01 = 'start';
-      param01 = TimerState.Start;
+    case WsRequestAction.TimerStateChange:
+      nextState = wsRcvData.actionParameter01 as GameState;
+      lastGameState.current = nextState;
       break;
     case WsRequestAction.ReturnEntryPlayerCount:
       nextState = lastGameState.current;
@@ -130,25 +118,23 @@ export default function Home(): JSX.Element {
     case GameState.DayPhaseStart:
       return <PageDayPhaseStart />;
     case GameState.DayPhase:
-      return <PageDayPhase timerStateStr={param01} initialCountStr={param02} />;
+      return <PageDayPhase />;
     case GameState.DayPhaseEnd:
       return <PageDayPhaseEnd />;
     case GameState.Voting:
-      return <PageVoting timerState={param01} initialCount={param02} />;
+      return <PageVoting />;
     case GameState.VotingEnd:
       return <PageVotingEnd />;
     case GameState.VoteResult:
       return <PageVoteResult />;
     case GameState.ExileAnnouncement:
-      return (
-        <PageExileAnnouncement timerState={param01} initialCount={param02} />
-      );
+      return <PageExileAnnouncement />;
     case GameState.FinalExileAnnouncement:
       return <PageFinalExileAnnouncement />;
     case GameState.NightPhaseStart:
       return <PageNightPhaseStart />;
     case GameState.NightPhase:
-      return <PageNightPhase timerState={param01} initialCount={param02} />;
+      return <PageNightPhase />;
     case GameState.NightPhaseEnd:
       return <PageNightPhaseEnd />;
     case GameState.MorningPhaseStart:

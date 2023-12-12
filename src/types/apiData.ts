@@ -202,5 +202,7 @@ export namespace APIData {
     timeCountMSec: number;
     /** タイマー状態 */
     timerState: TimerState;
+    /** ゲーム状態 */
+    gameState: GameState;
   };
 }
