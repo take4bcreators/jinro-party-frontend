@@ -2,6 +2,7 @@ import { PlayerIcon } from '@/config/playerIcon';
 import styles from '@/styles/components/elements/playerList.module.scss';
 import { APIData } from '@/types/apiData';
 import { PlayerDisplayName } from '@/utils/playerDisplayName';
+import Arrows from './arrows';
 import PlayerPanel from './playerPanel';
 
 type Props = {
@@ -30,7 +31,9 @@ export default function Home({ playerList }: Props): JSX.Element {
                     initPlayerIcon={voterPlayerIcon}
                   />
                 </div>
-                <div className={styles.voteResultArrow}>→</div>
+                <div className={styles.voteResultArrow}>
+                  <Arrows />
+                </div>
                 <div className={styles.voteResultPlayers}>
                   <PlayerPanel
                     initPlayerName={receiverPlayerName}
