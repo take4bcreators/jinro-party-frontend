@@ -157,9 +157,9 @@ export class WsService {
           return true;
         }
         break;
-      case WsRequestAction.CountdownTimerStart:
-      case WsRequestAction.CountdownTimerPause:
-      case WsRequestAction.CountdownTimerResume:
+      // case WsRequestAction.CountdownTimerStart:
+      // case WsRequestAction.CountdownTimerPause:
+      // case WsRequestAction.CountdownTimerResume:
       case WsRequestAction.ReturnEntryPlayerCount:
         return true;
       default:

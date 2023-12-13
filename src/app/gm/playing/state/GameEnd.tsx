@@ -1,7 +1,7 @@
-export default function Home(): JSX.Element {
-  return (
-    <>
-      <h1>ゲーム終了</h1>
-    </>
-  );
-}
+// export default function Home(): JSX.Element {
+//   return (
+//     <>
+//       <h1>ゲーム終了</h1>
+//     </>
+//   );
+// }
