@@ -167,4 +167,14 @@ export namespace LocalStorageService {
     ) as PlayerTeam;
     return data;
   }
+
+  export function getGmViewmode(): string | undefined {
+    const name = LocalStorageRepository.get(LocalStorageKey.jrptGmViewmode);
+    return name;
+  }
+
+  export function setGmViewmode(name: string) {
+    LocalStorageRepository.set(LocalStorageKey.jrptGmViewmode, name);
+    return;
+  }
 }

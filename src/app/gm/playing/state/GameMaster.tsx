@@ -1,8 +1,11 @@
-import { ChangeEvent, useEffect, useLayoutEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import Logo from '@/components/elements/logo';
 import PlayerListForGM from '@/components/elements/playerListForGM';
 import DarkForestLayout from '@/components/layouts/darkForestLayout';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { GameState } from '@/config/gameState';
+import { GameStateSetting } from '@/config/gameStateSetting';
 import { LogoStyle } from '@/config/logoStyle';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerState } from '@/config/playerState';
@@ -12,14 +15,29 @@ import { APIData } from '@/types/apiData';
 import { APIService } from '@/utils/apiService';
 import { LocalStorageService } from '@/utils/localStorageService';
 
-const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
-export default function Home(): JSX.Element {
+type Props = {
+  gameState?: GameState;
+};
+
+export default function Home({ gameState }: Props): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<
     APIData.APIReplyPlayerData[] | undefined
   >(undefined);
 
   const [viewMode, setViewMode] = useState('');
+
+  const [currentGameState, setCurrentGameState] = useState<GameState>(
+    GameState.Empty
+  );
+
+  useEffect(() => {
+    if (gameState == undefined) {
+      return;
+    }
+    setCurrentGameState(gameState);
+  }, [gameState]);
 
   useEffect(() => {
     setViewMode(LocalStorageService.getGmViewmode() ?? 'OFF');
@@ -29,6 +47,13 @@ export default function Home(): JSX.Element {
     const mode = event.target.value;
     setViewMode(mode);
     LocalStorageService.setGmViewmode(mode);
+  }
+
+  async function handleGameEndButton() {
+    const resData = await APIService.getEndGameReset();
+    if (resData == undefined) {
+      return;
+    }
   }
 
   useEffect(() => {
@@ -98,6 +123,17 @@ export default function Home(): JSX.Element {
         <ul className={styles.playerDisplayList}>
           <PlayerListForGM playerList={allPlayer} />
         </ul>
+      )}
+      <dl>
+        <dt>現在のゲーム状態</dt>
+        <dd>{GameStateSetting.GameStateName.get(currentGameState)}</dd>
+      </dl>
+      {currentGameState === GameState.RoleReveal ? (
+        <Link href="/gm/" onClick={handleGameEndButton}>
+          ゲームを終了する
+        </Link>
+      ) : (
+        <></>
       )}
       <div className={styles.bottomDummy}></div>
     </DarkForestLayout>

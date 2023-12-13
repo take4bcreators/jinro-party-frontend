@@ -18,6 +18,8 @@ export const LocalStorageKey = {
   jrptPlayingPlayerteam: 'jrpt_playing_playerteam',
   /** プレイヤー状態 */
   jrptPlayingPlayerstate: 'jrpt_playing_playerstate',
+  /** ゲームマスタービューモード */
+  jrptGmViewmode: 'jrpt_gm_viewmode',
 } as const;
 export type LocalStorageKey =
   (typeof LocalStorageKey)[keyof typeof LocalStorageKey];

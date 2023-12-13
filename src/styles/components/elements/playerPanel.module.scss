@@ -24,6 +24,17 @@
   }
 }
 
+.iconGameMaster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 2.5vmax;
+    // max-width: 30px;
+    height: auto;
+  }
+}
+
 %nameBase {
   padding-bottom: 0.3rem;
   margin: 0 1rem;
@@ -42,4 +53,11 @@
   // margin: 0 1rem;
   // margin: 0 unquote('min(6rem, 6vw)');
   font-size: unquote('min(6rem, 6vw)');
+}
+
+.nameGameMaster {
+  @extend %nameBase;
+  // font-size: unquote('min(1rem, 3vw)');
+  font-size: inherit;
+  text-shadow: unset;
 }
