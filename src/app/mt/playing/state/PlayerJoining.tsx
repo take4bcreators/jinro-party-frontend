@@ -17,6 +17,13 @@ export default function Home({ entryPlayerCount }: Props): JSX.Element {
   const [entryCount, setEntryCount] = useState(entryPlayerCount);
 
   useEffect(() => {
+    // VSCode のトンネル機能を使った場合は専用のオリジンを返す
+    const checkRegExp = /\.asse\.devtunnels\.ms/;
+    if (checkRegExp.test(window.location.hostname)) {
+      setPlayerSite(`${window.location.origin}/pl/`);
+      return;
+    }
+    // 通常の場合は設定から判定する
     let host = process.env.NEXT_PUBLIC_SELF_HOSTNAME;
     if (host == undefined || host === '') {
       host = window.location.hostname;

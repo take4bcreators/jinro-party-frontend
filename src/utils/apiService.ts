@@ -6,6 +6,19 @@ export namespace APIService {
   // 共通
 
   function makeAPIEndpointURL(routingPoint: APIRouting.Point): string {
+    // VSCode のトンネル機能を使った場合は専用のオリジンを返す
+    const checkRegExp = /\.asse\.devtunnels\.ms/;
+    if (checkRegExp.test(window.location.hostname)) {
+      const originStr = window.location.origin;
+      const serverPort = '8080';
+      const replaceRegExp = /^(https?:\/\/.*?)-[0-9]+(\.asse\.devtunnels\.ms)$/;
+      const apiHost = originStr.replace(
+        replaceRegExp,
+        '$1-' + serverPort + '$2'
+      );
+      return `${apiHost}${routingPoint}`;
+    }
+    // 通常の場合は設定から判定する
     let host = process.env.NEXT_PUBLIC_HOSTNAME;
     if (host == undefined || host === '') {
       host = window.location.hostname;

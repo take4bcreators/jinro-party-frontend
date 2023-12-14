@@ -35,15 +35,26 @@ export class WsService {
    * @returns
    */
   private openWebSocket() {
-    let host = process.env.NEXT_PUBLIC_WEB_SOCKET_HOST;
-    if (host == undefined || host === '') {
-      host = window.location.hostname;
+    let wsHost = '';
+    const checkRegExp = /\.asse\.devtunnels\.ms/;
+    if (checkRegExp.test(window.location.hostname)) {
+      // VSCode のトンネル機能を使った場合は専用のオリジンを返す
+      const originStr = window.location.origin;
+      const serverPort = '8080';
+      const replaceRegExp = /^(https?:\/\/.*?)-[0-9]+(\.asse\.devtunnels\.ms)$/;
+      wsHost = originStr.replace(replaceRegExp, '$1-' + serverPort + '$2');
+    } else {
+      // 通常の場合は設定から判定する
+      let host = process.env.NEXT_PUBLIC_WEB_SOCKET_HOST;
+      if (host == undefined || host === '') {
+        host = window.location.hostname;
+      }
+      let port = process.env.NEXT_PUBLIC_WEB_SOCKET_PORT;
+      if (port == undefined || port === '') {
+        port = '8080';
+      }
+      wsHost = `http://${host}:${port}`;
     }
-    let port = process.env.NEXT_PUBLIC_WEB_SOCKET_PORT;
-    if (port == undefined || port === '') {
-      port = '8080';
-    }
-    const wsHost = `http://${host}:${port}`;
     const wsEndPoint = APIRouting.Point.WebSocket;
     const wsURL = `${wsHost}${wsEndPoint}`;
     if (wsURL == undefined) {
