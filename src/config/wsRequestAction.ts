@@ -14,6 +14,8 @@ export const WsRequestAction = {
   ReturnCurrentGameState: 'ReturnCurrentGameState',
   /** エントリープレイヤー数 */
   ReturnEntryPlayerCount: 'ReturnEntryPlayerCount',
+  /** 投票テーブル変更 */
+  VoteTableChange: 'VoteTableChange',
 } as const;
 export type WsRequestAction =
   (typeof WsRequestAction)[keyof typeof WsRequestAction];

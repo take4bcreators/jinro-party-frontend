@@ -72,7 +72,7 @@ export default function Home(): JSX.Element {
       return;
     }
     if (isDuplicate) {
-      setErrorText('エラー：名前が重複しています');
+      setErrorText('！エラー：同じ名前が既に登録されています');
       return;
     }
     dataSave();
@@ -81,7 +81,7 @@ export default function Home(): JSX.Element {
       return;
     }
     if (!tempRegistResult) {
-      setErrorText('エラー：ユーザー仮登録時にエラーが発生しました');
+      setErrorText('！エラー：ユーザー仮登録時にエラーが発生しました');
       return;
     }
     console.log(tempRegistResult);
@@ -114,7 +114,7 @@ export default function Home(): JSX.Element {
           </ul>
         </div>
       </form>
-      <p>{errorText}</p>
+      <p className={styles.errorMessage}>{errorText}</p>
       <ul className={styles.bottomButtons}>
         <li className={styles.bottomButtons__button_first}>
           {playerName === '' || playerIcon === '' ? (

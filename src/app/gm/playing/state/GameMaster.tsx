@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/elements/logo';
 import PlayerListForGM from '@/components/elements/playerListForGM';
@@ -19,11 +19,19 @@ const DEBUG: boolean = false;
 
 type Props = {
   gameState?: GameState;
+  voteChangeCount?: number;
 };
 
-export default function Home({ gameState }: Props): JSX.Element {
+export default function Home({
+  gameState,
+  voteChangeCount,
+}: Props): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<
     APIData.APIReplyPlayerData[] | undefined
+  >(undefined);
+
+  const [voteResult, setVoteResult] = useState<
+    APIData.APIReplyAllVotePlayerData | undefined
   >(undefined);
 
   const [viewMode, setViewMode] = useState('');
@@ -81,7 +89,20 @@ export default function Home({ gameState }: Props): JSX.Element {
       }
       setAllPlayer(allPlayerInfo);
     })();
-  }, []);
+  }, [gameState]);
+
+  useEffect(() => {
+    if (voteChangeCount == undefined) {
+      return;
+    }
+    (async () => {
+      const resData = await APIService.getFetchVoteResult();
+      if (resData == undefined) {
+        return;
+      }
+      setVoteResult(resData);
+    })();
+  }, [voteChangeCount]);
 
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
@@ -117,13 +138,35 @@ export default function Home({ gameState }: Props): JSX.Element {
           </li>
         </ul>
       </div>
-      {allPlayer == undefined || viewMode === 'OFF' ? (
-        <></>
-      ) : (
-        <ul className={styles.playerDisplayList}>
-          <PlayerListForGM playerList={allPlayer} />
-        </ul>
-      )}
+      {(() => {
+        if (allPlayer == undefined || viewMode === 'OFF') {
+          return <></>;
+        }
+        if (currentGameState === GameState.PlayerListDisplay) {
+          const emptyRoleAllPlayer = allPlayer.map((player) => {
+            player.playerRole = PlayerRole.Empty;
+            player.playerTeam = PlayerTeam.Empty;
+            player.playerState = PlayerState.Empty;
+            return player;
+          });
+          return (
+            <ul className={styles.playerDisplayList}>
+              <PlayerListForGM
+                playerList={emptyRoleAllPlayer}
+                voteList={voteResult?.allVotePlayerData}
+              />
+            </ul>
+          );
+        }
+        return (
+          <ul className={styles.playerDisplayList}>
+            <PlayerListForGM
+              playerList={allPlayer}
+              voteList={voteResult?.allVotePlayerData}
+            />
+          </ul>
+        );
+      })()}
       <dl>
         <dt>現在のゲーム状態</dt>
         <dd>{GameStateSetting.GameStateName.get(currentGameState)}</dd>

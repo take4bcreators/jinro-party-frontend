@@ -81,8 +81,6 @@ export class WsService {
     this.socket.addEventListener('message', (event) => {
       console.log('WebSocket Receive...');
       const receiveData: APIWsData = JSON.parse(event.data);
-      // this.receiveData = receiveData;
-
       if (this.needsRendering(receiveData)) {
         console.log(receiveData);
         this.setReceiveDataFunc(receiveData);
@@ -162,15 +160,14 @@ export class WsService {
     }
 
     // 命令判定
+    // @note WebSocket とのインタフェースが増えた場合はここに変更が必要か確認する
     switch (receiveData.requestAction) {
       case WsRequestAction.GameScreenChange:
         if (this.includeConst(receiveData.actionParameter01, GameState)) {
           return true;
         }
         break;
-      // case WsRequestAction.CountdownTimerStart:
-      // case WsRequestAction.CountdownTimerPause:
-      // case WsRequestAction.CountdownTimerResume:
+      case WsRequestAction.VoteTableChange:
       case WsRequestAction.ReturnEntryPlayerCount:
         return true;
       default:
