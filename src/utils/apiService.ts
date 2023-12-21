@@ -158,6 +158,20 @@ export namespace APIService {
     return responseData;
   }
 
+  export async function getFetchAllPlayerFullData() {
+    const responseData = await apiGet<APIData.APIMultiPlayerFullData>(
+      APIRouting.Point.GetFetchAllPlayerFullData
+    );
+    return responseData;
+  }
+
+  export async function getFetchNightAction() {
+    const responseData = await apiGet<APIData.APIMultiNightActionData>(
+      APIRouting.Point.GetFetchNightAction
+    );
+    return responseData;
+  }
+
   // POST
 
   export async function postExistsDeviceId(

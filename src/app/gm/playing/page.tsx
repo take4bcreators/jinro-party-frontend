@@ -14,6 +14,8 @@ export default function Home(): JSX.Element {
   const [wsRcvData, setWsRcvData] = useState<APIWsData | undefined>(undefined);
   // const lastGameState = useRef<GameState>(GameState.Empty);
   const voteChangeCount = useRef(0);
+  const selfRoleCheckUpdateCount = useRef(0);
+  const nightActionUpdateCount = useRef(0);
 
   useEffect(() => {
     setWsService(
@@ -47,6 +49,18 @@ export default function Home(): JSX.Element {
     case WsRequestAction.VoteTableChange:
       voteChangeCount.current++;
       return <GameMaster voteChangeCount={voteChangeCount.current} />;
+    case WsRequestAction.SelfRoleCheckUpdate:
+      selfRoleCheckUpdateCount.current++;
+      return (
+        <GameMaster
+          selfRoleCheckUpdateCount={selfRoleCheckUpdateCount.current}
+        />
+      );
+    case WsRequestAction.NightActionUpdate:
+      nightActionUpdateCount.current++;
+      return (
+        <GameMaster nightActionUpdateCount={nightActionUpdateCount.current} />
+      );
     default:
       return <GameMaster />;
   }

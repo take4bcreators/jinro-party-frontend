@@ -16,6 +16,10 @@ export const WsRequestAction = {
   ReturnEntryPlayerCount: 'ReturnEntryPlayerCount',
   /** 投票テーブル変更 */
   VoteTableChange: 'VoteTableChange',
+  /** 役職確認更新 */
+  SelfRoleCheckUpdate: 'SelfRoleCheckUpdate',
+  /** 夜アクション更新 */
+  NightActionUpdate: 'NightActionUpdate',
 } as const;
 export type WsRequestAction =
   (typeof WsRequestAction)[keyof typeof WsRequestAction];

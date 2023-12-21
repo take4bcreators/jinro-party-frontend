@@ -205,4 +205,60 @@ export namespace APIData {
     /** ゲーム状態 */
     gameState: GameState;
   };
+
+  /**
+   * プレイヤー完全データ APIデータ
+   */
+  export type APIPlayerFullData = {
+    /** デバイスID */
+    deviceId: string;
+    /** セッションID */
+    sessionId: string;
+    /** プレイヤー名 */
+    playerName: string;
+    /** プレイヤーアイコン */
+    playerIcon: string;
+    /** 役職 */
+    playerRole: PlayerRole;
+    /** 所属チーム */
+    playerTeam: PlayerTeam;
+    /** 役職確認 */
+    selfRoleCheck: boolean;
+    /** プレイヤー状態 */
+    playerState: PlayerState;
+  };
+
+  /**
+   * 複数プレイヤー完全データ APIデータ
+   */
+  export type APIMultiPlayerFullData = {
+    /** プレイヤー完全データ */
+    allData: APIPlayerFullData[];
+  };
+
+  /**
+   * 夜アクションデータ APIデータ
+   */
+  export type APINightActionData = {
+    /** デバイスID */
+    deviceId: string;
+    /** 役職 */
+    playerRole: PlayerRole;
+    /** 対象プレイヤーデバイスID */
+    receiverDeviceId: string;
+    /** 対象プレイヤー名 */
+    receiverPlayerName: string;
+    /** 対象プレイヤーアイコン */
+    receiverPlayerIcon: string;
+    /** 対象プレイヤー役職 */
+    receiverPlayerRole: PlayerRole;
+  };
+
+  /**
+   * 複数夜アクションデータ APIデータ
+   */
+  export type APIMultiNightActionData = {
+    /** 夜アクションデータ */
+    allData: APINightActionData[];
+  };
 }

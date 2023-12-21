@@ -31,6 +31,10 @@ export namespace APIRouting {
     GetFetchEntryPlayers: '/api/get-fetch-entry-players',
     /** GET: タイマー情報取得 */
     GetFetchTimerData: '/api/get-fetch-timer-data',
+    /** GET: 全プレイヤー完全データ取得 */
+    GetFetchAllPlayerFullData: '/api/get-fetch-all-player-full-data',
+    /** GET: 夜アクションデータ取得 */
+    GetFetchNightAction: '/api/get-fetch-night-action',
     /** POST: デバイスIDの存在確認 */
     PostExistsDeviceId: '/api/post-exists-device-id',
     /** POST: プレイヤー生存確認 */

@@ -1,11 +1,8 @@
 import { GameState } from '@/config/gameState';
 import { PlayerIcon } from '@/config/playerIcon';
 import { PlayerPanelStyle } from '@/config/playerPanelStyle';
-import { PlayerRole } from '@/config/playerRole';
 import { PlayerRoleSetting } from '@/config/playerRoleSetting';
-import { PlayerState } from '@/config/playerState';
 import { PlayerStateSetting } from '@/config/playerStateSetting';
-import { PlayerTeam } from '@/config/playerTeam';
 import { PlayerTeamSetting } from '@/config/playerTeamSetting';
 import styles from '@/styles/components/elements/playerListForGM.module.scss';
 import { APIData } from '@/types/apiData';
@@ -14,17 +11,18 @@ import PlayerPanel from './playerPanel';
 type Props = {
   playerList: APIData.APIReplyPlayerData[];
   voteList?: APIData.APIReplyVotePlayerData[];
+  playerFullList?: APIData.APIPlayerFullData[];
+  nightActionList?: APIData.APINightActionData[];
   gameState?: GameState;
 };
 
 export default function Home({
   playerList,
   voteList,
+  playerFullList,
+  nightActionList,
   gameState,
 }: Props): JSX.Element {
-  console.log('voteList...');
-  console.log(voteList);
-
   const otherInfoName: string = (() => {
     switch (gameState) {
       case GameState.Voting:
@@ -32,10 +30,62 @@ export default function Home({
       case GameState.VoteResult:
       case GameState.ExileAnnouncement:
         return '投票先';
+      case GameState.RoleAssignment:
+        return '確認';
+      case GameState.NightPhaseStart:
+      case GameState.NightPhase:
+      case GameState.NightPhaseEnd:
+      case GameState.MorningPhaseStart:
+      case GameState.NightActionResult:
+        return 'アクション対象';
       default:
         return '-';
     }
   })();
+
+  function getOtherInfoStr(player: APIData.APIReplyPlayerData): string {
+    switch (gameState) {
+      case GameState.Voting:
+      case GameState.VotingEnd:
+      case GameState.VoteResult:
+      case GameState.ExileAnnouncement:
+        if (voteList == undefined) {
+          return '';
+        }
+        const voteReceiver =
+          voteList.find((vote) => {
+            return vote.voterDeviceId === player.deviceId;
+          })?.receiverPlayerName ?? '';
+        return voteReceiver;
+      case GameState.RoleAssignment:
+        if (playerFullList == undefined) {
+          return '';
+        }
+        const isCheck =
+          playerFullList.find((pl) => {
+            return pl.deviceId === player.deviceId;
+          })?.selfRoleCheck ?? false;
+        if (isCheck) {
+          return 'OK';
+        }
+        return '';
+      case GameState.NightPhaseStart:
+      case GameState.NightPhase:
+      case GameState.NightPhaseEnd:
+      case GameState.MorningPhaseStart:
+      case GameState.NightActionResult:
+        if (nightActionList == undefined) {
+          return '';
+        }
+        const actionReceiver =
+          nightActionList.find((action) => {
+            return action.deviceId === player.deviceId;
+          })?.receiverPlayerName ?? '';
+        return actionReceiver;
+      default:
+        return '';
+    }
+  }
 
   return (
     <div className={styles.outer}>
@@ -52,26 +102,7 @@ export default function Home({
         </thead>
         <tbody>
           {playerList.map((player, _index) => {
-            let infoStr: string = '';
-            switch (gameState) {
-              case GameState.Voting:
-              case GameState.VotingEnd:
-              case GameState.VoteResult:
-              case GameState.ExileAnnouncement:
-                if (voteList == undefined) {
-                  infoStr = '';
-                  break;
-                }
-                infoStr =
-                  voteList.find((vote) => {
-                    return vote.voterDeviceId === player.deviceId;
-                  })?.receiverPlayerName ?? '';
-                break;
-              default:
-                infoStr = '';
-                break;
-            }
-
+            const otherInfoStr = getOtherInfoStr(player);
             return (
               <tr key={player.deviceId}>
                 <td>
@@ -96,7 +127,7 @@ export default function Home({
                     ? ''
                     : PlayerStateSetting.StateName.get(player.playerState)}
                 </td>
-                <td>{infoStr}</td>
+                <td>{otherInfoStr}</td>
               </tr>
             );
           })}

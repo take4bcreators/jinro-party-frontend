@@ -168,6 +168,8 @@ export class WsService {
         }
         break;
       case WsRequestAction.VoteTableChange:
+      case WsRequestAction.SelfRoleCheckUpdate:
+      case WsRequestAction.NightActionUpdate:
       case WsRequestAction.ReturnEntryPlayerCount:
         return true;
       default:

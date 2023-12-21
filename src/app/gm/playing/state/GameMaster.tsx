@@ -20,11 +20,15 @@ const DEBUG: boolean = false;
 type Props = {
   gameState?: GameState;
   voteChangeCount?: number;
+  selfRoleCheckUpdateCount?: number;
+  nightActionUpdateCount?: number;
 };
 
 export default function Home({
   gameState,
   voteChangeCount,
+  selfRoleCheckUpdateCount,
+  nightActionUpdateCount,
 }: Props): JSX.Element {
   const [allPlayer, setAllPlayer] = useState<
     APIData.APIReplyPlayerData[] | undefined
@@ -32,6 +36,14 @@ export default function Home({
 
   const [voteResult, setVoteResult] = useState<
     APIData.APIReplyAllVotePlayerData | undefined
+  >(undefined);
+
+  const [playerFullDataList, setPlayerFullDataList] = useState<
+    APIData.APIMultiPlayerFullData | undefined
+  >(undefined);
+
+  const [nightActions, setNightActions] = useState<
+    APIData.APIMultiNightActionData | undefined
   >(undefined);
 
   const [viewMode, setViewMode] = useState('');
@@ -104,6 +116,32 @@ export default function Home({
     })();
   }, [voteChangeCount]);
 
+  useEffect(() => {
+    if (selfRoleCheckUpdateCount == undefined) {
+      return;
+    }
+    (async () => {
+      const resData = await APIService.getFetchAllPlayerFullData();
+      if (resData == undefined) {
+        return;
+      }
+      setPlayerFullDataList(resData);
+    })();
+  }, [selfRoleCheckUpdateCount]);
+
+  useEffect(() => {
+    if (nightActionUpdateCount == undefined) {
+      return;
+    }
+    (async () => {
+      const resData = await APIService.getFetchNightAction();
+      if (resData == undefined) {
+        return;
+      }
+      setNightActions(resData);
+    })();
+  }, [nightActionUpdateCount]);
+
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <div className={styles.stickyTopDefault}>
@@ -147,6 +185,8 @@ export default function Home({
             <PlayerListForGM
               playerList={allPlayer}
               voteList={voteResult?.allVotePlayerData}
+              playerFullList={playerFullDataList?.allData}
+              nightActionList={nightActions?.allData}
               gameState={currentGameState}
             />
           </ul>
