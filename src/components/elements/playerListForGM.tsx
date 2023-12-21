@@ -1,3 +1,4 @@
+import { GameState } from '@/config/gameState';
 import { PlayerIcon } from '@/config/playerIcon';
 import { PlayerPanelStyle } from '@/config/playerPanelStyle';
 import { PlayerRole } from '@/config/playerRole';
@@ -13,11 +14,28 @@ import PlayerPanel from './playerPanel';
 type Props = {
   playerList: APIData.APIReplyPlayerData[];
   voteList?: APIData.APIReplyVotePlayerData[];
+  gameState?: GameState;
 };
 
-export default function Home({ playerList, voteList }: Props): JSX.Element {
+export default function Home({
+  playerList,
+  voteList,
+  gameState,
+}: Props): JSX.Element {
   console.log('voteList...');
   console.log(voteList);
+
+  const otherInfoName: string = (() => {
+    switch (gameState) {
+      case GameState.Voting:
+      case GameState.VotingEnd:
+      case GameState.VoteResult:
+      case GameState.ExileAnnouncement:
+        return '投票先';
+      default:
+        return '-';
+    }
+  })();
 
   return (
     <div className={styles.outer}>
@@ -29,14 +47,33 @@ export default function Home({ playerList, voteList }: Props): JSX.Element {
             <th>{'チーム'}</th>
             <th>{'役職'}</th>
             <th>{'状態'}</th>
-            <th>{'投票先'}</th>
-            <th>{'行動先'}</th>
+            <th>{otherInfoName}</th>
           </tr>
         </thead>
         <tbody>
-          {playerList.map((player, index) => {
+          {playerList.map((player, _index) => {
+            let infoStr: string = '';
+            switch (gameState) {
+              case GameState.Voting:
+              case GameState.VotingEnd:
+              case GameState.VoteResult:
+              case GameState.ExileAnnouncement:
+                if (voteList == undefined) {
+                  infoStr = '';
+                  break;
+                }
+                infoStr =
+                  voteList.find((vote) => {
+                    return vote.voterDeviceId === player.deviceId;
+                  })?.receiverPlayerName ?? '';
+                break;
+              default:
+                infoStr = '';
+                break;
+            }
+
             return (
-              <tr key={index}>
+              <tr key={player.deviceId}>
                 <td>
                   <PlayerPanel
                     initPlayerName={player.playerName}
@@ -45,28 +82,21 @@ export default function Home({ playerList, voteList }: Props): JSX.Element {
                   />
                 </td>
                 <td>
-                  {player.playerTeam === PlayerTeam.Empty
+                  {gameState === GameState.PlayerListDisplay
                     ? ''
                     : PlayerTeamSetting.TeamName.get(player.playerTeam)}
                 </td>
                 <td>
-                  {player.playerRole === PlayerRole.Empty
+                  {gameState === GameState.PlayerListDisplay
                     ? ''
                     : PlayerRoleSetting.RoleName.get(player.playerRole)}
                 </td>
                 <td>
-                  {player.playerState === PlayerState.Empty
+                  {gameState === GameState.PlayerListDisplay
                     ? ''
                     : PlayerStateSetting.StateName.get(player.playerState)}
                 </td>
-                <td>
-                  {voteList == undefined
-                    ? ''
-                    : voteList.find((vote) => {
-                        return vote.voterDeviceId === player.deviceId;
-                      })?.receiverPlayerName ?? ''}
-                </td>
-                <td></td>
+                <td>{infoStr}</td>
               </tr>
             );
           })}

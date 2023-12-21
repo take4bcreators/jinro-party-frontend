@@ -142,27 +142,12 @@ export default function Home({
         if (allPlayer == undefined || viewMode === 'OFF') {
           return <></>;
         }
-        if (currentGameState === GameState.PlayerListDisplay) {
-          const emptyRoleAllPlayer = allPlayer.map((player) => {
-            player.playerRole = PlayerRole.Empty;
-            player.playerTeam = PlayerTeam.Empty;
-            player.playerState = PlayerState.Empty;
-            return player;
-          });
-          return (
-            <ul className={styles.playerDisplayList}>
-              <PlayerListForGM
-                playerList={emptyRoleAllPlayer}
-                voteList={voteResult?.allVotePlayerData}
-              />
-            </ul>
-          );
-        }
         return (
           <ul className={styles.playerDisplayList}>
             <PlayerListForGM
               playerList={allPlayer}
               voteList={voteResult?.allVotePlayerData}
+              gameState={currentGameState}
             />
           </ul>
         );
