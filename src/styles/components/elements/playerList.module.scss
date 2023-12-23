@@ -11,21 +11,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // align-items: center;
   align-items: flex-start;
 }
 
 %innerBase {
   cursor: pointer;
-  // margin: 0.5rem 1rem;
   margin: 0.5rem 2vw;
   transform: scale(1);
   opacity: 1;
   transition: transform 0.3s, opacity 0.3s;
-  // &:hover {
-  //   transform: scale(1.15);
-  // }
-
   &:hover {
     transform: scale(1.05);
   }
@@ -45,7 +39,7 @@
 .roleReveal {
   &Team {
     text-align: center;
-    width: 15rem;
+    width: 17rem;
     margin: 0 1rem;
     padding: 0.3rem;
     border: 0.2rem solid;
@@ -55,9 +49,15 @@
     font-size: 0.9rem;
     padding: 0 1rem;
     margin: 0 1rem 0 0;
-    // border: 0.2rem solid;
     background-color: rgb(255, 208, 0);
     color: #181818;
+  }
+  &Lose {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    margin: 0 1rem 0 0;
+    background-color: rgb(75, 0, 146);
+    color: #ffffff;
   }
   &Players {
     width: 15rem;
@@ -83,12 +83,3 @@
     margin: 0 2rem;
   }
 }
-
-// .innerDisable {
-//   @extend %innerBase;
-//   opacity: 0.3;
-// }
-
-// .input {
-//   display: none;
-// }

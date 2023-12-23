@@ -1,8 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
+import Button from '@/components/elements/button';
 import Logo from '@/components/elements/logo';
 import PlayerListForGM from '@/components/elements/playerListForGM';
+import Timer from '@/components/elements/timer';
 import DarkForestLayout from '@/components/layouts/darkForestLayout';
+import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { GameState } from '@/config/gameState';
 import { GameStateSetting } from '@/config/gameStateSetting';
@@ -10,10 +13,13 @@ import { LogoStyle } from '@/config/logoStyle';
 import { PlayerRole } from '@/config/playerRole';
 import { PlayerState } from '@/config/playerState';
 import { PlayerTeam } from '@/config/playerTeam';
+import { TimerStyle } from '@/config/timerStyle';
 import styles from '@/styles/app/gm/playing/playing.module.scss';
 import { APIData } from '@/types/apiData';
+import { TimerData } from '@/types/timerData';
 import { APIService } from '@/utils/apiService';
 import { LocalStorageService } from '@/utils/localStorageService';
+import { PromiseUtil } from '@/utils/promiseUtil';
 
 const DEBUG: boolean = false;
 
@@ -52,6 +58,8 @@ export default function Home({
     GameState.Empty
   );
 
+  const [timerData, setTimerData] = useState<TimerData | undefined>(undefined);
+
   useEffect(() => {
     if (gameState == undefined) {
       return;
@@ -62,6 +70,32 @@ export default function Home({
   useEffect(() => {
     setViewMode(LocalStorageService.getGmViewmode() ?? 'OFF');
   }, []);
+
+  useEffect(() => {
+    if (
+      gameState !== GameState.DayPhase &&
+      gameState !== GameState.Voting &&
+      gameState !== GameState.ExileAnnouncement &&
+      gameState !== GameState.NightPhase
+    ) {
+      return;
+    }
+    PromiseUtil.apiAutoRetry(5, 300, async () => {
+      const timerData = await APIService.getFetchTimerData();
+      if (timerData == undefined) {
+        return true;
+      }
+      if (timerData.gameState === gameState) {
+        const timerCount = Math.floor(timerData.timeCountMSec * 0.001);
+        setTimerData({
+          timerState: timerData.timerState,
+          timerCount: timerCount,
+        });
+        return true;
+      }
+      return false;
+    });
+  }, [gameState]);
 
   function handleOptionChange(event: ChangeEvent<HTMLInputElement>) {
     const mode = event.target.value;
@@ -192,17 +226,33 @@ export default function Home({
           </ul>
         );
       })()}
-      <dl>
-        <dt>現在のゲーム状態</dt>
-        <dd>{GameStateSetting.GameStateName.get(currentGameState)}</dd>
-      </dl>
-      {currentGameState === GameState.RoleReveal ? (
-        <Link href="/gm/" onClick={handleGameEndButton}>
-          ゲームを終了する
-        </Link>
-      ) : (
-        <></>
-      )}
+      <ul>
+        <li>
+          現在のゲームシーン：
+          {GameStateSetting.GameStateName.get(currentGameState)}
+        </li>
+        <li>
+          タイマー：
+          {timerData == undefined ? (
+            <></>
+          ) : (
+            <Timer
+              timerState={timerData.timerState}
+              initialCount={timerData.timerCount}
+              timerStyle={TimerStyle.NoStyle}
+            />
+          )}
+        </li>
+      </ul>
+      <div className={styles.gameEndButton}>
+        {currentGameState === GameState.RoleReveal ? (
+          <Link href="/gm/" onClick={handleGameEndButton}>
+            <Button type={ButtonStyle.Blue}>ゲームを終了する</Button>
+          </Link>
+        ) : (
+          <></>
+        )}
+      </div>
       <div className={styles.bottomDummy}></div>
     </DarkForestLayout>
   );

@@ -4,6 +4,8 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
@@ -43,14 +45,19 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Check);
   }
 
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Medium);
+  const werewolfRoleName = PlayerRoleSetting.RoleName.get(PlayerRole.Werewolf);
+
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.FooterCenter}
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>霊能者アクション</p>
-        <p>最後に処刑されたプレイヤーが人狼かどうかを確認します</p>
+        <p>{roleName}アクション</p>
+        <p>
+          最後に処刑されたプレイヤーが{werewolfRoleName}かどうかを確認します
+        </p>
       </div>
       <ul className={styles.bottomButtons}>
         <li className={styles.bottomButtons__button_first}>
@@ -62,16 +69,4 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       <PlayingFooter />
     </PlayingLayout>
   );
-
-  // return (
-  //   <>
-  //     <h1>霊能者アクション</h1>
-  //     <p>最後に処刑されたプレイヤーが人狼かどうかを確認します</p>
-  //     <p>
-  //       <button type="button" onClick={handleButton}>
-  //         OK
-  //       </button>
-  //     </p>
-  //   </>
-  // );
 }

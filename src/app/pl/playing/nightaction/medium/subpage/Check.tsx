@@ -5,6 +5,7 @@ import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
 import { PlayerRole } from '@/config/playerRole';
+import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
@@ -41,10 +42,13 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Wait);
   }
 
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Medium);
+  const werewolfRoleName = PlayerRoleSetting.RoleName.get(PlayerRole.Werewolf);
+
   if (receivePlayer === null) {
     return (
       <>
-        <h1>霊能者アクション</h1>
+        <h1>{roleName}アクション</h1>
         <p>最後の処刑されたプレイヤーを確認できませんでした</p>
         <p>
           <button type="button" onClick={buttonHandler}>
@@ -61,11 +65,11 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>霊能者アクション</p>
+        <p>{roleName}アクション</p>
         <p>
           {receivePlayer.playerName} さんは{' '}
           <strong>
-            人狼{' '}
+            {werewolfRoleName}{' '}
             {receivePlayer.playerRole === PlayerRole.Werewolf
               ? 'です'
               : 'ではありません'}
@@ -83,25 +87,4 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       <PlayingFooter />
     </PlayingLayout>
   );
-
-  // return (
-  //   <>
-  //     <h1>霊能者アクション</h1>
-  //     <p>
-  //       {receivePlayer.playerName} さんは{' '}
-  //       <strong>
-  //         人狼{' '}
-  //         {receivePlayer.playerRole === PlayerRole.Werewolf
-  //           ? 'です'
-  //           : 'ではありません'}
-  //       </strong>{' '}
-  //       です
-  //     </p>
-  //     <p>
-  //       <button type="button" onClick={buttonHandler}>
-  //         OK
-  //       </button>
-  //     </p>
-  //   </>
-  // );
 }

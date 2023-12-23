@@ -4,6 +4,7 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerRole } from '@/config/playerRole';
 import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
@@ -40,30 +41,15 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Wait);
   }
 
-  // return (
-  //   <>
-  //     <h1>占い師アクション</h1>
-  //     <p>
-  //       {receivePlayer.playerName} さんは{' '}
-  //       <strong>
-  //         {PlayerRoleSetting.RoleName.get(receivePlayer.playerRole)}
-  //       </strong>{' '}
-  //       です
-  //     </p>
-  //     <p>
-  //       <button type="button" onClick={buttonHandler}>
-  //         OK
-  //       </button>
-  //     </p>
-  //   </>
-  // );
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Seer);
+
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.FooterCenter}
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>占い師アクション</p>
+        <p>{roleName}アクション</p>
         <p>
           {receivePlayer.playerName} さんは{' '}
           <strong>

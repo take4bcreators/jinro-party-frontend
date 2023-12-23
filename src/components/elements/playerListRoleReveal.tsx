@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import { PlayerIcon } from '@/config/playerIcon';
 import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayerTeam } from '@/config/playerTeam';
@@ -33,14 +32,14 @@ export default function Home({ playerList, winningTeam }: Props): JSX.Element {
                   initPlayerIcon={playerIcon}
                 />
               </div>
-              <p className={styles.roleRevealTeam}>
+              <div>
                 {winningTeam === playerTeam ? (
-                  <span className={styles.roleRevealWin}>Win</span>
+                  <span className={styles.roleRevealWin}>WIN!</span>
                 ) : (
-                  ''
+                  <span className={styles.roleRevealLose}>LOSE</span>
                 )}
-                {playerRoleName}
-              </p>
+              </div>
+              <p className={styles.roleRevealTeam}>{playerRoleName}</p>
             </li>
           );
         })}

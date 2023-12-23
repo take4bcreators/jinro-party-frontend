@@ -11,6 +11,8 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
@@ -83,15 +85,17 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Check);
   }
 
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Seer);
+
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.Top}
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>占い師アクション</p>
+        <p>{roleName}アクション</p>
         <p>
-          占いたいプレイヤーを
+          役職を知りたいプレイヤーを
           <wbr />
           選択してください
         </p>
@@ -119,39 +123,4 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       <PlayingFooter />
     </PlayingLayout>
   );
-
-  // return (
-  //   <>
-  //     <h1>占い師アクション</h1>
-  //     <p>占いたいプレイヤーを選択してください</p>
-  //     <form>
-  //       <ul>
-  //         {playersData.map((player, index) => {
-  //           return (
-  //             <li key={index}>
-  //               <label>
-  //                 <input
-  //                   type="radio"
-  //                   value={player.deviceId}
-  //                   checked={selectPlayerId === player.deviceId}
-  //                   onChange={handleOptionChange}
-  //                 />
-  //                 {player.playerIcon}:{player.playerName}
-  //               </label>
-  //             </li>
-  //           );
-  //         })}
-  //       </ul>
-  //       <p>
-  //         <button
-  //           type="button"
-  //           disabled={selectPlayerId === ''}
-  //           onClick={handleButton}
-  //         >
-  //           OK
-  //         </button>
-  //       </p>
-  //     </form>
-  //   </>
-  // );
 }

@@ -11,6 +11,8 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
@@ -49,9 +51,11 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Wait);
   }
 
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Werewolf);
+
   if (!isExecuter) {
     <>
-      <p>人狼アクション</p>
+      <p>{roleName}アクション</p>
       <p>襲撃は他のプレイヤーが行います。</p>
       <form>
         <p>
@@ -104,7 +108,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>人狼アクション</p>
+        <p>{roleName}アクション</p>
         <p>
           襲撃するプレイヤーを
           <wbr />
@@ -134,39 +138,4 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
       <PlayingFooter />
     </PlayingLayout>
   );
-
-  // return (
-  //   <>
-  //     <h1>人狼アクション</h1>
-  //     <p>襲撃するプレイヤーを選んでください</p>
-  //     <form>
-  //       <ul>
-  //         {playersData.map((player, index) => {
-  //           return (
-  //             <li key={index}>
-  //               <label>
-  //                 <input
-  //                   type="radio"
-  //                   value={player.deviceId}
-  //                   checked={selectPlayerId === player.deviceId}
-  //                   onChange={handleOptionChange}
-  //                 />
-  //                 {player.playerIcon}:{player.playerName}
-  //               </label>
-  //             </li>
-  //           );
-  //         })}
-  //       </ul>
-  //       <p>
-  //         <button
-  //           type="button"
-  //           disabled={selectPlayerId === ''}
-  //           onClick={handleButton}
-  //         >
-  //           OK
-  //         </button>
-  //       </p>
-  //     </form>
-  //   </>
-  // );
 }

@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     (async () => {
       if (DEBUG) {
-        const PLAYER_COUNT: number = 8;
+        const PLAYER_COUNT: number = 4;
         const debugPlayerList: APIData.APIReplyPlayerData[] = [];
         for (let index = 1; index <= PLAYER_COUNT; index++) {
           const iconNumber = ((index - 1) % 10) + 1;
@@ -69,24 +69,6 @@ export default function Home(): JSX.Element {
     );
   }
 
-  // return (
-  //   <>
-  //     <section>
-  //       <h1>プレイヤー役職発表</h1>
-  //       {allPlayer.map((player, index) => {
-  //         return (
-  //           <section key={index}>
-  //             <h2>{player.playerName}</h2>
-  //             <p>アイコン：{player.playerIcon}</p>
-  //             <p>{PlayerRoleSetting.RoleName.get(player.playerRole)}</p>
-  //             <p>{PlayerStateSetting.StateName.get(player.playerState)}</p>
-  //             <p>{winningTeam === player.playerTeam ? '👑勝利' : ''}</p>
-  //           </section>
-  //         );
-  //       })}
-  //     </section>
-  //   </>
-  // );
   return (
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <div className={styles.stickyTopDefault}>
@@ -95,17 +77,6 @@ export default function Home(): JSX.Element {
           <h1>RESULT</h1>
         </div>
       </div>
-      {/* {allPlayer.map((player, index) => {
-        return (
-          <section key={index}>
-            <h2>{player.playerName}</h2>
-            <p>アイコン：{player.playerIcon}</p>
-            <p>{PlayerRoleSetting.RoleName.get(player.playerRole)}</p>
-            <p>{PlayerStateSetting.StateName.get(player.playerState)}</p>
-            <p>{winningTeam === player.playerTeam ? '👑勝利' : ''}</p>
-          </section>
-        );
-      })} */}
       {allPlayer == undefined ? (
         <></>
       ) : (

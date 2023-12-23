@@ -11,6 +11,8 @@ import PlayingFooter from '@/components/layouts/playingFooter';
 import PlayingLayout from '@/components/layouts/playingLayout';
 import { ButtonStyle } from '@/config/buttonStyle';
 import { FlexBaseLayoutStyle } from '@/config/flexBaseLayoutStyle';
+import { PlayerRole } from '@/config/playerRole';
+import { PlayerRoleSetting } from '@/config/playerRoleSetting';
 import { PlayingLayoutStyle } from '@/config/playingLayoutStyle';
 import { RoleActionSubPage } from '@/config/roleActionSubPage';
 import styles from '@/styles/app/pl/playing/playing.module.scss';
@@ -75,15 +77,18 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
     setPageFunc(RoleActionSubPage.Wait);
   }
 
+  const roleName = PlayerRoleSetting.RoleName.get(PlayerRole.Madman);
+  const werewolfRoleName = PlayerRoleSetting.RoleName.get(PlayerRole.Werewolf);
+
   return (
     <PlayingLayout
       flexType={FlexBaseLayoutStyle.Top}
       type={PlayingLayoutStyle.Dark}
     >
       <div className={styles.headerTitle}>
-        <p>狂人アクション</p>
+        <p>{roleName}アクション</p>
         <p>
-          人狼だと思うプレイヤーを
+          {werewolfRoleName}だと思うプレイヤーを
           <wbr />
           投票してください
         </p>
