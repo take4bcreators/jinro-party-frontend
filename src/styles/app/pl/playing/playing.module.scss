@@ -83,3 +83,12 @@
     margin: 60px 0 0;
   }
 }
+
+.roleAssignment {
+  &Start {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
