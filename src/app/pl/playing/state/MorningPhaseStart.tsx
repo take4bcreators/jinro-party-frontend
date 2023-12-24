@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
       <StateTitle type={StateTitleStyle.Red} title={'Morning Time'}>
         朝になりました
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
           <strong>{winningTeam === selfTeam ? '勝ち！' : '負け...'}</strong>
         </p>
       </div>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </DarkForestLayout>
   );
 }

@@ -9,7 +9,7 @@ export default function Home(): JSX.Element {
     <DarkForestLayout flexType={FlexBaseLayoutStyle.Top}>
       <LogoHeader />
       <h1>ゲーム終了</h1>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </DarkForestLayout>
   );
 }

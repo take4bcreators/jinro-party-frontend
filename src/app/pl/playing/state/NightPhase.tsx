@@ -37,7 +37,7 @@ export default function Home(): JSX.Element {
         <span onClick={buttonHandler}>
           <Button type={ButtonStyle.Purple}>はじめる</Button>
         </span>
-        <PlayingFooter />
+        <PlayingFooter useRoleCheck={true} useLogoLink={true} />
       </PlayingLayout>
     );
   }

@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
       <StateTitle type={StateTitleStyle.Orange} title={'Voting Time'}>
         <p>投票終了</p>
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

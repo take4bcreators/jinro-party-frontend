@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
       <StateTitle type={StateTitleStyle.Default} title={'Debate Time'}>
         <p>話し合い終了</p>
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

@@ -11,7 +11,7 @@ export default function Home(): JSX.Element {
       <div className={styles.topInformation}>
         <p>Now Loading...</p>
       </div>
-      <PlayingFooter />
+      <PlayingFooter useLogoLink={true} />
     </DarkForestLayout>
   );
 }

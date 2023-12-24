@@ -49,7 +49,7 @@ export default function Home(): JSX.Element {
         </p>
         <p>しました</p>
       </div>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

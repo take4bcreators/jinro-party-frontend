@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
       <StateTitle type={StateTitleStyle.Dark} title={'Night Time'}>
         <p>操作を終了してください</p>
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

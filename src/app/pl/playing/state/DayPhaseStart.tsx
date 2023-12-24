@@ -35,7 +35,7 @@ export default function Home({ setDropOutFunc }: Props): JSX.Element {
           話し合いで決めてください
         </p>
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

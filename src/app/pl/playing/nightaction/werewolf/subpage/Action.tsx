@@ -135,7 +135,7 @@ export default function Home({ setPageFunc }: Props): JSX.Element {
           </li>
         </ul>
       </form>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

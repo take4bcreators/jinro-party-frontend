@@ -35,7 +35,7 @@ export default function Home({ setDropOutFunc }: Props): JSX.Element {
       <StateTitle type={StateTitleStyle.Dark} title={'Night Time'}>
         <p>夜になりました</p>
       </StateTitle>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }

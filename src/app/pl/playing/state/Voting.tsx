@@ -138,7 +138,7 @@ export default function Home(): JSX.Element {
           </li>
         </ul>
       </form>
-      <PlayingFooter />
+      <PlayingFooter useRoleCheck={true} useLogoLink={true} />
     </PlayingLayout>
   );
 }
