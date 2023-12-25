@@ -2,12 +2,19 @@ import { PlayerRole } from './playerRole';
 
 export namespace PlayerRoleSetting {
   export const RoleName = new Map<PlayerRole, string>([
+    /** 未設定 */
     [PlayerRole.Empty, '未設定'],
-    [PlayerRole.Citizen, '村人'],
-    [PlayerRole.Seer, '占い師'],
-    [PlayerRole.Medium, '霊能者'],
-    [PlayerRole.Hunter, '狩人'],
-    [PlayerRole.Werewolf, '人狼'],
-    [PlayerRole.Madman, '狂人'],
+    /** 市民 */
+    [PlayerRole.Citizen, '平社員'],
+    /** 占い師 */
+    [PlayerRole.Seer, 'エンジニア'],
+    /** 霊能者 */
+    [PlayerRole.Medium, 'マーケティング担当'],
+    /** 狩人 */
+    [PlayerRole.Hunter, 'セキュリティリーダー'],
+    /** 人狼 */
+    [PlayerRole.Werewolf, '企業スパイ'],
+    /** 狂人 */
+    [PlayerRole.Madman, '裏切り者'],
   ]);
 }
