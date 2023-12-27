@@ -1,0 +1,135 @@
+$border-size: 6.5px;
+
+%base {
+  display: inline-block;
+  position: relative;
+  padding: 8px;
+  text-align: center;
+  width: 250px;
+  background-color: #ffffff;
+  color: #061636;
+  font-weight: 700;
+  border: solid $border-size #061636;
+  border-radius: 25px;
+  cursor: pointer;
+  &:before {
+    content: '';
+    position: absolute;
+    top: $border-size * -1 - $border-size;
+    bottom: $border-size * -1 - $border-size;
+    left: $border-size * -1 - $border-size;
+    right: $border-size * -1 - $border-size;
+    border-radius: 30px;
+    background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
+    animation: 3s ease-in-out infinite alternate bggradient;
+    background-size: 200% 200%;
+    z-index: -1;
+    transition: box-shadow 0.5s;
+  }
+  &:hover:before {
+    box-shadow: 0px 0px 20px #2bb0cd;
+  }
+}
+
+@keyframes bggradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.blue {
+  @extend %base;
+  &:before {
+    background: linear-gradient(to right, #2bb0cd, #1480bd, #2bb0cd, #1480bd);
+    animation: 3s ease-in-out infinite alternate bggradient;
+    background-size: 200% 200%;
+  }
+  &:hover:before {
+    box-shadow: 0px 0px 20px #2bb0cd;
+  }
+}
+
+.pink {
+  @extend %base;
+  &:before {
+    background: linear-gradient(to right, #fa709a, #fee140);
+    animation: 3s ease-in-out infinite alternate bggradient;
+    background-size: 200% 200%;
+  }
+  &:hover:before {
+    box-shadow: 0px 0px 20px #fa709a;
+  }
+}
+
+.orange {
+  @extend %base;
+  // border: solid $border-size rgba($color: #000000, $alpha: 0);
+  // border: solid 6.5px rgba($color: #000000, $alpha: 0);
+  border: solid $border-size #f0b46d;
+  &:before {
+    background: linear-gradient(to right, #ff5858, #f09819);
+    animation: 3s ease-in-out infinite alternate bggradient;
+    background-size: 200% 200%;
+  }
+  &:hover:before {
+    box-shadow: 0px 0px 20px #ff5858;
+  }
+}
+
+.purple {
+  @extend %base;
+  &:before {
+    background: linear-gradient(to right, #6282f1, #bc74be);
+    animation: 3s ease-in-out infinite alternate bggradient;
+    background-size: 200% 200%;
+  }
+  &:hover:before {
+    box-shadow: 0px 0px 20px #6282f1;
+  }
+}
+
+.plane {
+  @extend %base;
+  border: none;
+  &:before {
+    background: none;
+    animation: none;
+    background-size: 100% 100%;
+  }
+  &:hover:before {
+    box-shadow: none;
+  }
+}
+
+.disable {
+  @extend %base;
+  cursor: default;
+  opacity: 0.4;
+  border: none;
+  &:before {
+    background: none;
+    animation: none;
+    background-size: 100% 100%;
+  }
+  &:hover:before {
+    box-shadow: none;
+  }
+}
+
+.none {
+  @extend %base;
+  border: none;
+  background: none;
+  color: #fff;
+  &:before {
+    background: none;
+    animation: none;
+    background-size: 100% 100%;
+  }
+  &:hover:before {
+    box-shadow: none;
+  }
+}

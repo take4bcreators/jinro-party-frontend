@@ -1,0 +1,17 @@
+.bgDecoration {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('/images/backgroup_texts.svg') repeat;
+  background-size: 150%;
+  animation: scroll-anim 40s linear infinite;
+}
+
+@keyframes scroll-anim {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

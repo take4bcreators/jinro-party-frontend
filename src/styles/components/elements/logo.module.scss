@@ -1,0 +1,42 @@
+@use '../../global' as g;
+
+.default {
+  width: 80vw;
+  height: auto;
+  @include g.mq(tab) {
+    width: 50vw;
+  }
+  @include g.mq(pc) {
+    width: 30vw;
+  }
+}
+
+.small {
+  width: 30vw;
+  height: auto;
+  @include g.mq(tab) {
+    width: 25vw;
+  }
+  @include g.mq(pc) {
+    width: 20vw;
+  }
+}
+
+.fixedsmall {
+  width: 30vw;
+  max-width: 120px;
+  height: auto;
+  @include g.mq(tab) {
+    width: 150px;
+    max-width: none;
+  }
+  @include g.mq(pc) {
+    width: 150px;
+    max-width: none;
+  }
+}
+
+.fixedsmallhide {
+  @extend .fixedsmall;
+  visibility: hidden;
+}

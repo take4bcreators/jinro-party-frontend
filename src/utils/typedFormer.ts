@@ -3,13 +3,9 @@ export class TypedFormData<T extends object> extends FormData {
     super();
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
-        this.append(key, this.stringifyValue(data[key]));
+        this.append(key, String(data[key]));
       }
     }
-  }
-
-  private stringifyValue(value: any): string {
-    return String(value);
   }
 }
 

@@ -1,0 +1,32 @@
+@use '../../global' as g;
+
+.outer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
+%innerBase {
+  margin: 1rem;
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.3s, opacity 0.3s;
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.innerDefault {
+  @extend %innerBase;
+}
+
+.innerDisable {
+  @extend %innerBase;
+  opacity: 0.3;
+}
+
+.input {
+  display: none;
+}

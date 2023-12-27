@@ -2,6 +2,38 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "本番用tar.gzファイル作成",
+      "detail": "本番用にtar.gzファイルを作成します（作成先：/project/build.tar.gz）",
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "package"
+      },
+      "type": "shell",
+      "command": "tar",
+      "args": [
+        "cvfz",
+        "${workspaceFolder}/project/build.tar.gz",
+        "-T",
+        "${workspaceFolder}/project/buildlist.txt"
+      ],
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "echo": true
+      },
+      "problemMatcher": [],
+      "windows": {
+        "command": "tar",
+        "args": [
+          "cvfz",
+          "${workspaceFolder}\\project\\build.tar.gz",
+          "-T",
+          "${workspaceFolder}\\project\\buildlist.txt"
+        ]
+      }
+    },
+    {
       "label": "npx next dev",
       "detail": "開発プレビュー用のサーバーを立ち上げます",
       "icon": {
@@ -54,30 +86,6 @@
         "echo": true
       },
       "problemMatcher": []
-    },
-    {
-      "label": "WebSocket テスト用サーバー起動",
-      "detail": "WebSocketのテスト用サーバーを起動します",
-      "icon": {
-        "color": "terminal.ansiGreen",
-        "id": "window"
-      },
-      "type": "shell",
-      "command": "${workspaceFolder}/node_modules/.bin/ts-node",
-      "args": ["${workspaceFolder}/test/customServer/webSocketTestServer.ts"],
-      "group": "none",
-      "presentation": {
-        "reveal": "always",
-        "clear": true,
-        "echo": true
-      },
-      "problemMatcher": [],
-      "windows": {
-        "command": "${workspaceFolder}\\node_modules\\.bin\\ts-node",
-        "args": [
-          "${workspaceFolder}\\test\\customServer\\webSocketTestServer.ts"
-        ]
-      }
     }
   ]
 }

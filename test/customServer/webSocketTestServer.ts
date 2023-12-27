@@ -1,5 +1,9 @@
 import * as Http from 'http';
 import * as Sockjs from 'sockjs';
+import { GameState } from '../../src/config/gameState';
+import { WsDestinationType } from '../../src/config/wsDestinationType';
+import { WsRequestAction } from '../../src/config/wsRequestAction';
+import { WsSenderType } from '../../src/config/wsSenderType';
 import type { APIWsData } from '../../src/types/apiWsData';
 
 // 接続情報指定
@@ -23,7 +27,21 @@ sockjsServer.on('connection', (session) => {
     console.log(receive);
     const receiveData: APIWsData = JSON.parse(receive);
     console.log(receiveData.requestAction);
-    const sendData = receiveData;
+    let sendData: APIWsData | undefined = undefined;
+    if (receiveData.requestAction === WsRequestAction.GameStateUpdate) {
+      sendData = {
+        destinationType: WsDestinationType.AllSite,
+        destinationDeviceId: '',
+        senderType: WsSenderType.Server,
+        senderDeviceId: '',
+        requestAction: WsRequestAction.GameScreenChange,
+        actionParameter01: receiveData.actionParameter01,
+        actionParameter02: '',
+        actionParameter03: '',
+      };
+    } else {
+      sendData = receiveData;
+    }
     const sendJsonData = JSON.stringify(sendData);
     for (const oneSession of sessions) {
       oneSession.write(sendJsonData);
