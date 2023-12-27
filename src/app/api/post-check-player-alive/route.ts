@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { APIData } from '@/types/apiData';
 import { TypedFormGetter } from '@/utils/typedFormer';
+import type { APIData } from '@/types/apiData';
 
 // @note レスポンスデータ指定箇所
 const RESPONSE_DATA: APIData.APIReplyCheckPlayerAlive = {
-  isAlive: true,
+  aliveStatus: true,
 };
 
 export async function POST(req: NextRequest) {

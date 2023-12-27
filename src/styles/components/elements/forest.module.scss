@@ -1,0 +1,77 @@
+@use '../../global' as g;
+
+.forest {
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  align-items: flex-end;
+  // width: 100%;
+  // width: 100%;
+  // width: auto;
+  // width: 200vw;
+  width: 100vw;
+  height: 105vh;
+  height: 105svh;
+  @include g.mq(tab) {
+    height: 105vh;
+  }
+  @include g.mq(tab) {
+    height: 105vh;
+  }
+}
+
+%treeBase {
+  width: 10vw;
+  height: auto;
+  fill: #053800;
+}
+
+.tree1 {
+  @extend %treeBase;
+  // width: 30vw;
+  // width: 50vmax;
+  width: 500px;
+  height: auto;
+  fill: #064101;
+  display: none;
+  @include g.mq(tab) {
+    display: initial;
+  }
+  @include g.mq(tab) {
+    display: initial;
+  }
+}
+
+.tree2 {
+  @extend %treeBase;
+  // width: 20vw;
+  // width: 30vmax;
+  width: 300px;
+  height: auto;
+  fill: #052c00;
+}
+
+.tree3 {
+  @extend %treeBase;
+  // width: 25vw;
+  // width: 40vmax;
+  width: 400px;
+  height: auto;
+  fill: #052d00;
+}
+
+.tree4 {
+  @extend %treeBase;
+  // width: 30vw;
+  // width: 47vmax;
+  width: 470px;
+  height: auto;
+  fill: #064000;
+  display: none;
+  @include g.mq(tab) {
+    display: initial;
+  }
+  @include g.mq(tab) {
+    display: initial;
+  }
+}

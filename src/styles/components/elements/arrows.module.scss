@@ -1,0 +1,69 @@
+.arrows {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+$baseSize: 1.2vmin;
+
+%arrowBase {
+  border-left: $baseSize solid transparent;
+  border-right: $baseSize solid transparent;
+  border-bottom: calc(tan(60deg) * $baseSize) solid #ffffff;
+  transform: rotate(90deg);
+  filter: drop-shadow(4px 0 4px rgba($color: #000000, $alpha: 0.4));
+}
+
+$animTime: 2s;
+
+.arrow01 {
+  @extend %arrowBase;
+  animation: colorChange01 $animTime steps(1, start) infinite;
+}
+
+.arrow02 {
+  @extend %arrowBase;
+  animation: colorChange02 $animTime steps(1, start) infinite;
+}
+
+.arrow03 {
+  @extend %arrowBase;
+  animation: colorChange03 $animTime steps(1, start) infinite;
+}
+
+@keyframes colorChange01 {
+  33% {
+    border-bottom-color: #ff5988;
+  }
+  66% {
+    border-bottom-color: #a02f83;
+  }
+  100% {
+    border-bottom-color: #500c7f;
+  }
+}
+
+@keyframes colorChange02 {
+  33% {
+    border-bottom-color: #500c7f;
+  }
+  66% {
+    border-bottom-color: #ff5988;
+  }
+  100% {
+    border-bottom-color: #a02f83;
+  }
+}
+
+@keyframes colorChange03 {
+  33% {
+    border-bottom-color: #a02f83;
+  }
+  66% {
+    border-bottom-color: #500c7f;
+  }
+  100% {
+    border-bottom-color: #ff5988;
+  }
+}

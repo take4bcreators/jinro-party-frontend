@@ -39,5 +39,6 @@ next-env.d.ts
 # Project
 #############
 work/*
+project/build.tar
+project/build.tar.gz
 !.gitkeep
-

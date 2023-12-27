@@ -1,12 +1,11 @@
 'use client';
-import type { APIWsData } from '@/types/apiWsData';
-import { GameState } from '@/config/gameState';
-import { WsService } from '@/utils/wsService';
 import { useEffect, useState } from 'react';
-
-import { WsSenderType } from '@/config/wsSenderType';
+import { GameState } from '@/config/gameState';
 import { WsDestinationType } from '@/config/wsDestinationType';
 import { WsRequestAction } from '@/config/wsRequestAction';
+import { WsSenderType } from '@/config/wsSenderType';
+import { WsService } from '@/utils/wsService';
+import type { APIWsData } from '@/types/apiWsData';
 
 export default function Home(): JSX.Element {
   const [wsReceiveData, setWsReceiveData] = useState<APIWsData | undefined>(

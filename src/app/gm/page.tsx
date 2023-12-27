@@ -1,27 +1,77 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { GameState } from '@/config/gameState';
 import { APIService } from '@/utils/apiService';
 
 export default function Home(): JSX.Element {
+  const router = useRouter();
   const [gameState, setGameState] = useState('');
 
   useEffect(() => {
-    APIService.execGETGameState().then((resValue) => {
-      if (resValue == undefined) {
+    (async () => {
+      const getGameState = await APIService.getGetGameState();
+      if (getGameState == undefined) {
         return;
       }
-      setGameState(resValue);
-    });
-  }, []);
+      setGameState(getGameState);
+      switch (getGameState) {
+        case GameState.PlayerJoining:
+          router.push('/gm/joining/');
+          break;
+        case GameState.PlayerJoiningEnded:
+          router.push('/gm/setting/input/');
+          break;
+        default:
+          break;
+      }
+    })();
+  }, [router]);
 
-  if (gameState === '') {
-    return <></>;
+  function LoadScreen(): JSX.Element {
+    return (
+      <>
+        <h1>WOLFFICE</h1>
+        <p>ロード中...</p>
+      </>
+    );
   }
-  console.log(gameState);
+  if (gameState === '') {
+    return <LoadScreen />;
+  }
+
+  switch (gameState) {
+    case GameState.PreGame:
+      return (
+        <>
+          <h1>WOLFFICE</h1>
+          <ul>
+            <li>
+              <Link href="/gm/newgame/modeselect/">新規ゲーム</Link>
+            </li>
+          </ul>
+        </>
+      );
+    case GameState.PlayerJoining:
+      return <LoadScreen />;
+    case GameState.PlayerJoiningEnded:
+      return <LoadScreen />;
+    default:
+      break;
+  }
 
   return (
     <>
-      <p>ゲームマスターサイトです</p>
+      <h1>WOLFFICE</h1>
+      <ul>
+        <li>
+          <Link href="/gm/newgame/modeselect/">新規ゲーム</Link>
+        </li>
+        <li>
+          <Link href="/gm/playing/">ゲーム再開</Link>
+        </li>
+      </ul>
     </>
   );
 }
