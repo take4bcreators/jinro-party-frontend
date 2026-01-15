@@ -1,8 +1,7 @@
 import 'ress';
 import '@/styles/app/globals.scss';
-import Favicon from '/public/images/favicon.ico';
-import type { Metadata } from 'next';
 import { Noto_Sans_JP } from 'next/font/google';
+import type { Metadata } from 'next';
 
 const notojp = Noto_Sans_JP({
   weight: ['400', '500', '600', '700', '800'],
@@ -12,7 +11,7 @@ const notojp = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: 'WOLFFICE',
   description: 'パーティ向け人狼ツール',
-  icons: [{ rel: 'icon', url: Favicon.src }],
+  icons: [{ rel: 'icon', url: '/images/favicon.ico' }],
 };
 
 export default function RootLayout({
